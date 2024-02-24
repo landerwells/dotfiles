@@ -1,0 +1,56 @@
+# Git Commands
+alias gs='git status'
+alias ga='git add'
+alias gd='git diff'
+alias gcm='git commit -m'
+
+# List Commands
+alias ls='exa -al --color=always --icons --git --group-directories-first'
+alias la='exa -a --color=always --icons --git --group-directories-first'
+alias ll='exa -l --color=always --icons --git --group-directories-first'
+
+alias cr='cargo run'
+alias ct='cargo test'
+alias eu='ssh -Y lawells@euclid.nmu.edu'
+alias fz='vim $(fzf)'
+alias mkdir='mkdir -pv'
+alias path='echo ${PATH//:/\\n}'
+alias py='python3'
+alias st='networkquality'
+alias vi='nvim'
+alias vim='nvim'
+alias xc='open -a Xcode'
+alias rm='rm -i'
+if [ -n "$BASH_VERSION" ]; then
+    alias so='source ~/.profile'
+elif [ -n "$ZSH_VERSION" ]; then
+    alias so='source ~/.zprofile'
+fi
+
+# Directory Commands
+alias cf='cd ~/.config'
+alias dv='cd ~/Developer'
+alias home='cd /mnt/c/Users/lande/'
+alias notes='cd ~/Developer/Notes'
+alias nv='cd ~/.config/nvim'
+alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+alias zshrc='cd ~/.config/zsh/'
+alias bashrc='cd ~/.config/bash/'
+alias advent='code ~/Developer/advent_of_code'
+alias aliases='vim ~/.config/aliases.sh'
+
+alias c='clear'
+alias q='exit'
+
+# Change shell
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias head='ghead'
+  alias paste='gpaste'
+  alias grep='ggrep'
+  alias awk='gawk'
+  alias sed='gsed'
+fi
