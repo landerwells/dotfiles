@@ -51,3 +51,7 @@ if [ "$os" = "mac" ]; then
 fi
 
 create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
+create_symlink "$DOTFILES_REPO/profile" "$HOME/.profile"
+create_symlink "$DOTFILES_REPO/zprofile" "$HOME/.zprofile"
+
+
