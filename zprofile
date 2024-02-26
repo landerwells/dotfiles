@@ -1,5 +1,6 @@
 # Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Source zshrc
 source $HOME/.config/zsh/.zshrc
