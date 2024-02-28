@@ -4,6 +4,8 @@ set -o vi
 
 alias vim='nvim'
 export PATH="/usr/local/bin:$PATH"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # Set history size
 HISTSIZE=10000

@@ -3,6 +3,7 @@ alias gs='git status'
 alias ga='git add'
 alias gd='git diff'
 alias gcm='git commit -m'
+alias gl='git log'
 
 # List Commands
 alias ls='exa -al --color=always --icons --git --group-directories-first'
