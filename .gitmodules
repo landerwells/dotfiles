@@ -1,3 +1,6 @@
 [submodule "nvim"]
 	path = nvim
 	url = git@github.com:landerwells/nvim.git
+[submodule "/Users/landerwells/.dotfiles/tmux/plugins/tpm"]
+	path = /Users/landerwells/.dotfiles/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
