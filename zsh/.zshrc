@@ -103,5 +103,7 @@ bindkey -M vicmd ds delete-surround
 bindkey -M vicmd ys add-surround
 bindkey -M visual S add-surround
 
+source "/Users/landerwells/.dotfiles/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh"
 [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
