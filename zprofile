@@ -1,6 +1,11 @@
 # Set PATH, MANPATH, etc., for Homebrew.
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export PATH="/opt/homebrew/bin:$PATH"
+# Check if Linux or Mac
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Source zshrc
 source $HOME/.config/zsh/.zshrc
