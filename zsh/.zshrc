@@ -94,16 +94,21 @@ for km in viopp visual; do
 done
 
 # surround functionality
-autoload -Uz surround
-zle -N delete-surround surround
-zle -N add-surround surround
-zle -N change-surround surround
-bindkey -M vicmd cs change-surround
-bindkey -M vicmd ds delete-surround
-bindkey -M vicmd ys add-surround
-bindkey -M visual S add-surround
+# autoload -Uz surround
+# zle -N delete-surround surround
+# zle -N add-surround surround
+# zle -N change-surround surround
+# bindkey -M vicmd cs change-surround
+# bindkey -M vicmd ds delete-surround
+# bindkey -M vicmd ys add-surround
+# bindkey -M visual S add-surround
 
-source "/Users/landerwells/.dotfiles/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh"
 [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# check if linux or mac
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  source /home/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  source /Users/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
