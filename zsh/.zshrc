@@ -105,5 +105,10 @@ done
 
 [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
-source "~/.dotfiles/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh"
-source "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# check if linux or mac
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  source /home/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  source /Users/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
