@@ -48,6 +48,7 @@ alias zshrc='cd ~/.dotfiles/zsh/'
 alias bashrc='cd ~/.dotfiles/bash/'
 alias aliases='vim ~/.dotfiles/aliases'
 alias haskell='cd ~/Developer/Haskell'
+alias rustify='cd ~/Developer/Rustify'
 
 alias c='clear'
 alias q='exit'
