@@ -1,14 +1,23 @@
 # Git Commands
 alias gs='git status'
 alias ga='git add'
+alias gp='git push'
 alias gd='git diff'
 alias gcm='git commit -m'
-alias gl='git log'
+alias gl='git log --oneline'
 
 # List Commands
-alias ls='exa -al --color=always --icons --git --group-directories-first'
-alias la='exa -a --color=always --icons --git --group-directories-first'
-alias ll='exa -l --color=always --icons --git --group-directories-first'
+if [ exa ]; then
+  alias ls='exa -al --color=always --icons --git --group-directories-first'
+  alias la='exa -a --color=always --icons --git --group-directories-first'
+  alias ll='exa -l --color=always --icons --git --group-directories-first'
+  alias ltr='exa -ltr --color=always --icons --git --group-directories-first'
+else
+  alias ls='ls -al --color=always --group-directories-first'
+  alias la='ls -a --color=always --group-directories-first'
+  alias ll='ls -l --color=always --group-directories-first'
+  alias ltr='ls -ltr --color=always --group-directories-first'
+fi
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -43,14 +52,10 @@ alias bashrc='cd ~/.dotfiles/bash/'
 alias aliases='vim ~/.dotfiles/aliases'
 alias haskell='cd ~/Developer/Haskell'
 alias advent='cd ~/Developer/AdventOfCode'
+alias rustify='cd ~/Developer/Rustify'
 
 alias c='clear'
 alias q='exit'
-
-# Change shell
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
-
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias head='ghead'
