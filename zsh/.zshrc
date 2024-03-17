@@ -45,7 +45,6 @@ function colormap() {
 eval "$(starship init zsh)"
 
 bindkey -v
-bindkey '^F' vim-search
 bindkey '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
@@ -68,10 +67,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-
-vim-search() {
-  vim $(fzf)
-}
 
 # autoload edit-command-line; zle -N edit-command-line
 # bindkey -M viins '^v' edit-command-line
