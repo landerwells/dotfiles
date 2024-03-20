@@ -6,6 +6,8 @@
 	<array/>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>Command</key>
 	<string></string>
 	<key>Custom Color Presets</key>
