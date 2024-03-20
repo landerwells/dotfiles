@@ -3,4 +3,4 @@
 	email = landerwells@gmail.com
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore
+	excludesfile = /home/landerwells/.config/git/ignore
