@@ -103,7 +103,11 @@ done
 # check if linux or mac
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   source /home/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /home/landerwells/.dotfiles/zsh/zsh-autopair/autopair.zsh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   source /Users/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /Users/landerwells/.dotfiles/zsh/zsh-autopair/autopair.zsh
 fi
+
+autopair-init
 
