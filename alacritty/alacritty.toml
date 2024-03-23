@@ -1,0 +1,12 @@
+[font]
+size = 12
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+
+[window]
+decorations = "Transparent"
+
+[window.padding]
+x = 7
+y = 25
