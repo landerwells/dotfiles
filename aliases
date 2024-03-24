@@ -53,6 +53,7 @@ alias aliases='vim ~/.dotfiles/aliases'
 alias haskell='cd ~/Developer/Haskell'
 alias advent='cd ~/Developer/AdventOfCode'
 alias rustify='cd ~/Developer/Rustify'
+alias school='cd ~/Developer/School'
 
 alias c='clear'
 alias q='exit'

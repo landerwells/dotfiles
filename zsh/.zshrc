@@ -1,4 +1,3 @@
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH=$PATH:~/.local/bin
 
@@ -11,8 +10,8 @@ if [ -n "$TMUX" ]; then
     HISTFILE=~/.cache/zsh/history
 fi
 
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.cache/zsh/history  # History in cashe directory
 setopt auto_cd                 # If a command isn't valid, but is a directory, cd to that dir
 setopt auto_pushd              # Make cd push the old directory onto the directory stack
@@ -31,6 +30,8 @@ setopt hist_save_no_dups       # Don't write a duplicate event to the history fi
 setopt hist_verify             # Don't execute immediately upon history expansion
 setopt inc_append_history      # Add commands to the history file as they are executed
 setopt auto_resume             # Attempt to resume existing job before creating a new process
+setopt share_history
+setopt autoparamslash
 unsetopt hist_beep             # Don't beep when attempting to access a missing history entry
 
 alias d='dirs -v'
@@ -44,7 +45,12 @@ function colormap() {
 # Load Starship
 eval "$(starship init zsh)"
 
+#-------------------------------------------------------------------------------
+#               VI-MODE
+#-------------------------------------------------------------------------------
 bindkey -v
+export KEYTIMEOUT=1
+
 bindkey '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
@@ -68,13 +74,7 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 
-# autoload edit-command-line; zle -N edit-command-line
-# bindkey -M viins '^v' edit-command-line
-# bindkey -M vicmd '^v' edit-command-line
-
-export KEYTIMEOUT=1
-
-# allows better vim bindings
+# Add vi-mode text objects e.g. da" ca(
 autoload -Uz select-bracketed select-quoted
 zle -N select-quoted
 zle -N select-bracketed
@@ -88,26 +88,21 @@ for km in viopp visual; do
   done
 done
 
-# surround functionality
-# autoload -Uz surround
-# zle -N delete-surround surround
-# zle -N add-surround surround
-# zle -N change-surround surround
-# bindkey -M vicmd cs change-surround
-# bindkey -M vicmd ds delete-surround
-# bindkey -M vicmd ys add-surround
-# bindkey -M visual S add-surround
+# Mimic tpope's vim-surround
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -M vicmd cs change-surround
+bindkey -M vicmd ds delete-surround
+bindkey -M vicmd ys add-surround
+bindkey -M visual S add-surround
 
 [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
-# check if linux or mac
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source /home/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /home/landerwells/.dotfiles/zsh/zsh-autopair/autopair.zsh
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  source /Users/landerwells/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /Users/landerwells/.dotfiles/zsh/zsh-autopair/autopair.zsh
-fi
 
+# Plugins
+source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.dotfiles/zsh/zsh-autopair/autopair.zsh
 autopair-init
-
