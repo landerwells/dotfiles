@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Specify the source directory and destination directory
 DOTFILES_REPO="$HOME/.dotfiles"
@@ -40,6 +40,7 @@ create_symlink "$DOTFILES_REPO/aliases" "$CONFIG_DIR/aliases"
 create_symlink "$DOTFILES_REPO/tmux" "$CONFIG_DIR/tmux"
 create_symlink "$DOTFILES_REPO/git" "$CONFIG_DIR/git"
 create_symlink "$DOTFILES_REPO/starship.toml" "$CONFIG_DIR/starship.toml"
+create_symlink "$DOTFILES_REPO/alacritty" "$CONFIG_DIR/alacritty"
 
 # Create symbolic links for mac specific directories
 if [ "$os" = "mac" ]; then
