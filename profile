@@ -9,3 +9,5 @@ export RUSTUP_HOME=$HOME/Toolbox/rustup
 # need to configure for bash and mac differences
 . "/home/landerwells/Toolbox/cargo/env"
 . "/Users/landerwells/Toolbox/cargo/env"
+
+[ -f "/home/landerwells/.ghcup/env" ] && . "/home/landerwells/.ghcup/env" # ghcup-env
