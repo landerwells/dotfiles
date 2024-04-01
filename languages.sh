@@ -17,3 +17,15 @@ case ${answer,,} in
     ;;
 esac
 
+echo "Do you want to install Haskell? (Y/n)"
+read answer
+case ${answer,,} in
+  n|no)
+    echo "Haskell installation skipped."
+    ;;
+  *)
+    echo "Installing Haskell..."
+    # Add your installation command here
+    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    ;;
+esac
