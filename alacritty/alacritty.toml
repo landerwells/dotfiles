@@ -6,7 +6,7 @@ size = 12
 family = "CaskaydiaCove Nerd Font"
 
 [window]
-decorations = "None"
+decorations = "Buttonless"
 startup_mode = "Maximized"
 
 [window.padding]
@@ -43,3 +43,8 @@ blue = "#83a497"
 magenta = "#d2859a"
 cyan = "#8ebf7b"
 white = "#ebdab1"
+
+[[keyboard.bindings]]
+chars = "\u0017"
+key = "Back"
+mods = "Alt"

@@ -6,6 +6,9 @@ alias gd='git diff'
 alias gcm='git commit -m'
 alias gl='git log --oneline'
 
+alias ghcs='gh copilot suggest'
+alias ghce='gh copilot explain'
+
 # List Commands
 if [ exa ]; then
   alias ls='exa -al --color=always --icons --git --group-directories-first'

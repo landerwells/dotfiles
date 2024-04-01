@@ -1,4 +1,5 @@
 # Set PATH, MANPATH, etc., for Homebrew.
+#
 # Check if Linux or Mac
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
