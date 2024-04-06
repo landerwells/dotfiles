@@ -10,11 +10,11 @@ alias ghcs='gh copilot suggest'
 alias ghce='gh copilot explain'
 
 # List Commands
-if [ exa ]; then
-  alias ls='exa -al --color=always --icons --git --group-directories-first'
-  alias la='exa -a --color=always --icons --git --group-directories-first'
-  alias ll='exa -l --color=always --icons --git --group-directories-first'
-  alias ltr='exa -ltr --color=always --icons --git --group-directories-first'
+if [ eza ]; then
+  alias ls='eza -al --color=always --icons --git --group-directories-first'
+  alias la='eza -a --color=always --icons --git --group-directories-first'
+  alias ll='eza -l --color=always --icons --git --group-directories-first'
+  alias ltr='eza -ltr --color=always --icons --git --group-directories-first'
 else
   alias ls='ls -al --color=always --group-directories-first'
   alias la='ls -a --color=always --group-directories-first'

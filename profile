@@ -7,7 +7,7 @@ export LESSHISTFILE=""
 export CARGO_HOME=$HOME/Toolbox/cargo
 export RUSTUP_HOME=$HOME/Toolbox/rustup
 # need to configure for bash and mac differences
-. "/home/landerwells/Toolbox/cargo/env"
-. "/Users/landerwells/Toolbox/cargo/env"
+. "$HOME/Toolbox/cargo/env"
 
 [ -f "/home/landerwells/.ghcup/env" ] && . "/home/landerwells/.ghcup/env" # ghcup-env
+. "/home/lander-wells/Toolbox/cargo/env"
