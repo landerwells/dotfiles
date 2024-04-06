@@ -6,7 +6,7 @@ vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "gd", "gdzz")
 
-vim.keymap.set("n", "<leader>=", "gg=G<C-o>")
+vim.keymap.set("n", "<leader>=", "gg=G<C-o>zz")
 -- prevent x from copying over Vim clipboard
 vim.keymap.set('n', 'x', '"_x')
 
