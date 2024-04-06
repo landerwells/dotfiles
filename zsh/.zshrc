@@ -1,6 +1,8 @@
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH=$PATH:~/.local/bin
 
+export MANPAGER='nvim +Man!'
+
 export VISUAL=nvim
 export EDITOR=nvim
 
