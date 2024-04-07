@@ -14,6 +14,7 @@ case ${answer,,} in
     # Add your installation command here
     mkdir -p ~/Toolbox
     RUSTUP_HOME=$RUSTUP_HOME CARGO_HOME=$CARGO_HOME bash -c 'curl https://sh.rustup.rs -sSf | sh'
+    # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ;;
 esac
 
