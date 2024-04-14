@@ -9,7 +9,7 @@ export EDITOR=nvim
 [ -f ~/.config/aliases ] && source ~/.config/aliases
 
 if [ -n "$TMUX" ]; then
-    HISTFILE=~/.cache/zsh/history
+  HISTFILE=~/.cache/zsh/history
 fi
 
 HISTSIZE=100000
@@ -57,19 +57,19 @@ bindkey '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
+if [[ ${KEYMAP} == vicmd ]] ||
+  [[ $1 = 'block' ]]; then
+  echo -ne '\e[1 q'
+elif [[ ${KEYMAP} == main ]] ||
+  [[ ${KEYMAP} == viins ]] ||
+  [[ ${KEYMAP} = '' ]] ||
+  [[ $1 = 'beam' ]]; then
+  echo -ne '\e[5 q'
+fi
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    echo -ne "\e[5 q"
+echo -ne "\e[5 q"
 }
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -108,3 +108,12 @@ source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.dotfiles/zsh/zsh-autopair/autopair.zsh
 autopair-init
+
+
+function swap()         
+{
+  local TMPFILE=tmp.$$
+  mv "$1" $TMPFILE
+  mv "$2" "$1"
+  mv $TMPFILE "$2"
+}
