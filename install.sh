@@ -19,19 +19,6 @@ create_symlink() {
     fi
   }
 
-# Promt if the user is using mac or linux
-echo "Are you using Mac or Linux? (mac/linux)"
-read -r os
-# set os variable to mac or linux
-if [ "$os" = "mac" ]; then
-  os="mac"
-elif [ "$os" = "linux" ]; then
-  os="linux"
-else
-  echo "Invalid input. Please enter mac or linux."
-  exit 1
-fi
-
 # Create symbolic links for specific directories
 create_symlink "$DOTFILES_REPO/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES_REPO/bash" "$CONFIG_DIR/bash"
@@ -43,7 +30,7 @@ create_symlink "$DOTFILES_REPO/starship.toml" "$CONFIG_DIR/starship.toml"
 create_symlink "$DOTFILES_REPO/alacritty" "$CONFIG_DIR/alacritty"
 
 # Create symbolic links for mac specific directories
-if [ "$os" = "mac" ]; then
+if [ "$(uname)" == "Darwin" ]; then
   create_symlink "$DOTFILES_REPO/yabai" "$CONFIG_DIR/yabai"
   create_symlink "$DOTFILES_REPO/skhd" "$CONFIG_DIR/skhd"
   create_symlink "$DOTFILES_REPO/karabiner" "$CONFIG_DIR/karabiner"
@@ -52,7 +39,7 @@ if [ "$os" = "mac" ]; then
 fi
 
 create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
-create_symlink "$DOTFILES_REPO/profile" "$HOME/.profile"
-create_symlink "$DOTFILES_REPO/zprofile" "$HOME/.zprofile"
+create_symlink "$DOTFILES_REPO/.profile" "$HOME/.profile"
+create_symlink "$DOTFILES_REPO/.zprofile" "$HOME/.zprofile"
 
 
