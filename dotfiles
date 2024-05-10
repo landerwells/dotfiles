@@ -74,6 +74,16 @@ create_symlink() {
 DOTFILES_REPO="$HOME/.config/dotfiles"
 CONFIG_DIR="$HOME/.config"
 
+# Create symbolic links for mac specific directories
+if [ "$(uname)" == "Darwin" ]; then
+  brew bundle --file="$DOTFILES_REPO/Brewfile"
+  create_symlink "$DOTFILES_REPO/yabai" "$CONFIG_DIR/yabai"
+  create_symlink "$DOTFILES_REPO/skhd" "$CONFIG_DIR/skhd"
+  create_symlink "$DOTFILES_REPO/karabiner" "$CONFIG_DIR/karabiner"
+  create_symlink "$DOTFILES_REPO/linearmouse" "$CONFIG_DIR/linearmouse"
+  create_symlink "$DOTFILES_REPO/iterm2" "$CONFIG_DIR/iterm2"
+fi
+
 # Create symbolic links for specific directories
 create_symlink "$DOTFILES_REPO/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES_REPO/bash" "$CONFIG_DIR/bash"
@@ -84,14 +94,6 @@ create_symlink "$DOTFILES_REPO/git" "$CONFIG_DIR/git"
 create_symlink "$DOTFILES_REPO/starship.toml" "$CONFIG_DIR/starship.toml"
 create_symlink "$DOTFILES_REPO/alacritty" "$CONFIG_DIR/alacritty"
 
-# Create symbolic links for mac specific directories
-if [ "$(uname)" == "Darwin" ]; then
-  create_symlink "$DOTFILES_REPO/yabai" "$CONFIG_DIR/yabai"
-  create_symlink "$DOTFILES_REPO/skhd" "$CONFIG_DIR/skhd"
-  create_symlink "$DOTFILES_REPO/karabiner" "$CONFIG_DIR/karabiner"
-  create_symlink "$DOTFILES_REPO/linearmouse" "$CONFIG_DIR/linearmouse"
-  create_symlink "$DOTFILES_REPO/iterm2" "$CONFIG_DIR/iterm2"
-fi
 
 create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
 create_symlink "$DOTFILES_REPO/.profile" "$HOME/.profile"
