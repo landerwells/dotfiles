@@ -46,19 +46,18 @@ elif [ -n "$ZSH_VERSION" ]; then
 fi
 
 # Directory Commands
-alias cf='cd ~/.dotfiles'
+alias cf='cd ~/.config/dotfiles'
 alias dv='cd ~/Developer'
 alias home='cd /mnt/c/Users/lande/'
 alias notes='cd ~/Developer/Notes'
-alias nv='cd ~/.dotfiles/nvim'
+alias nv='cd ~/.config/nvim'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-alias zshrc='cd ~/.dotfiles/zsh/'
-alias bashrc='cd ~/.dotfiles/bash/'
-alias aliases='vim ~/.dotfiles/aliases'
+alias zshrc='cd ~/.config/zsh/'
+alias bashrc='cd ~/.config/dotfiles/bash/'
+alias aliases='vim ~/.config/dotfiles/aliases'
 alias haskell='cd ~/Developer/Haskell'
 alias advent='cd ~/Developer/AdventOfCode'
 alias rustify='cd ~/Developer/Rustify'
-alias school='cd ~/Developer/School'
 
 alias c='clear'
 alias q='exit'
