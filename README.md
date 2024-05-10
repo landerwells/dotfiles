@@ -15,3 +15,7 @@ install homebrew
 
 
 
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/landerwells/dotfiles/master/dotfiles)"
+
+```
