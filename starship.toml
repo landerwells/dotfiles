@@ -71,16 +71,18 @@ style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
 
 [directory]
+truncate_to_repo = false
+home_symbol = "~"
 style = "fg:color_fg0 bg:color_yellow"
 format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+# truncation_length = 3
+# truncation_symbol = "…/"
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
+# [directory.substitutions]
+# "Documents" = "󰈙 "
+# "Downloads" = " "
+# "Music" = "󰝚 "
+# "Pictures" = " "
 # "Developer" = "󰲋 "
 
 [git_branch]
