@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Make sure the script is running correctly
-echo "Hello World"
+# Make sure everything is up to date and installed
+sudo apt update && sudo apt upgrade -y
 # # Specify the source directory and destination directory
 # DOTFILES_REPO="$HOME/.config/dotfiles"
 # CONFIG_DIR="$HOME/.config"
