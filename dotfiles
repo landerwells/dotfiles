@@ -4,7 +4,6 @@ function mac_setup() {
   echo "Setting up Mac"
   # Install xcode command line tools
   xcode-select --install
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
 function ubuntu_setup() {
@@ -36,6 +35,11 @@ case $ID in
     _cmd "echo 'Unsupported OS'"
     ;;
 esac
+
+mkdir -p ~/.config/dotfiles
+git clone https://github.com/landerwells/dotfiles.git ~/.config/dotfiles
+# Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Make sure everything is up to date and installed
 # sudo apt update && sudo apt upgrade -y
