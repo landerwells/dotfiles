@@ -1,7 +1,47 @@
 #!/usr/bin/env bash
 
+function mac_setup() {
+  echo "Setting up Mac"
+  # Install xcode command line tools
+  xcode-select --install
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+function ubuntu_setup() {
+  echo "Setting up Ubuntu"
+  sudo apt update && sudo apt upgrade -y
+  sudo apt install -y git
+}
+
+# Check whether we are on a Mac or Linux
+
+if [ "$(uname)" == "Darwin" ]; then
+  ID="mac"
+elif [ -f "/etc/lsb-release" ]; then
+  ID="ubuntu"
+else
+  ID="unsupported"
+fi
+
+case $ID in
+  ubuntu)
+    ubuntu_setup
+    ;;
+  mac)
+    mac_setup
+    ;;
+  *)
+    echo $ID
+    _task "Unsupported OS"
+    _cmd "echo 'Unsupported OS'"
+    ;;
+esac
+
 # Make sure everything is up to date and installed
-sudo apt update && sudo apt upgrade -y
+# sudo apt update && sudo apt upgrade -y
+
+
+
 # # Specify the source directory and destination directory
 # DOTFILES_REPO="$HOME/.config/dotfiles"
 # CONFIG_DIR="$HOME/.config"
