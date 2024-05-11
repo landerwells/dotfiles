@@ -17,7 +17,3 @@ export ZSH_COMPDUMP="$HOME/.cache/.zcompdump"
 export CARGO_HOME=$HOME/Toolbox/cargo
 export RUSTUP_HOME=$HOME/Toolbox/rustup
 export LESSHISTFILE=-
-
-export PATH=$PATH:$CARGO_HOME/bin
-source "$CARGO_HOME/env"
-

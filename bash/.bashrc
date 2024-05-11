@@ -3,8 +3,6 @@ source ~/.config/aliases
 set -o vi
 
 export PATH="/usr/local/bin:$PATH"
-export VISUAL=nvim
-export EDITOR="$VISUAL"
 
 # Set history size
 HISTSIZE=10000
@@ -40,8 +38,6 @@ shopt -s histverify
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
-
-# ~/.bashrc
 
 eval "$(starship init bash)"
 

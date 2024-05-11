@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
+function clone_repo() {
+  git clone https://github.com/landerwells/dotfiles.git ~/.config/dotfiles
+}
+
+function install_brew() {
+  echo "Installing Homebrew"
+  yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
 
 function mac_setup() {
   echo "Setting up Mac"
-  # Install xcode command line tools
   xcode-select --install
+  clone_repo
+  install_brew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 function ubuntu_setup() {
@@ -11,11 +21,27 @@ function ubuntu_setup() {
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y git
   sudo apt install -y net-tools
+  clone_repo
+  install_brew
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 }
 
-function hello() {
-  echo "Hello"
+create_symlink() {
+  source_dir="$1"
+  destination_dir="$2"
+  if [ -e "$destination_dir" ]; then
+    if [ -L "$destination_dir" ]; then
+      echo "Removing existing symbolic link $destination_dir"
+      unlink "$destination_dir"
+    else
+      echo "Removing existing $destination_dir"
+      rm -rf "$destination_dir"
+    fi
+  fi
+  ln -s "$source_dir" "$destination_dir"
 }
+
+FLAG_FILE="$HOME/.config/dotfiles_setup_done"
 
 # Check whether we are on a Mac or Linux
 if [ "$(uname)" == "Darwin" ]; then
@@ -40,36 +66,8 @@ case $ID in
     ;;
 esac
 
-mkdir -p ~/.config/dotfiles
-git clone https://github.com/landerwells/dotfiles.git ~/.config/dotfiles
-yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-#check operating system
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-create_symlink() {
-  source_dir="$1"
-  destination_dir="$2"
-
-  # Check if the destination already exists
-  if [ -e "$destination_dir" ]; then
-    # Check if it's a symbolic link
-    if [ -L "$destination_dir" ]; then
-      echo "Removing existing symbolic link $destination_dir"
-      unlink "$destination_dir"
-    else
-      # It's not a link, so remove the directory or file
-      echo "Removing existing $destination_dir"
-      rm -rf "$destination_dir"
-    fi
-  fi
-  # Create the new symbolic link
-  ln -s "$source_dir" "$destination_dir"
-}
-
 # Specify the source directory and destination directory
+mkdir -p ~/.config/dotfiles
 DOTFILES_REPO="$HOME/.config/dotfiles"
 CONFIG_DIR="$HOME/.config"
 
@@ -85,7 +83,6 @@ else
   ./install
 fi
 
-# Create symbolic links for specific directories
 create_symlink "$DOTFILES_REPO/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES_REPO/bash" "$CONFIG_DIR/bash"
 create_symlink "$DOTFILES_REPO/zsh" "$CONFIG_DIR/zsh"
@@ -95,9 +92,14 @@ create_symlink "$DOTFILES_REPO/git" "$CONFIG_DIR/git"
 create_symlink "$DOTFILES_REPO/starship.toml" "$CONFIG_DIR/starship.toml"
 create_symlink "$DOTFILES_REPO/alacritty" "$CONFIG_DIR/alacritty"
 
-
 create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
-create_symlink "$DOTFILES_REPO/.profile" "$HOME/.profile"
-create_symlink "$DOTFILES_REPO/.zprofile" "$HOME/.zprofile"
+create_symlink "$DOTFILES_REPO/zsh/.zprofile" "$HOME/.zprofile"
 
+if [ -f "$FLAG_FILE" ]; then
+  echo "Dotfiles already setup"
+else
+  echo 'source ~/.config/dotfiles/bash/.bashrc' >> ~/.bashrc
+  echo "Dotfiles setup complete"
+  touch "$FLAG_FILE"
+fi
 
