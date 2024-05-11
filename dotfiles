@@ -82,7 +82,7 @@ if [ "$(uname)" == "Darwin" ]; then
   create_symlink "$DOTFILES_REPO/linearmouse" "$CONFIG_DIR/linearmouse"
   create_symlink "$DOTFILES_REPO/iterm2" "$CONFIG_DIR/iterm2"
 else
-  brew bundle --file="DOTFILES_REPO/Brewfile-linux"
+  ./install
 fi
 
 # Create symbolic links for specific directories

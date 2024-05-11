@@ -1,4 +1,0 @@
-brew "neovim"
-brew "coreutils"
-brew "tmux"
-brew "visual-studio-code"
