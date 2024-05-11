@@ -7,13 +7,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
-# Source zshrc
 source $HOME/.config/zsh/.zshrc
+source ~/.config/dotfiles/exports
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ZSH_COMPDUMP="$HOME/.cache/.zcompdump"
-export CARGO_HOME=$HOME/Toolbox/cargo
-export RUSTUP_HOME=$HOME/Toolbox/rustup
-export LESSHISTFILE=-
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env

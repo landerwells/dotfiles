@@ -1,4 +1,5 @@
 source ~/.config/aliases
+source ~/.config/exports
 
 set -o vi
 

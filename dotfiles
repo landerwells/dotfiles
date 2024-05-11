@@ -30,7 +30,6 @@ function mac_setup() {
   xcode-select --install
   clone_repo
   install_brew
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 function ubuntu_setup() {
@@ -38,9 +37,9 @@ function ubuntu_setup() {
   sudo apt update && sudo apt upgrade -y
   sudo apt install -y git
   sudo apt install -y net-tools
+  sudo apt install -y gcc
   clone_repo
   install_brew
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 }
 
 create_symlink() {
@@ -104,12 +103,14 @@ create_symlink "$DOTFILES_REPO/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES_REPO/bash" "$CONFIG_DIR/bash"
 create_symlink "$DOTFILES_REPO/zsh" "$CONFIG_DIR/zsh"
 create_symlink "$DOTFILES_REPO/aliases" "$CONFIG_DIR/aliases"
+create_symlink "$DOTFILES_REPO/exports" "$CONFIG_DIR/exports"
 create_symlink "$DOTFILES_REPO/tmux" "$CONFIG_DIR/tmux"
 create_symlink "$DOTFILES_REPO/git" "$CONFIG_DIR/git"
 create_symlink "$DOTFILES_REPO/starship.toml" "$CONFIG_DIR/starship.toml"
 create_symlink "$DOTFILES_REPO/alacritty" "$CONFIG_DIR/alacritty"
 
 create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
+create_symlink "$DOTFILES_REPO/bash/.inputrc" "$HOME/.inputrc"
 create_symlink "$DOTFILES_REPO/zsh/.zprofile" "$HOME/.zprofile"
 
 if [ -f "$FLAG_FILE" ]; then
