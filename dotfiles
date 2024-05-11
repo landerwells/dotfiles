@@ -17,10 +17,10 @@ function install_brew() {
   echo "Installing Homebrew"
   yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [ "$(uname)" == "Darwin" ]; then
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.bashrc)
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.bashrc
     eval "$(/opt/homebrew/bin/brew shellenv)"
   else
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc)
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
 }
