@@ -3,19 +3,26 @@ function clone_repo() {
   git clone --recurse-submodules https://github.com/landerwells/dotfiles.git ~/.config/dotfiles
 }
 
-function source_rc() {
-  if [ -n "$BASH_VERSION" ]; then
-    source ~/.config/dotfiles/bash/.bashrc
-  elif [ -n "$ZSH_VERSION" ]; then
-    source ~/.config/dotfiles/zsh/.zshrc
-  else
-    echo "Unsupported shell"
-  fi
-}
+# function source_rc() {
+#   if [ -n "$BASH_VERSION" ]; then
+#     source ~/.config/dotfiles/bash/.bashrc
+#   elif [ -n "$ZSH_VERSION" ]; then
+#     source ~/.config/dotfiles/zsh/.zshrc
+#   else
+#     echo "Unsupported shell"
+#   fi
+# }
 
 function install_brew() {
   echo "Installing Homebrew"
   yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [ "$(uname)" == "Darwin" ]; then
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.bashrc)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.bashrc)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 }
 
 function mac_setup() {
@@ -23,10 +30,6 @@ function mac_setup() {
   xcode-select --install
   clone_repo
   install_brew
-  if [ ! -f "$FLAG_FILE" ]; then
-    echo 'source ~/.config/dotfiles/bash/.bashrc' >> ~/.bashrc
-  fi
-  source_rc
   eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
@@ -37,10 +40,6 @@ function ubuntu_setup() {
   sudo apt install -y net-tools
   clone_repo
   install_brew
-  if [ ! -f "$FLAG_FILE" ]; then
-    echo 'source ~/.config/dotfiles/bash/.bashrc' >> ~/.bashrc
-  fi
-  source_rc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 }
 
