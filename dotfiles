@@ -3,16 +3,6 @@ function clone_repo() {
   git clone --recurse-submodules https://github.com/landerwells/dotfiles.git ~/.config/dotfiles
 }
 
-# function source_rc() {
-#   if [ -n "$BASH_VERSION" ]; then
-#     source ~/.config/dotfiles/bash/.bashrc
-#   elif [ -n "$ZSH_VERSION" ]; then
-#     source ~/.config/dotfiles/zsh/.zshrc
-#   else
-#     echo "Unsupported shell"
-#   fi
-# }
-
 function install_brew() {
   echo "Installing Homebrew"
   yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -113,11 +103,10 @@ create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
 create_symlink "$DOTFILES_REPO/bash/.inputrc" "$HOME/.inputrc"
 create_symlink "$DOTFILES_REPO/zsh/.zprofile" "$HOME/.zprofile"
 
-if [ -f "$FLAG_FILE" ]; then
-  echo "Dotfiles already setup"
-else
+if [ ! -f "$FLAG_FILE" ]; then
   echo 'source ~/.config/dotfiles/bash/.bashrc' >> ~/.bashrc
   echo "Dotfiles setup complete"
+  echo "Please restart your terminal"
   touch "$FLAG_FILE"
 fi
 
