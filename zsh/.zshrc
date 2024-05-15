@@ -6,7 +6,8 @@ export MANPAGER='nvim +Man!'
 export VISUAL=nvim
 export EDITOR=nvim
 
-[ -f ~/.config/aliases ] && source ~/.config/aliases
+source "$XDG_CONFIG_HOME/dotfiles/aliases"
+source "$XDG_CONFIG_HOME/dotfiles/exports"
 
 if [ -n "$TMUX" ]; then
   HISTFILE=~/.cache/zsh/history
@@ -43,9 +44,6 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 function colormap() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
-
-# Load Starship
-eval "$(starship init zsh)"
 
 #-------------------------------------------------------------------------------
 #               VI-MODE
@@ -104,10 +102,9 @@ bindkey -M visual S add-surround
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
 
 # Plugins
-source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.dotfiles/zsh/zsh-autopair/autopair.zsh
-autopair-init
+# source $HOME/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $HOME/.config/dotfiles/zsh/zsh-autopair/autopair.zsh
+# autopair-init
 
 
 function swap()         
@@ -117,3 +114,7 @@ function swap()
   mv "$2" "$1"
   mv $TMPFILE "$2"
 }
+
+# Load Starship
+eval "$(starship init zsh)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

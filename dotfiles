@@ -91,9 +91,9 @@ fi
 
 create_symlink "$DOTFILES_REPO/nvim" "$CONFIG_DIR/nvim"
 create_symlink "$DOTFILES_REPO/bash" "$CONFIG_DIR/bash"
-create_symlink "$DOTFILES_REPO/zsh" "$CONFIG_DIR/zsh"
-create_symlink "$DOTFILES_REPO/aliases" "$CONFIG_DIR/aliases"
-create_symlink "$DOTFILES_REPO/exports" "$CONFIG_DIR/exports"
+# create_symlink "$DOTFILES_REPO/zsh" "$CONFIG_DIR/zsh"
+# create_symlink "$DOTFILES_REPO/aliases" "$CONFIG_DIR/aliases"
+# create_symlink "$DOTFILES_REPO/exports" "$CONFIG_DIR/exports"
 create_symlink "$DOTFILES_REPO/tmux" "$CONFIG_DIR/tmux"
 create_symlink "$DOTFILES_REPO/git" "$CONFIG_DIR/git"
 create_symlink "$DOTFILES_REPO/starship.toml" "$CONFIG_DIR/starship.toml"
@@ -101,7 +101,8 @@ create_symlink "$DOTFILES_REPO/alacritty" "$CONFIG_DIR/alacritty"
 
 create_symlink "$DOTFILES_REPO/haskeline" "$HOME/.haskeline"
 create_symlink "$DOTFILES_REPO/bash/.inputrc" "$HOME/.inputrc"
-create_symlink "$DOTFILES_REPO/zsh/.zprofile" "$HOME/.zprofile"
+# create_symlink "$DOTFILES_REPO/zsh/.zprofile" "$HOME/.zprofile"
+# create_symlink "$DOTFILES_REPO/zsh/.zshrc" "$HOME/.zshrc"
 
 if [ ! -f "$FLAG_FILE" ]; then
   echo 'source ~/.config/dotfiles/bash/.bashrc' >> ~/.bashrc
