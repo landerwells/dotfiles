@@ -7,6 +7,3 @@
 [submodule "tmux/plugins/tmux-yank"]
 	path = tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank
-[submodule "zsh/zsh-autopair"]
-	path = zsh/zsh-autopair
-	url = git@github.com:hlissner/zsh-autopair.git
