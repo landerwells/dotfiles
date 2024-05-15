@@ -14,9 +14,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-source ~/.config/dotfiles/exports
-# source $HOME/.config/zsh/.zshrc
-
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
-
-echo "hello from zprofile"
