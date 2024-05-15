@@ -1,4 +1,4 @@
-[submodule "/Users/landerwells/.dotfiles/tmux/plugins/tpm"]
+[submodule "/Users/landerwells/.config/dotfiles/tmux/plugins/tpm"]
 	path = /Users/landerwells/.config/dotfiles/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "tmux/plugins/tmux-yank"]
