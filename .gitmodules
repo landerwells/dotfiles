@@ -1,9 +1,6 @@
 [submodule "/Users/landerwells/.dotfiles/tmux/plugins/tpm"]
-	path = /Users/landerwells/.dotfiles/tmux/plugins/tpm
+	path = /Users/landerwells/.config/dotfiles/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "zsh/zsh-system-clipboard"]
-	path = zsh/zsh-system-clipboard
-	url = https://github.com/kutsan/zsh-system-clipboard
 [submodule "tmux/plugins/tmux-yank"]
 	path = tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank
