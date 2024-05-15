@@ -101,12 +101,6 @@ bindkey -M visual S add-surround
 [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
 
-# Plugins
-# source $HOME/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source $HOME/.config/dotfiles/zsh/zsh-autopair/autopair.zsh
-# autopair-init
-
-
 function swap()         
 {
   local TMPFILE=tmp.$$
