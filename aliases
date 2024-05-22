@@ -56,7 +56,7 @@ alias zshrc='cd ~/.config/zsh/'
 alias bashrc='cd ~/.config/dotfiles/bash/'
 alias aliases='vim ~/.config/dotfiles/aliases'
 alias haskell='cd ~/Developer/Haskell'
-alias advent='cd ~/Developer/AdventOfCode'
+alias advent='cd ~/Developer/advent'
 alias rustify='cd ~/Developer/Rustify'
 
 alias c='clear'
