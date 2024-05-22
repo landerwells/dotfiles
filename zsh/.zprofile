@@ -15,3 +15,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
+. "$HOME/.cargo/env"
