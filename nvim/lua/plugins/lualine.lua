@@ -48,7 +48,7 @@ return {
 
     require('lualine').setup {
       options = {
-        theme = "auto",
+        theme = bubbles_theme,
         disabled_filetypes = { "oil", "" },
         component_separators = '',
         section_separators = { left = '', right = '' },
