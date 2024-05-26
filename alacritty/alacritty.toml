@@ -1,13 +1,13 @@
 [font]
 size = 12
 
-
 [font.normal]
 family = "CaskaydiaCove Nerd Font"
 
 [window]
 decorations = "Buttonless"
 startup_mode = "Maximized"
+opacity = 0.95
 
 [window.padding]
 x = 7
@@ -16,33 +16,63 @@ y = 0
 [env]
 TERM = "xterm-256color"
 
-
 [colors]
-
 draw_bold_text_with_bright_colors = true
 
+# [colors.primary]
+# background = "#282727"
+#
+# [colors.normal]
+# black = "#282727"
+# red = "#cb231d"
+# green = "#98961a"
+# yellow = "#d69821"
+# blue = "#458487"
+# magenta = "#b06185"
+# cyan = "#689c69"
+# white = "#a89883"
+#
+# [colors.bright]
+# black = "#928273"
+# red = "#fa4834"
+# green = "#b8ba26"
+# yellow = "#f9bc2f"
+# blue = "#83a497"
+# magenta = "#d2859a"
+# cyan = "#8ebf7b"
+# white = "#ebdab1"
+
 [colors.primary]
-background = "#282727"
+background = "#1a1a1a"
+foreground = "#cccccc"
+
+[colors.cursor]
+text = "#ffffff"
+# cursor = "#000000"
+
+[colors.selection]
+text = "#cccccc"
+# background = "#ffffff40"
 
 [colors.normal]
-black = "#282727"
-red = "#cb231d"
-green = "#98961a"
-yellow = "#d69821"
-blue = "#458487"
-magenta = "#b06185"
-cyan = "#689c69"
-white = "#a89883"
+black = "#000000"
+red = "#a52aff"
+green = "#7129ff"
+yellow = "#3d2aff"
+blue = "#2b4fff"
+magenta = "#2883ff"
+cyan = "#28b9ff"
+white = "#cfcfcf"
 
 [colors.bright]
-black = "#928273"
-red = "#fa4834"
-green = "#b8ba26"
-yellow = "#f9bc2f"
-blue = "#83a497"
-magenta = "#d2859a"
-cyan = "#8ebf7b"
-white = "#ebdab1"
+black = "#2f2f2f"
+red = "#ba5aff"
+green = "#905aff"
+yellow = "#685aff"
+blue = "#5c78ff"
+magenta = "#5ea2ff"
+cyan = "#5ac8ff"
+white = "#ffffff"
 
 [[keyboard.bindings]]
 chars = "\u0017"
