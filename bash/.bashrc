@@ -3,6 +3,8 @@ source ~/.config/exports
 
 set -o vi
 
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/bin:$PATH"
 
 # Set history size
@@ -19,8 +21,12 @@ shopt -s cdable_vars
 shopt -u cdspell
 # Disable verbose output for pushd and popd commands
 shopt -s dirspell
-# Append history instead of overwriting
-shopt -s histappend
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend;
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
 # Ignore duplicate history entries
 HISTCONTROL=ignoredups
 # Ignore lines starting with spaces in the history
@@ -39,6 +45,9 @@ shopt -s histverify
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 eval "$(starship init bash)"
 
