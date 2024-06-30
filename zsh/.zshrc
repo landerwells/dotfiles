@@ -1,5 +1,7 @@
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH=$PATH:~/.local/bin
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+
 
 export MANPAGER='nvim +Man!'
 
