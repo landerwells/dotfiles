@@ -41,6 +41,7 @@ vim.o.pumheight = 10
 vim.opt.pumblend = 10
 vim.opt.showmode = false
 vim.opt.numberwidth = 4
+vim.opt.conceallevel = 1
 
 
 vim.cmd [[ highlight clear ]]

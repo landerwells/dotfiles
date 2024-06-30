@@ -49,7 +49,7 @@ fi
 alias cf='cd ~/.config/dotfiles'
 alias dv='cd ~/Developer'
 alias home='cd /mnt/c/Users/lande/'
-alias notes='cd ~/Developer/Notes'
+alias notes='cd ~/Notes'
 alias nv='cd ~/.config/nvim'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias zshrc='cd ~/.config/zsh/'
