@@ -111,8 +111,13 @@ function swap()
   mv $TMPFILE "$2"
 }
 
+
 # Load Starship
 eval "$(starship init zsh)"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
 # if mac
 if [ -d "/opt/homebrew" ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
