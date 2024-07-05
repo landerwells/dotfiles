@@ -1,0 +1,103 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5",
+  "schemes" : [
+    {
+      "if" : {
+        "device" : {
+          "productID" : "0x343",
+          "vendorID" : "0x5ac",
+          "category" : "trackpad",
+          "productName" : "Apple Internal Keyboard \/ Trackpad"
+        }
+      },
+      "pointer" : {
+        "speed" : 0.25,
+        "acceleration" : 0.1
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : false
+        }
+      }
+    },
+    {
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "serialNumber" : "B0D4CB72",
+          "category" : "mouse",
+          "productName" : "MX Master 3S",
+          "productID" : "0xb034"
+        }
+      },
+      "scrolling" : {
+        "distance" : {
+          "vertical" : 3
+        },
+        "speed" : {
+          "vertical" : 0
+        },
+        "reverse" : {
+          "vertical" : true
+        },
+        "acceleration" : {
+          "vertical" : 1
+        }
+      },
+      "pointer" : {
+        "acceleration" : 1.5,
+        "disableAcceleration" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "serialNumber" : "3774385B3232",
+          "vendorID" : "0x46d",
+          "productName" : "USB Receiver",
+          "productID" : "0xc54d"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 1
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      }
+    },
+    {
+      "pointer" : {
+        "speed" : 0.15,
+        "acceleration" : 1,
+        "disableAcceleration" : true
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "productName" : "PRO X 2",
+          "productID" : "0xc09b",
+          "serialNumber" : "6967266E",
+          "category" : "mouse"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        },
+        "acceleration" : {
+          "vertical" : 1
+        }
+      }
+    }
+  ]
+}
