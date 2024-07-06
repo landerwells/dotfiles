@@ -1,11 +1,14 @@
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH=$PATH:~/.local/bin
 
+echo "hello from zshrc"
 export MANPAGER='nvim +Man!'
 
 export VISUAL=nvim
 export EDITOR=nvim
+export XDG_CONFIG_HOME=~/.config
 
+source "$XDG_CONFIG_HOME/shell/.zprofile"
 source "$XDG_CONFIG_HOME/shell/aliases"
 source "$XDG_CONFIG_HOME/shell/exports"
 

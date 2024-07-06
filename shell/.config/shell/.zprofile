@@ -3,8 +3,7 @@
 # Check if Linux or Mac
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export INPUTRC=~/.config/bash/inputrc
-export ZDOTDIR="$XDG_CONFIG_HOME/dotfiles/zsh"
+export ZDOTDIR="$XDG_CONFIG_HOME/shell/"
 export LESSHISTFILE=""
 export VISUAL=nvim
 export EDITOR="$VISUAL"
