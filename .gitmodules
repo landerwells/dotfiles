@@ -1,3 +1,6 @@
 [submodule "/Users/landerwells/dotfiles/tmux/.config/tmux/plugins/tpm"]
 	path = /Users/landerwells/dotfiles/tmux/.config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "/Users/landerwells/dotfiles/tmux/.config/tmux/plugins/minimal-tmux-status"]
+	path = /Users/landerwells/dotfiles/tmux/.config/tmux/plugins/minimal-tmux-status
+	url = git@github.com:niksingh710/minimal-tmux-status.git
