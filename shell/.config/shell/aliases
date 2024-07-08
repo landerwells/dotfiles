@@ -42,11 +42,11 @@ alias rm='rm -i'
 if [ -n "$BASH_VERSION" ]; then
     alias so='source ~/.profile'
 elif [ -n "$ZSH_VERSION" ]; then
-    alias so='source ~/.zprofile'
+    alias so='source ~/.zshrc'
 fi
 
 # Directory Commands
-alias cf='cd ~/.config/dotfiles'
+alias cf='cd ~/dotfiles'
 alias dv='cd ~/Developer'
 alias home='cd /mnt/c/Users/lande/'
 alias nv='cd ~/.config/nvim'

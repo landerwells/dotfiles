@@ -6,7 +6,6 @@ export VISUAL=nvim
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config
 
-source "$XDG_CONFIG_HOME/shell/.zprofile"
 source "$XDG_CONFIG_HOME/shell/aliases"
 source "$XDG_CONFIG_HOME/shell/exports"
 
