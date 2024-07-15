@@ -7,7 +7,7 @@ family = "CaskaydiaCove Nerd Font"
 [window]
 decorations = "Buttonless"
 startup_mode = "Maximized"
-opacity = 0.95
+opacity = 1.00
 
 [window.padding]
 x = 7
