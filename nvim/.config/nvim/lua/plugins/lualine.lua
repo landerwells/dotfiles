@@ -17,38 +17,9 @@ return {
       return string.format("󱡅 %s/%d", current_mark, total_marks)
     end
 
-    -- stylua: ignore
-    local colors = {
-      blue   = '#458588',
-      cyan   = '#689d6a',
-      black  = '#080808',
-      white  = '#c6c6c6',
-      red    = '#cc241d',
-      violet = '#d79921',
-      grey   = '#303030',
-    }
-
-    local bubbles_theme = {
-      normal = {
-        a = { fg = colors.black, bg = colors.violet },
-        b = { fg = colors.white, bg = colors.grey },
-        c = { fg = colors.white },
-      },
-
-      insert = { a = { fg = colors.black, bg = colors.blue } },
-      visual = { a = { fg = colors.black, bg = colors.cyan } },
-      replace = { a = { fg = colors.black, bg = colors.red } },
-
-      inactive = {
-        a = { fg = colors.white, bg = colors.black },
-        b = { fg = colors.white, bg = colors.black },
-        c = { fg = colors.white },
-      },
-    }
-
     require('lualine').setup {
       options = {
-        theme = bubbles_theme,
+        theme = "auto",
         disabled_filetypes = { "oil", "" },
         component_separators = '',
         section_separators = { left = '', right = '' },

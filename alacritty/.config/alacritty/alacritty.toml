@@ -3,6 +3,7 @@ size = 18
 
 [font.normal]
 family = "CaskaydiaCove Nerd Font"
+style = "SemiBold"
 
 [window]
 decorations = "Buttonless"
@@ -47,7 +48,7 @@ draw_bold_text_with_bright_colors = true
 # Purple
 
 [colors.primary]
-background = "#1a1a1a"
+background = "#1d1d1d"
 foreground = "#cccccc"
 
 [colors.cursor]
@@ -61,8 +62,7 @@ text = "#cccccc"
 [colors.normal]
 black = "#000000"
 red = "#a52aff"
-# green = "#7129ff"
-green = "#905aff"
+green = "#7129ff"
 yellow = "#3d2aff"
 blue = "#2b4fff"
 magenta = "#2883ff"

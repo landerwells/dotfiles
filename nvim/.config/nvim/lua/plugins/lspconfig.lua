@@ -106,19 +106,19 @@ return {
           },
         })
       end,
-      ["rust_analyzer"] = function()
-        lspconfig["rust_analyzer"].setup({
-          capabilities = capabilities,
-          settings = {
-            ["rust_analyzer"] = {
-              cargo = { allFeatures = true },
-              check = { command = "clippy", extraArgs = { "--no-deps" } },
-              procMacro = { enable = true },
-            },
-          },
-          on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
-        })
-      end,
+      -- ["rust_analyzer"] = function()
+      --   lspconfig["rust_analyzer"].setup({
+      --     capabilities = capabilities,
+      --     settings = {
+      --       ["rust_analyzer"] = {
+      --         cargo = { allFeatures = true },
+      --         check = { command = "clippy", extraArgs = { "--no-deps" } },
+      --         procMacro = { enable = true },
+      --       },
+      --     },
+      --     on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
+      --   })
+      -- end,
     })
   end,
 }
