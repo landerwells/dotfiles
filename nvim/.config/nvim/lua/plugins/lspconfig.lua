@@ -106,6 +106,12 @@ return {
           },
         })
       end,
+      ["elixirls"] = function()
+        -- you need to specify the executable command mannualy for elixir-ls
+        lspconfig["elixirls"].setup({
+          cmd = { "/opt/homebrew/bin/elixir-ls" },
+        })
+      end,
       -- ["rust_analyzer"] = function()
       --   lspconfig["rust_analyzer"].setup({
       --     capabilities = capabilities,
