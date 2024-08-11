@@ -31,7 +31,7 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.isfname:append("@-@")
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.backspace = "indent,eol,start"
 vim.opt.cursorline = true
@@ -51,44 +51,14 @@ vim.on_key(function(char)
   end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
 
-
--- local a = vim.api
---
--- a.nvim_create_autocmd("UIEnter", {
---   group = a.nvim_create_augroup("set_terminal_bg", {}),
+-- -- Define an autocmd to reset background colors to default
+-- vim.api.nvim_create_autocmd("UIEnter", {
+--   group = vim.api.nvim_create_augroup("reset_terminal_colors", {}),
 --   callback = function()
---     local hl = a.nvim_get_hl(0, { name = "Normal", rgb = true })
---     local bg = hl and hl.background or nil
---
---     if not bg then
---       return
---     end
---
---     local fmt = string.format
---
---     if os.getenv("TMUX") then
---       bg = fmt('printf "\\ePtmux;\\e\\033]11;#%06x\\007\\e\\\\"', bg)
---     else
---       bg = fmt('printf "\\033]11;#%06x\\007"', bg)
---     end
---
---     os.execute(bg)
---     return true
+--     -- Reset background color to default terminal color
+--     vim.cmd("highlight Normal guibg=NONE guifg=NONE")
+--     vim.cmd("highlight NonText guibg=NONE guifg=NONE")
+--     -- vim.cmd("highlight LineNr guibg=NONE guifg=NONE")
+--     -- Add other highlight groups as needed
 --   end,
 -- })
-
--- Enable true colors
-vim.opt.termguicolors = true
-
--- Define an autocmd to reset background colors to default
-vim.api.nvim_create_autocmd("UIEnter", {
-  group = vim.api.nvim_create_augroup("reset_terminal_colors", {}),
-  callback = function()
-    -- Reset background color to default terminal color
-    vim.cmd("highlight Normal guibg=NONE guifg=NONE")
-    vim.cmd("highlight NonText guibg=NONE guifg=NONE")
-    -- vim.cmd("highlight LineNr guibg=NONE guifg=NONE")
-    -- Add other highlight groups as needed
-  end,
-})
-
