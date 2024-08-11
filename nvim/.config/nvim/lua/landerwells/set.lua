@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
     -- Reset background color to default terminal color
     vim.cmd("highlight Normal guibg=NONE guifg=NONE")
     vim.cmd("highlight NonText guibg=NONE guifg=NONE")
-    vim.cmd("highlight LineNr guibg=NONE guifg=NONE")
+    -- vim.cmd("highlight LineNr guibg=NONE guifg=NONE")
     -- Add other highlight groups as needed
   end,
 })
