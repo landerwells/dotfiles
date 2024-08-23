@@ -1,0 +1,5 @@
+Once cloned, run 
+
+```
+stow .
+```
