@@ -3,3 +3,4 @@ export INPUTRC=~/.config/bash/inputrc
 export LESSHISTFILE=""
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export NIX_CONF_DIR="$HOME/.config/nix"

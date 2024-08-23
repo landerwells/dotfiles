@@ -42,7 +42,7 @@ alias rm='rm -i'
 if [ -n "$BASH_VERSION" ]; then
     alias so='source ~/.profile'
 elif [ -n "$ZSH_VERSION" ]; then
-    alias so='source ~/.zshrc'
+    alias so='source ~/.zprofile'
 fi
 
 # Directory Commands
