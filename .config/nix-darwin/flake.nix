@@ -14,6 +14,13 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages =
           [ pkgs.vim
+            pkgs.neovim
+            pkgs.eza
+            pkgs.fzf
+            pkgs.starship
+            pkgs.stow
+            pkgs.tmux
+            pkgs.ripgrep
           ];
 
         # Auto upgrade nix package and the daemon service.
@@ -38,6 +45,7 @@
         nixpkgs.hostPlatform = "aarch64-darwin";
         security.pam.enableSudoTouchIdAuth = true;
       };
+
     in
       {
       # Build darwin flake using:
