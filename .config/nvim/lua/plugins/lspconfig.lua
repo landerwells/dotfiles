@@ -75,9 +75,11 @@ return {
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
       function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
+        if server_name ~= "rust_analyzer" then
+          lspconfig[server_name].setup({
+            capabilities = capabilities,
+          })
+        end
       end,
       ["clangd"] = function()
         lspconfig["clangd"].setup({
@@ -110,19 +112,6 @@ return {
         -- you need to specify the executable command mannualy for elixir-ls
         lspconfig["elixirls"].setup({
           cmd = { "/opt/homebrew/bin/elixir-ls" },
-        })
-      end,
-      ["rust_analyzer"] = function()
-        lspconfig["rust_analyzer"].setup({
-          capabilities = capabilities,
-          settings = {
-            ["rust_analyzer"] = {
-              cargo = { allFeatures = true },
-              check = { command = "clippy", extraArgs = { "--no-deps" } },
-              procMacro = { enable = true },
-            },
-          },
-          on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
         })
       end,
     })
