@@ -1,8 +1,3 @@
-Once cloned, run 
-
 ```
-stow .
+curl
 ```
-
-currently need to fix telescope to read through dotfiles
-
