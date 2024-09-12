@@ -109,7 +109,6 @@ function swap()
   mv $TMPFILE "$2"
 }
 
-
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"

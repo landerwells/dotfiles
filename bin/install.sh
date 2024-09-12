@@ -6,12 +6,17 @@
 # Install X-Code CLI Utilities
 xcode-select --install
 
+# Install brew with noninteractive
+# To-Do: check if brew is already installed and skip if so
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # Clone repository
 git clone https://github.com/landerwells/dotfiles.git
 
-# Create bin directory
-mkdir ~/bin
+# source zsh files
+source ~/dotfiles/.zprofile
 
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-
+# brew should now work so install stow
+brew install stow
+cd ~/dotfiles
+stow .

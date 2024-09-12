@@ -3,6 +3,7 @@ size = 12
 
 [font.offset]
 x = 0
+# y = 2
 y = 7
 
 [font.normal]

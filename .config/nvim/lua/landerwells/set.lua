@@ -35,9 +35,9 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.backspace = "indent,eol,start"
 vim.opt.cursorline = true
-vim.opt.winblend = 0
-vim.opt.pumheight = 10
-vim.opt.pumblend = 10
+-- vim.opt.winblend = 0
+vim.opt.pumheight = 12
+-- vim.opt.pumblend = 10
 vim.opt.showmode = false
 vim.opt.numberwidth = 4
 vim.opt.conceallevel = 1
@@ -50,15 +50,3 @@ vim.on_key(function(char)
     vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
   end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
-
--- -- Define an autocmd to reset background colors to default
--- vim.api.nvim_create_autocmd("UIEnter", {
---   group = vim.api.nvim_create_augroup("reset_terminal_colors", {}),
---   callback = function()
---     -- Reset background color to default terminal color
---     vim.cmd("highlight Normal guibg=NONE guifg=NONE")
---     vim.cmd("highlight NonText guibg=NONE guifg=NONE")
---     -- vim.cmd("highlight LineNr guibg=NONE guifg=NONE")
---     -- Add other highlight groups as needed
---   end,
--- })
