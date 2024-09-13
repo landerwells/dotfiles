@@ -8,30 +8,16 @@ vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "gd", "gdzz")
 
 vim.keymap.set("n", "<leader>=", "gg=G<C-o>zz")
--- prevent x from copying over Vim clipboard
-vim.keymap.set('n', 'x', '"_x')
-
--- Quick way to open register menu
-vim.keymap.set("n", "<leader>r", vim.cmd.reg)
-
--- indent and outdent lines in visual mode
-vim.keymap.set('v', '<TAB>', '<S->>gv')
-vim.keymap.set('v', '<S-TAB>', '<S-<>gv')
 
 -- the greatest remap ever (Primeagen)
 vim.keymap.set('v', '<leader>p', '"_dP')
 
--- keep cursor at front when appending lines below
-vim.keymap.set('n', 'x', '"_x')
-
 -- creates a new line below the cursor and goes back into normal mode
 vim.keymap.set('n', '<CR>', 'o<Esc>')
 
+-- Keymap for ctrl-backspace support to work like windows.
 vim.keymap.set("i", "<C-BS>", "<C-w>")
 
--- vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("n", "<C-s>", ":w<CR>")
-vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>v", vim.cmd.vs)
 vim.keymap.set("n", "<leader>hs", vim.cmd.split)
 
@@ -40,13 +26,18 @@ vim.keymap.set('n', '<C-e>', '<nop>')
 vim.keymap.set('n', '<Leader>c', '<cmd>lua ToggleCopilot()<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<C-b>", function()
-  require("oil").toggle_float()
+  local oil = require("oil")
+  if vim.bo.filetype == "oil" then
+    oil.close()
+  else
+    oil.open()
+  end
 end)
 
 vim.on_key(function(char)
-if vim.fn.mode() == "n" then
-  vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/", "z", "v" }, vim.fn.keytrans(char))
-end
+  if vim.fn.mode() == "n" then
+    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/", "z", "v" }, vim.fn.keytrans(char))
+  end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
 
 -- Function to toggle Copilot
