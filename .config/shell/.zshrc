@@ -6,6 +6,8 @@ export VISUAL=nvim
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config
 
+export PATH="$PATH:/Users/landerwells/fvm/versions/stable/bin"
+
 source "$XDG_CONFIG_HOME/shell/aliases"
 source "$XDG_CONFIG_HOME/shell/exports"
 
