@@ -26,15 +26,11 @@ return {
         "lua_ls",
         "pyright",
         "clangd",
-        "hls",
         "html",
         "cssls",
         "bashls",
         "jsonls",
       },
-
-
-
     })
   end,
 }
