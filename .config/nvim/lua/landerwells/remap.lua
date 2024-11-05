@@ -21,7 +21,7 @@ vim.keymap.set("i", "<C-BS>", "<C-w>")
 vim.keymap.set("n", "<leader>v", vim.cmd.vs)
 vim.keymap.set("n", "<leader>hs", vim.cmd.split)
 
-vim.keymap.set('n', '<C-e>', '<nop>')
+-- vim.keymap.set('n', '<C-e>', '<nop>')
 
 vim.keymap.set('n', '<Leader>c', '<cmd>lua ToggleCopilot()<CR>', { noremap = true, silent = true })
 

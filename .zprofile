@@ -20,3 +20,9 @@ source ~/.config/shell/.zshrc
 
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 . "$HOME/.cargo/env"
+
+# Add pyenv to your shell
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
