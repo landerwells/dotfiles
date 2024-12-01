@@ -1,4 +1,4 @@
-#files: 996	version: 5.9
+#files: 976	version: 5.9
 
 _comps=(
 ''\''brew' '_brew_services'
@@ -1851,10 +1851,6 @@ bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
 autoload -Uz _aerospace _alacritty _brew _brew_services _docker \
-            _docker-compose _eza _gh _rg _starship \
-            _aerospace _alacritty _brew _brew_services _docker \
-            _docker-compose _eza _gh _rg _starship \
-            _aerospace _alacritty _brew _brew_services _docker \
             _docker-compose _eza _gh _rg _starship \
             _SUSEconfig __arguments _a2ps _a2utils _aap \
             _abcde _absolute_command_paths _ack _acpi _acpitool \
