@@ -132,9 +132,3 @@ if [ -d "/opt/homebrew" ]; then
   source /opt/homebrew/share/zsh-autopair/autopair.zsh
 fi
 
-# # if linux
-# if [ -d "/usr/local/bin" ]; then
-#   source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#   source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#   source /home/linuxbrew/.linuxbrew/share/zsh-autopair/autopair.zsh
-# fi
