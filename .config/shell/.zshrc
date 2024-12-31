@@ -39,13 +39,8 @@ setopt share_history
 setopt autoparamslash
 unsetopt hist_beep             # Don't beep when attempting to access a missing history entry
 
-alias d='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
-# Colormap
-function colormap() {
-  for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
-}
+# alias d='dirs -v'
+# for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 #-------------------------------------------------------------------------------
 #               VI-MODE
@@ -54,6 +49,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 bindkey '^?' backward-delete-char
+# Need to figure out why when searching can't backspace?
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -74,7 +70,6 @@ echo -ne "\e[5 q"
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
 
 # Add vi-mode text objects e.g. da" ca(
 autoload -Uz select-bracketed select-quoted
@@ -125,7 +120,6 @@ eval "$(starship init zsh)"
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# if mac
 if [ -d "/opt/homebrew" ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh

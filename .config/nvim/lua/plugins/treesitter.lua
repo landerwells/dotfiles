@@ -31,7 +31,7 @@ return {
         --          enable = true
         --        },
         -- autotag = {
-          -- enable = true
+        -- enable = true
         -- },
         indent = {
           enable = true,

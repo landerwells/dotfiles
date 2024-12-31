@@ -1,14 +1,15 @@
 [font]
-size = 16
+size = 13
 
 [font.offset]
 x = 0
+y = 2
 # y = 7
 
 [font.normal]
 # family = "CaskaydiaCove Nerd Font"
 family = "AnonymicePro Nerd Font"
-style = "Regular"
+# style = "Regular"
 
 [window]
 decorations = "Buttonless"
@@ -26,9 +27,32 @@ TERM = "xterm-256color"
 draw_bold_text_with_bright_colors = true
 
 # [colors.primary]
+# background = "#282727"
+
+# [colors.normal]
+# black = "#282727"
+# red = "#cb231d"
+# green = "#98961a"
+# yellow = "#d69821"
+# blue = "#458487"
+# magenta = "#b06185"
+# cyan = "#689c69"
+# white = "#a89883"
+#
+# [colors.bright]
+# black = "#928273"
+# red = "#fa4834"
+# green = "#b8ba26"
+# yellow = "#f9bc2f"
+# blue = "#83a497"
+# magenta = "#d2859a"
+# cyan = "#8ebf7b"
+# white = "#ebdab1"
+
+# [colors.primary]
 # background = "#0E1018"
 # foreground = "#ebdbb2"
-#
+
 # [colors.normal]
 # black = "#282828"
 # red = "#cc241d"
@@ -49,17 +73,17 @@ draw_bold_text_with_bright_colors = true
 # cyan = "#8ec07c"
 # white = "#ebdbb2"
 
+# Purple
 [colors.primary]
 background = "#1d1d1d"
 foreground = "#cccccc"
 
 [colors.cursor]
 text = "#ffffff"
-# cursor = "#000000"
 
 [colors.selection]
 text = "#cccccc"
-# background = "#ffffff40"
+background = "#ffffff"
 
 [colors.normal]
 black = "#000000"

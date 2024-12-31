@@ -1,4 +1,5 @@
-My goals for this dotfiles repo si to be idempotent and pragmatic, I want to be able to install my dotfiles fully automated with just the usage of brew.
-``` bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/landerwells/dotfiles/master/bin/install.sh)"
-```
+# My Dotfiles
+
+Feel free to take anything you would like from this scrap pile as I have taken from many others.
+
+I use stow to manage them and once cloned can simply run `stow .`
