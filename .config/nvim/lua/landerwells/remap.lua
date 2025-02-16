@@ -24,6 +24,7 @@ vim.keymap.set("n", "<leader>hs", vim.cmd.split)
 -- vim.keymap.set('n', '<C-e>', '<nop>')
 
 vim.keymap.set('n', '<Leader>c', '<cmd>lua ToggleCopilot()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<C-b>", function()
   local oil = require("oil")
@@ -52,3 +53,24 @@ function ToggleCopilot()
     print("Copilot disabled")
   end
 end
+
+-- Function to delete the current file with confirmation
+function DeleteCurrentFile()
+  local file = vim.fn.expand('%')
+  if file == '' then
+    print('No file to delete')
+    return
+  end
+
+  local confirm = vim.fn.input('Really delete "' .. file .. '"? (y/n): ')
+  if confirm:lower() == 'y' then
+    vim.cmd('bdelete!')
+    os.remove(file)
+    print('Deleted "' .. file .. '"')
+  else
+    print('Cancelled')
+  end
+end
+
+-- Map the function to <leader>fD
+
