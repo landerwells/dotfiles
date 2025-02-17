@@ -12,7 +12,8 @@ return {
 
   opts = {
 
-    vim.keymap.set('n', '<C-CR>', ':ObsidianFollowLink<CR>', { noremap = true, silent = true }),
+    vim.keymap.set('n', '<C-c><C-l>', ':ObsidianFollowLink<CR>', { noremap = true, silent = true }),
+
 
     workspaces = {
       {
