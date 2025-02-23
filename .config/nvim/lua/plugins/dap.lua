@@ -47,6 +47,6 @@ return {
     vim.keymap.set("n", "<Leader>x", ':DapTerminate<CR>')
     vim.keymap.set("n", "<Leader>so", ':DapStepOver<CR>')
 
-    vim.fn.sign_define('DapBreakpoint', {text = '●', texthl = 'Error', linehl = '', numhl = ''})
+    vim.fn.sign_define('DapBreakpoint', {text = '●', texthl = 'WarningMsg', linehl = '', numhl = ''})
   end
 }
