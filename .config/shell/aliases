@@ -9,6 +9,9 @@ alias gl='git log --oneline'
 alias ghcs='gh copilot suggest'
 alias ghce='gh copilot explain'
 
+# alias ls='ls --color=auto'
+# alias ll='ls -l --color=auto'
+
 # List Commands
 if [ eza ]; then
   alias ls='eza -a --color=always --icons --git --group-directories-first'

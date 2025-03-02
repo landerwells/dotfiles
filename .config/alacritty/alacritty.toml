@@ -1,5 +1,5 @@
 [font]
-size = 15
+size = 13
 
 [font.offset]
 # x = 1
@@ -7,14 +7,14 @@ size = 15
 
 [font.normal]
 
-family = "Inconsolata Nerd Font Mono"
-# family = "MesloLGL Nerd Font Mono"
+# family = "Inconsolata Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 # style = "Regular"
 
 [window]
 decorations = "Buttonless"
 startup_mode = "Maximized"
-opacity = 1.00
+opacity = 0.95
 
 [window.padding]
 x = 8
@@ -27,7 +27,7 @@ TERM = "xterm-256color"
 draw_bold_text_with_bright_colors = true
 
 [colors.primary]
-background = "#282727"
+background = "#282828"
 
 [colors.normal]
 black = "#282727"
