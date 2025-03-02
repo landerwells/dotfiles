@@ -39,35 +39,42 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
 
+(defun tag-new-node-as-draft ()
+  (org-roam-tag-add '("draft")))
+(add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
+
+(map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
+      :n "C-u" (cmd! (evil-scroll-up nil) (recenter)))
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (setq org-roam-directory (file-truename "~/org/roam/"))
-(setq org-link-file-path-type 'absolute) ; or 'relative
-(setq org-id-link-to-org-use-id nil)
 
 (setq org-roam-capture-templates
       '(("m" "main" plain
          "%?"
          :if-new (file+head "main/${title}.org"
-                            "#+title: ${title}\n")
+                            "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
          :immediate-finish t
          :unnarrowed t)
         ("r" "reference" plain "%?"
          :if-new
-         (file+head "reference/${title}.org" "#+title: ${title}\n")
+         (file+head "reference/${title}.org"
+                    "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
          :immediate-finish t
          :unnarrowed t)
         ("x" "indexes" plain "%?"
          :if-new (file+head "indexes/${slug}.org"
-                            "#+title: ${title}\n")
-         :immediate-finish t
-         :unnarrowed t)
-        ("a" "article" plain "%?"
-         :if-new
-         (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
+                            "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
          :immediate-finish t
          :unnarrowed t)))
+        ;; ("a" "article" plain "%?"
+        ;;  :if-new
+        ;;  (file+head "articles/${title}.org"
+        ;;             "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :article:\n")
+        ;;  :immediate-finish t
+        ;;  :unnarrowed t)))
 
 (use-package! org-roam
   ;; :ensure t
@@ -94,15 +101,16 @@
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
-        org-roam-ui-update-on-save t))
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start nil))
 
-(defun insert-org-quote-block ()
-  "Insert an Org mode quote block."
-  (interactive)
-  (insert "#+BEGIN_QUOTE\n")
-  (save-excursion (insert "#+END_QUOTE\n")))
+;; (defun insert-org-quote-block ()
+;;   "Insert an Org mode quote block."
+;;   (interactive)
+;;   (insert "#+BEGIN_QUOTE\n")
+;;   (save-excursion (insert "#+END_QUOTE\n")))
 
-(define-key org-mode-map (kbd "C-c q") 'insert-org-quote-block)
+;; (define-key org-mode-map (kbd "C-c q") 'insert-org-quote-block)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
