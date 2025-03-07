@@ -104,6 +104,10 @@
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start nil))
 
+(after! org
+  (setq org-babel-load-languages        ;
+        '((emacs-lisp . t))))  ; Enable Emacs Lisp execution
+
 ;; (defun insert-org-quote-block ()
 ;;   "Insert an Org mode quote block."
 ;;   (interactive)
