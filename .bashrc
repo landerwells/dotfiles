@@ -1,11 +1,13 @@
-source ~/.config/aliases
-source ~/.config/exports
+source ~/.config/shell/aliases
+source ~/.config/shell/exports
 
 set -o vi
 
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # Set history size
 HISTSIZE=10000
