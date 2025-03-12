@@ -43,7 +43,7 @@ return {
 
     -- Need to configure better binds for Dap
     vim.keymap.set("n", "<Leader>b", ':DapToggleBreakpoint<CR>')
-    vim.keymap.set("n", "<Leader>dc", ':DapContinue<CR>')
+    vim.keymap.set("n", "<Leader>j", ':DapContinue<CR>')
     vim.keymap.set("n", "<Leader>x", ':DapTerminate<CR>')
     vim.keymap.set("n", "<Leader>so", ':DapStepOver<CR>')
 

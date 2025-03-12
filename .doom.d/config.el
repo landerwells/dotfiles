@@ -69,12 +69,6 @@
                             "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
          :immediate-finish t
          :unnarrowed t)))
-        ;; ("a" "article" plain "%?"
-        ;;  :if-new
-        ;;  (file+head "articles/${title}.org"
-        ;;             "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :article:\n")
-        ;;  :immediate-finish t
-        ;;  :unnarrowed t)))
 
 (use-package! org-roam
   ;; :ensure t
@@ -105,16 +99,12 @@
         org-roam-ui-open-on-start nil))
 
 (after! org
-  (setq org-babel-load-languages        ;
-        '((emacs-lisp . t))))  ; Enable Emacs Lisp execution
+  (setq org-babel-load-languages
+        '((scheme . t)
+          (emacs-lisp . t)   ;; Enable Emacs Lisp execution
+          (python . t))))    ;; Enable Python
 
-;; (defun insert-org-quote-block ()
-;;   "Insert an Org mode quote block."
-;;   (interactive)
-;;   (insert "#+BEGIN_QUOTE\n")
-;;   (save-excursion (insert "#+END_QUOTE\n")))
-
-;; (define-key org-mode-map (kbd "C-c q") 'insert-org-quote-block)
+(setq org-babel-scheme-cmd "guile")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
