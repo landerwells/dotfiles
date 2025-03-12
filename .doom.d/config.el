@@ -104,8 +104,6 @@
           (emacs-lisp . t)   ;; Enable Emacs Lisp execution
           (python . t))))    ;; Enable Python
 
-(setq org-babel-scheme-cmd "guile")
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;

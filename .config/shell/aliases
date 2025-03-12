@@ -9,21 +9,13 @@ alias gl='git log --oneline'
 alias ghcs='gh copilot suggest'
 alias ghce='gh copilot explain'
 
-# alias ls='ls --color=auto'
-# alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
 
-# List Commands
-if [ eza ]; then
-  alias ls='eza -a --color=always --icons --git --group-directories-first'
-  alias la='eza -a --color=always --icons --git --group-directories-first'
-  alias ll='eza -la --color=always --icons --git --group-directories-first'
-  alias ltr='eza -altr --color=always --icons --git --group-directories-first'
-else
-  alias ls='ls -a --color=always --group-directories-first'
-  alias la='ls -a --color=always --group-directories-first'
-  alias ll='ls -la --color=always --group-directories-first'
-  alias ltr='ls -altr --color=always --group-directories-first'
-fi
+  # alias ls='ls -a --color=always --group-directories-first'
+  # alias la='ls -a --color=always --group-directories-first'
+  # alias ll='ls -la --color=always --group-directories-first'
+  # alias ltr='ls -altr --color=always --group-directories-first'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
