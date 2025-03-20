@@ -43,9 +43,6 @@
   (org-roam-tag-add '("draft")))
 (add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
 
-(map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
-      :n "C-u" (cmd! (evil-scroll-up nil) (recenter)))
-
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -135,3 +132,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
+      :n "C-u" (cmd! (evil-scroll-up nil) (recenter)))
+
+(map! "C-b" #'neotree-toggle)
