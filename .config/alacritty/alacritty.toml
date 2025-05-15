@@ -2,13 +2,14 @@
 size = 13
 
 [font.offset]
-# x = 1
-# y = 5
+x = 1
+y = 8
 
 [font.normal]
 
 # family = "Inconsolata Nerd Font Mono"
-family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
+family = "AnonymicePro Nerd Font"
 # style = "Regular"
 
 [window]
@@ -17,7 +18,7 @@ startup_mode = "Maximized"
 # opacity = 0.95
 
 [window.padding]
-x = 8
+# x = 0
 y = 2
 
 [env]

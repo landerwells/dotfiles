@@ -1,4 +1,5 @@
 require("landerwells.set")
+require("landerwells.lsp")
 require("landerwells.remap")
 require("landerwells.lazy")
 require("landerwells.colorscheme")
