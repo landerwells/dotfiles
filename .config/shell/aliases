@@ -50,10 +50,12 @@ alias home='cd /mnt/c/Users/lande/'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias advent='cd ~/Developer/advent_of_rust'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-alias notes='cd ~/Notes/'
+alias notes='cd ~/org/roam'
 
 alias c='clear'
 alias q='exit'
+alias ds='doom sync'
+alias dsr='doom sync --rebuild'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias head='ghead'

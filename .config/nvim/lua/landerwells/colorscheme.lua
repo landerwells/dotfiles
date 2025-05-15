@@ -7,7 +7,7 @@ vim.cmd.colorscheme("gruvbox")
 --   highlight DiagnosticUnderlineHint gui=undercurl guisp=Blue
 --   highlight DiagnosticUnderlineInfo gui=undercurl guisp=LightBlue
 -- ]])
-vim.api.nvim_set_hl(0, 'Question', { fg = '#8ec07c' })  -- Aqua color
+-- vim.api.nvim_set_hl(0, 'Question', { fg = '#8ec07c' })  -- Aqua color
 
 -- Define the highlight groups for markdown headings
 vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = "#fb4934", bold = true }) -- Red

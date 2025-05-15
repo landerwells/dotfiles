@@ -39,9 +39,17 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
 
+;; (defun tag-new-node-as-draft ()
+;;   (org-roam-tag-add '("draft")))
+;; (add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
+
 (defun tag-new-node-as-draft ()
-  (org-roam-tag-add '("draft")))
+  (let ((file-name (buffer-file-name)))
+    (unless (string-match-p "/daily/" file-name) ; Skip files in the "daily" folder
+      (org-roam-tag-add '("draft")))))
+
 (add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
+
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -136,4 +144,48 @@
 (map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
       :n "C-u" (cmd! (evil-scroll-up nil) (recenter)))
 
-(map! "C-b" #'neotree-toggle)
+(map! :n "gj" 'evil-next-visual-line
+      :n "gk" 'evil-previous-visual-line)
+
+;; (map! "C-b" #'neotree-toggle)
+
+;; I would also like to add the ability to center when searching
+
+(map! :leader
+      :desc "Toggle Olivetti mode" "z" #'olivetti-mode)
+
+;; I don't want line wrap on files that are not markdown or org.
+(defun my-disable-line-wrap ()
+  "Disable line wrap except for Org and Markdown modes."
+  (unless (or (derived-mode-p 'org-mode 'markdown-mode))
+    (setq truncate-lines t)))  ;; Disable line wrapping
+
+(add-hook 'find-file-hook #'my-disable-line-wrap)
+
+;; Set the fill column to 80 by default
+(setq fill-column 80)
+
+;; Exclude .md and .org files from having the fill column set
+;; (add-hook 'markdown-mode-hook (lambda () (setq fill-column nil)))
+;; (add-hook 'org-mode-hook (lambda () (setq fill-column nil)))
+
+(after! evil
+  ;; Bind Ctrl+h, Ctrl+j, Ctrl+k, Ctrl+l directly for window navigation
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
+
+;; https://orgmode.org/manual/Table-of-Contents.html
+(setq org-export-with-toc nil)
+(setq org-export-with-section-numbers nil)
+(setq org-export-with-author nil)
+(setq org-export-with-date nil)
+(setq org-export-timestamp-file nil)
+
+
+;; Need to come up with a keybind for spellchecking, the current on is ass
+
+(setq company-minimum-prefix-length 1)
+
+(setq scroll-margin 8) ;; or whatever number you want

@@ -52,4 +52,6 @@
 (package! org-roam-ui
   :recipe (:host github :repo "org-roam/org-roam-ui"))
 
-(package! org-preview-html)
+;; (package! org-preview-html)
+(package! olivetti)
+

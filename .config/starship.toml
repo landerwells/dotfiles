@@ -4,19 +4,19 @@ $username\
 $directory\
 $git_branch\
 $git_status\
-$c\
-$rust\
-$golang\
-$nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
-$docker_context\
-$conda\
-$time\
 $line_break$character"""
+# $c\
+# $rust\
+# $golang\
+# $nodejs\
+# $php\
+# $java\
+# $kotlin\
+# $haskell\
+# $python\
+# $docker_context\
+# $conda\
+# $time\
 
 palette = 'gruvbox_dark'
 
