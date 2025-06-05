@@ -1,6 +1,3 @@
-
-vim.lsp.enable("rust-analyzer")
-
 vim.diagnostic.config({
   virtual_text = true,
   update_in_insert = true,
@@ -23,3 +20,72 @@ vim.diagnostic.config({
     },
   },
 })
+
+-- C/C++ {{{
+vim.lsp.config.clangd = {
+  cmd = {
+    "clangd",
+    "-j=" .. 2,
+    "--background-index",
+    "--clang-tidy",
+    "--inlay-hints",
+    "--fallback-style=llvm",
+    "--all-scopes-completion",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu",
+    "--header-insertion-decorators",
+    "--pch-storage=memory",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+  root_markers = {
+    "CMakeLists.txt",
+    ".clangd",
+    ".clang-tidy",
+    ".clang-format",
+    "compile_commands.json",
+    "compile_flags.txt",
+    "configure.ac",
+    ".git",
+    vim.uv.cwd(),
+  },
+}
+vim.lsp.enable("clangd")
+-- }}}
+
+-- vim.lsp.config['clangd'] = {
+--   cmd = {'rust-analyzer'},
+--   filetypes = {'rs'},
+--   root_markers = {
+--     'Cargo.toml',
+--     'rust-project.json',
+--     '.git'
+--   }
+-- }
+
+vim.lsp.config['rust-analyzer'] = {
+  cmd = {'rust-analyzer'},
+  filetypes = {'rs'},
+  root_markers = {
+    'Cargo.toml',
+    'rust-project.json',
+    '.git'
+  }
+}
+vim.lsp.enable("rust-analyzer")
+
+vim.lsp.config['lua_ls'] = {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = {
+    '.luarc.json',
+    '.luarc.jsonc',
+    '.luacheckrc',
+    '.stylua.toml',
+    'stylua.toml',
+    'selene.toml',
+    'selene.yml',
+    '.git',
+  }
+}
+
+vim.lsp.enable("lua_ls")

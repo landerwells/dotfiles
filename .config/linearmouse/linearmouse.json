@@ -4,103 +4,127 @@
     {
       "pointer" : {
         "speed" : 0.2579,
-        "disableAcceleration" : true,
-        "acceleration" : 0.25
+        "acceleration" : 0.25,
+        "disableAcceleration" : true
       },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
-        },
         "reverse" : {
           "vertical" : false
+        },
+        "acceleration" : {
+          "vertical" : 1
         }
       },
       "if" : {
         "device" : {
-          "productName" : "Apple Internal Keyboard \/ Trackpad",
-          "category" : "trackpad",
+          "vendorID" : "0x5ac",
           "productID" : "0x343",
-          "vendorID" : "0x5ac"
+          "category" : "trackpad",
+          "productName" : "Apple Internal Keyboard \/ Trackpad"
         }
       }
     },
     {
-      "if" : {
-        "device" : {
-          "productID" : "0xb034",
-          "category" : "mouse",
-          "serialNumber" : "B0D4CB72",
-          "productName" : "MX Master 3S",
-          "vendorID" : "0x46d"
-        }
-      },
       "pointer" : {
-        "disableAcceleration" : true,
-        "acceleration" : 1.5
-      },
-      "buttons" : {
-        "universalBackForward" : true
+        "acceleration" : 1.5,
+        "disableAcceleration" : true
       },
       "scrolling" : {
-        "speed" : {
-          "vertical" : 0
-        },
-        "acceleration" : {
-          "vertical" : 1
-        },
         "distance" : {
           "vertical" : 3
         },
-        "reverse" : {
-          "vertical" : true
-        }
-      }
-    },
-    {
-      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "speed" : {
+          "vertical" : 0
+        },
         "reverse" : {
           "vertical" : true
         }
       },
       "if" : {
         "device" : {
-          "productID" : "0xc54d",
+          "productID" : "0xb034",
+          "serialNumber" : "B0D4CB72",
+          "productName" : "MX Master 3S",
           "vendorID" : "0x46d",
-          "productName" : "USB Receiver",
-          "serialNumber" : "3774385B3232",
           "category" : "mouse"
         }
       },
       "buttons" : {
         "universalBackForward" : true
-      },
-      "pointer" : {
-        "acceleration" : 1,
-        "disableAcceleration" : true
       }
     },
     {
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 1
+      },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
-        },
         "reverse" : {
           "vertical" : true
+        }
+      },
+      "if" : {
+        "device" : {
+          "serialNumber" : "3774385B3232",
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "productName" : "USB Receiver",
+          "productID" : "0xc54d"
+        }
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      }
+    },
+    {
+      "pointer" : {
+        "speed" : 0.15,
+        "disableAcceleration" : true,
+        "acceleration" : 1
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        },
+        "acceleration" : {
+          "vertical" : 1
         }
       },
       "if" : {
         "device" : {
           "serialNumber" : "6967266E",
-          "vendorID" : "0x46d",
-          "productName" : "PRO X 2",
           "productID" : "0xc09b",
-          "category" : "mouse"
+          "productName" : "PRO X 2",
+          "category" : "mouse",
+          "vendorID" : "0x46d"
+        }
+      }
+    },
+    {
+      "pointer" : {
+        "acceleration" : 0,
+        "disableAcceleration" : false,
+        "speed" : 0.8
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "reverse" : {
+          "vertical" : true
         }
       },
-      "pointer" : {
-        "speed" : 0.15,
-        "disableAcceleration" : true,
-        "acceleration" : 1
+      "if" : {
+        "device" : {
+          "productID" : "0xb023",
+          "serialNumber" : "2004A4BCCB3C6E12",
+          "category" : "mouse",
+          "productName" : "MX Master 3",
+          "vendorID" : "0x46d"
+        }
       }
     }
   ]

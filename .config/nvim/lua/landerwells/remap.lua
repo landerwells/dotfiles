@@ -22,6 +22,8 @@ vim.keymap.set("n", "<leader>v", vim.cmd.vs)
 vim.keymap.set("n", "<leader>hs", vim.cmd.split)
 
 -- vim.keymap.set('n', '<C-e>', '<nop>')
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
+
 
 vim.keymap.set('n', '<Leader>c', '<cmd>lua ToggleCopilot()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })

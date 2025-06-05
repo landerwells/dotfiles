@@ -35,14 +35,14 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.backspace = "indent,eol,start"
 vim.opt.cursorline = true
-vim.opt.winblend = 0
+-- vim.opt.winblend = 0
 vim.opt.pumheight = 12
-vim.opt.pumblend = 10
+-- vim.opt.pumblend = 10
 vim.opt.showmode = false
 vim.opt.numberwidth = 4
 vim.opt.conceallevel = 1
 vim.opt.spell = true
-vim.opt.foldcolumn = '1'
+-- vim.opt.foldcolumn = '2'
 
 
 -- vim.cmd [[ highlight clear ]]

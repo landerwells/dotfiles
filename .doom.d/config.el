@@ -33,7 +33,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'almost-mono-cream)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -183,9 +184,26 @@
 (setq org-export-with-date nil)
 (setq org-export-timestamp-file nil)
 
-
 ;; Need to come up with a keybind for spellchecking, the current on is ass
 
 (setq company-minimum-prefix-length 1)
-
 (setq scroll-margin 8) ;; or whatever number you want
+
+;; (setq treesit--enabled-p nil)
+
+(defun my/org-roam-random-draft-note ()
+  "Open a random Org-roam note tagged with :draft:."
+  (interactive)
+  (let* ((draft-nodes (org-roam-db-query
+                       [:select [id file title]
+                                :from tags
+                                :inner :join nodes :on (= tags.node-id nodes.id)
+                                :where (= tag "draft")]))
+         (count (length draft-nodes)))
+    (if (> count 0)
+        (let* ((selected (nth (random count) draft-nodes))
+               (file (nth 1 selected))
+               (title (nth 2 selected)))
+          (message "Opening draft note: %s" title)
+          (find-file file))
+      (message "No draft notes found."))))

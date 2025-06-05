@@ -55,3 +55,7 @@
 ;; (package! org-preview-html)
 (package! olivetti)
 
+;; (package! almost-mono-themes
+;;   :recipe (:host github :repo "cryon/almost-mono-themes"))
+
+(package! almost-mono-themes)
