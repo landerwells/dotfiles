@@ -1,7 +1,3 @@
-# Set PATH, MANPATH, etc., for Homebrew.
-#
-# Check if Linux or Mac
-
 # Add bin to path
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
@@ -12,7 +8,6 @@ export LESSHISTFILE=""
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PYTHONHISTORY="$HOME/.cache/python_history"
-
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
