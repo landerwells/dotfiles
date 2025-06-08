@@ -1,6 +1,4 @@
-# Set PATH, MANPATH, etc., for Homebrew.
-#
-# Check if Linux or Mac
+echo "hello from .zshrc"
 
 # Add bin to path
 export PATH="$HOME/bin:$PATH"
@@ -154,4 +152,3 @@ if [ -d "/opt/homebrew" ]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /opt/homebrew/share/zsh-autopair/autopair.zsh
 fi
-

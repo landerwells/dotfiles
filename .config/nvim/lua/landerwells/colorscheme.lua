@@ -1,6 +1,6 @@
 -- vim.cmd.colorscheme "purple"
--- vim.cmd.colorscheme("gruvbox")
-vim.cmd.colorscheme("catppuccin-macchiato")
+vim.cmd.colorscheme("gruvbox")
+-- vim.cmd.colorscheme("catppuccin-macchiato")
 
 -- vim.cmd([[
 --   highlight SpellBad guisp=Red gui=undercurl
