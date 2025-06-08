@@ -22,7 +22,6 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias cr='cargo run'
 alias ct='cargo test'
-alias eu='ssh -Y lawells@euclid.nmu.edu'
 alias fz='vim $(fzf)'
 alias mkdir='mkdir -pv'
 alias path='echo ${PATH//:/\\n}'
@@ -35,12 +34,8 @@ alias emacs='emacs --no-window-system'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 alias miex='iex -S mix'
-
-if [ -n "$BASH_VERSION" ]; then
-    alias so='source ~/.profile'
-elif [ -n "$ZSH_VERSION" ]; then
-    alias so='source ~/.zprofile'
-fi
+alias config='sudo -E nvim /etc/nixos/configuration.nix'
+alias rebuild='sudo nixos-rebuild switch'
 
 # Directory Commands
 alias cf='cd ~/dotfiles'
