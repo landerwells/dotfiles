@@ -1,5 +1,3 @@
-echo "hello from .zshrc"
-
 # Add bin to path
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
