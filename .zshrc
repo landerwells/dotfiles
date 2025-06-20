@@ -107,7 +107,7 @@ fi
 # Load Starship
 # eval "$(starship init zsh)"
 
-PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f\$ '
+PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f$ '
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
