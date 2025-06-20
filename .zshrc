@@ -30,8 +30,6 @@ setopt share_history
 setopt autoparamslash
 unsetopt hist_beep             # Don't beep when attempting to access a missing history entry
 
-# alias d='dirs -v'
-# for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 #-------------------------------------------------------------------------------
 #               VI-MODE
@@ -136,6 +134,9 @@ alias ll='ls -l --color=auto'
 # alias la='ls -a --color=always --group-directories-first'
 # alias ll='ls -la --color=always --group-directories-first'
 # alias ltr='ls -altr --color=always --group-directories-first'
+#
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
