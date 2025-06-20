@@ -19,3 +19,6 @@ fi
 # Add pyenv to your shell
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f\$ '
+

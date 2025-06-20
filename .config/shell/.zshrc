@@ -140,7 +140,7 @@ then
 fi
 
 # Load Starship
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)

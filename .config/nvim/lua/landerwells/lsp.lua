@@ -21,14 +21,14 @@ vim.diagnostic.config({
   },
 })
 
--- C/C++ {{{
-vim.lsp.config.clangd = {
+vim.lsp.config['clangd'] = {
+  -- cmd = {'clangd'},
   cmd = {
     "clangd",
+    "-std=c++17",
     "-j=" .. 2,
     "--background-index",
     "--clang-tidy",
-    "--inlay-hints",
     "--fallback-style=llvm",
     "--all-scopes-completion",
     "--completion-style=detailed",
@@ -46,21 +46,9 @@ vim.lsp.config.clangd = {
     "compile_flags.txt",
     "configure.ac",
     ".git",
-    vim.uv.cwd(),
-  },
+  }
 }
 vim.lsp.enable("clangd")
--- }}}
-
--- vim.lsp.config['clangd'] = {
---   cmd = {'rust-analyzer'},
---   filetypes = {'rs'},
---   root_markers = {
---     'Cargo.toml',
---     'rust-project.json',
---     '.git'
---   }
--- }
 
 vim.lsp.config['rust-analyzer'] = {
   cmd = {'rust-analyzer'},
