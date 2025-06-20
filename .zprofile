@@ -5,8 +5,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export ZDOTDIR="$XDG_CONFIG_HOME/shell/"
 export LESSHISTFILE=""
 export VISUAL=nvim
-export EDITOR="$VISUAL"
+export EDITOR=nvim
 export PYTHONHISTORY="$HOME/.cache/python_history"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -19,6 +20,3 @@ fi
 # Add pyenv to your shell
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-
-PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f\$ '
-

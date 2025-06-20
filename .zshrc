@@ -1,44 +1,9 @@
-# Add bin to path
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
-export PATH="$HOME/.pyenv/bin:$PATH"
-export XDG_CONFIG_HOME="$HOME/.config"
-export ZDOTDIR="$XDG_CONFIG_HOME/shell/"
-export LESSHISTFILE=""
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-export PYTHONHISTORY="$HOME/.cache/python_history"
-
-export ZCOMP_DUMP=~/.cache/zcompdump
-autoload -Uz compinit
-compinit -d "$ZCOMP_DUMP"
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-. "$HOME/.cargo/env"
-
-# Add pyenv to your shell
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 export MANPAGER='nvim +Man!'
 
-export VISUAL=nvim
-export EDITOR=nvim
-export XDG_CONFIG_HOME=~/.config
-
-export PATH="$PATH:/Users/landerwells/fvm/versions/stable/bin"
-
-source "$XDG_CONFIG_HOME/shell/aliases"
-source "$XDG_CONFIG_HOME/shell/exports"
-
 if [ -n "$TMUX" ]; then
-  HISTFILE=~/.cache/zsh/history
+  HISTFILE=~/.cache/zsh_history
 fi
 
 HISTSIZE=100000
@@ -142,6 +107,8 @@ fi
 # Load Starship
 # eval "$(starship init zsh)"
 
+PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f\$ '
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -150,3 +117,66 @@ if [ -d "/opt/homebrew" ]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /opt/homebrew/share/zsh-autopair/autopair.zsh
 fi
+
+# Git Commands
+alias gs='git status'
+alias ga='git add'
+alias gp='git push'
+alias gd='git diff'
+alias gcm='git commit -m'
+alias gl='git log --oneline'
+
+alias ghcs='gh copilot suggest'
+alias ghce='gh copilot explain'
+
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+
+# alias ls='ls -a --color=always --group-directories-first'
+# alias la='ls -a --color=always --group-directories-first'
+# alias ll='ls -la --color=always --group-directories-first'
+# alias ltr='ls -altr --color=always --group-directories-first'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias cr='cargo run'
+alias ct='cargo test'
+alias fz='vim $(fzf)'
+alias mkdir='mkdir -pv'
+alias path='echo ${PATH//:/\\n}'
+alias py='python3'
+alias st='networkquality'
+alias vi='nvim'
+alias vim='nvim'
+alias svim='sudo -E nvim'
+alias emacs='emacs --no-window-system'
+alias xc='open -a Xcode'
+alias rm='rm -i'
+alias miex='iex -S mix'
+alias config='sudo -E nvim /etc/nixos/configuration.nix'
+alias rebuild='sudo nixos-rebuild switch'
+
+# Directory Commands
+alias cf='cd ~/dotfiles'
+alias dv='cd ~/Developer'
+alias nv='cd ~/.config/nvim'
+alias home='cd /mnt/c/Users/lande/'
+alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+alias advent='cd ~/Developer/advent_of_rust'
+alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
+alias notes='cd ~/org/roam'
+
+alias c='clear'
+alias q='exit'
+alias ds='doom sync'
+alias dsr='doom sync --rebuild'
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias head='ghead'
+  alias paste='gpaste'
+  alias grep='ggrep'
+  alias awk='gawk'
+  alias sed='gsed'
+fi
+

@@ -1,7 +1,0 @@
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-
-export INPUTRC=~/.config/bash/inputrc
-export LESSHISTFILE=""
-export VISUAL=nvim
-export EDITOR="$VISUAL"
