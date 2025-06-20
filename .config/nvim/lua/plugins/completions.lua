@@ -59,7 +59,7 @@ return {
         },
         keymap = {
           ["<C-f>"] = {},
-          preset = 'enter',
+          -- preset = 'enter',
         },
         cmdline = {
           enabled = false,

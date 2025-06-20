@@ -25,7 +25,6 @@ vim.lsp.config['clangd'] = {
   -- cmd = {'clangd'},
   cmd = {
     "clangd",
-    "-std=c++17",
     "-j=" .. 2,
     "--background-index",
     "--clang-tidy",
