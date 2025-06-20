@@ -1,13 +1,12 @@
-export PATH="$HOME/bin:$PATH"
+export EDITOR=nvim
+export LESSHISTFILE=""
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
-export XDG_CONFIG_HOME="$HOME/.config"
-export ZDOTDIR="$XDG_CONFIG_HOME/shell/"
-export LESSHISTFILE=""
-export VISUAL=nvim
-export EDITOR=nvim
+export PATH="$HOME/bin:$PATH"
 export PYTHONHISTORY="$HOME/.cache/python_history"
+export VISUAL=nvim
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
