@@ -7,8 +7,6 @@ vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "gd", "gdzz")
 
-vim.keymap.set("n", "<leader>=", "gg=G<C-o>zz")
-
 -- the greatest remap ever (Primeagen)
 vim.keymap.set('v', '<leader>p', '"_dP')
 
