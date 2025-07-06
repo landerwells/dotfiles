@@ -26,5 +26,14 @@ return {
         show_hidden = true,
       },
     })
+
+    vim.keymap.set("n", "<C-b>", function()
+      local oil = require("oil")
+      if vim.bo.filetype == "oil" then
+        oil.close()
+      else
+        oil.open()
+      end
+    end)
   end
 }

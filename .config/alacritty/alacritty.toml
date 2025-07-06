@@ -9,8 +9,9 @@ size = 15
 
 # family = "Inconsolata Nerd Font Mono"
 # family = "JetBrainsMono Nerd Font"
-family = "AnonymicePro Nerd Font"
+# family = "AnonymicePro Nerd Font"
 # family = "BigBlueTerm437 Nerd Font"
+family = "GohuFont 11 Nerd Font"
 # style = "Regular"
 
 [window]
