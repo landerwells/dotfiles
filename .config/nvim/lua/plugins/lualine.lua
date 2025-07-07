@@ -101,6 +101,7 @@ return {
           }
         },
         lualine_x = {
+          'copilot',
           'filetype',
           'diff',
           {

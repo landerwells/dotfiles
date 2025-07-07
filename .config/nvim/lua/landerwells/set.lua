@@ -35,43 +35,12 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.backspace = "indent,eol,start"
 vim.opt.cursorline = true
--- vim.opt.winblend = 0
+vim.opt.winblend = 0
 vim.opt.pumheight = 12
--- vim.opt.pumblend = 10
+vim.opt.pumblend = 10
 vim.opt.showmode = false
 vim.opt.numberwidth = 4
 vim.opt.conceallevel = 1
 vim.opt.spell = true
--- vim.opt.foldcolumn = '2'
 
-
--- vim.cmd [[ highlight clear ]]
-vim.g.copilot_enabled = 0
-
-vim.on_key(function(char)
-  if vim.fn.mode() == "n" then
-    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
-  end
-end, vim.api.nvim_create_namespace "auto_hlsearch")
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.spell = true           -- Enable spell checking
-    vim.opt_local.wrap = true           -- Enable line wrapping
-    vim.opt_local.linebreak = true      -- Enable line breaking at word boundaries
-  end,
-})
-
-vim.keymap.set('n', '<leader>fD', function()
-  local file = vim.fn.expand('%:p')
-  if file == '' then
-    print('No file to delete')
-    return
-  end
-  local choice = vim.fn.confirm('Delete ' .. file .. '?', '&Yes\n&No')
-  if choice == 1 then
-    vim.fn.system({'rm', file})
-    vim.cmd('bdelete!')
-  end
-end, { noremap = true, silent = true })
+vim.cmd [[ highlight clear ]]

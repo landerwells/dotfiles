@@ -102,9 +102,6 @@ then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
-# Load Starship
-# eval "$(starship init zsh)"
-
 PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f$ '
 
 # Set up fzf key bindings and fuzzy completion
@@ -181,3 +178,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias sed='gsed'
 fi
 
+fzf_open_in_nvim() {
+  local file
+  file=$(fzf --height=40% --preview 'bat --style=numbers --color=always {}' --preview-window=right:60%) || return
+  [[ -n "$file" ]] && nvim "$file"
+  zle reset-prompt
+}
+zle -N fzf_open_in_nvim
+bindkey '^P' fzf_open_in_nvim
