@@ -178,6 +178,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias sed='gsed'
 fi
 
+alias g++="g++ -std=c++23 -pedantic -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion"
+
 fzf_open_in_nvim() {
   local file
   file=$(fzf --height=40% --preview 'bat --style=numbers --color=always {}' --preview-window=right:60%) || return

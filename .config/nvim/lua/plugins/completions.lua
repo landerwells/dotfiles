@@ -25,7 +25,6 @@
 -- }
 
 return {
-  { "L3MON4D3/LuaSnip", keys = {} },
   {
     "saghen/blink.cmp",
     dependencies = {
@@ -50,7 +49,7 @@ return {
           per_filetype = {
             codecompanion = { "codecompanion" },
           },
-          default = { "lsp", "path", "snippets", "buffer" },
+          default = { "snippets", "lsp", "path", "buffer" },
           providers = {
             cmdline = {
               min_keyword_length = 2,
