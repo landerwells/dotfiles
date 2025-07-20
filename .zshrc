@@ -152,8 +152,8 @@ alias emacs='emacs --no-window-system'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 alias miex='iex -S mix'
-alias config='sudo -E nvim /etc/nixos/configuration.nix'
-alias rebuild='sudo nixos-rebuild switch'
+alias config='sudo -E nvim ~/dotfiles/.config/nixos/nixos/configuration.nix'
+alias rebuild='sudo nixos-rebuild switch --flake ~/dotfiles/.config/nixos/'
 
 # Directory Commands
 alias cf='cd ~/dotfiles'

@@ -1,3 +1,4 @@
 --ignore='\.stfolder'
 --ignore='\.stowrc'
 --ignore='\wallpapers'
+--ignore='\cursors'

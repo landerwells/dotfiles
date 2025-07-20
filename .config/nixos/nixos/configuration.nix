@@ -94,6 +94,7 @@
     alacritty
     clang-tools
     cmake
+    kdePackages.dolphin
     emacs
     fail2ban
     ffmpeg_6
@@ -102,6 +103,7 @@
     gh
     git
     gnumake
+    hyprcursor
     kitty
     lua-language-server
     neovim
@@ -113,6 +115,7 @@
     swww
     tmux
     tcpdump
+    unzip
     vscode
     waybar
     wget
@@ -124,7 +127,13 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
+
 
   programs.hyprland = {
     enable = true;

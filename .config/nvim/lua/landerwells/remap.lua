@@ -79,3 +79,20 @@ end
 
 -- Key mapping to jump between header and source files
 vim.keymap.set("n", "<leader>o", ":lua JumpPair()<CR>", { silent = true })
+
+local is_wayland = os.getenv("WAYLAND_DISPLAY") ~= nil
+
+if is_wayland then
+  vim.g.clipboard = {
+    name = "wl-clipboard",
+    copy = {
+      ["+"] = "wl-copy",
+      ["*"] = "wl-copy"
+    },
+    paste = {
+      ["+"] = "wl-paste --no-newline",
+      ["*"] = "wl-paste --no-newline"
+    },
+    cache_enabled = 0,
+  }
+end
