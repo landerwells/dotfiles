@@ -4,7 +4,6 @@ let user = "%USER%"; in
 
 {
   imports = [
-    ../../modules/darwin/home-manager.nix
     ../../modules/shared
   ];
 

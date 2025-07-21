@@ -18,8 +18,6 @@ _:
   # Productivity Tools
   "raycast"
 
-  # Browsers
-  "google-chrome"
 
   "nikitabobko/tap/aerospace"
 ]

@@ -12,7 +12,6 @@ shared-packages ++ [
   appimage-run
   gnumake
   cmake
-  home-manager
 
   # Media and design tools
   vlc
