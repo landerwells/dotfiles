@@ -1,0 +1,38 @@
+[settings]
+default_action = "block"         # or "allow"
+log_violations = true
+notify_on_block = true
+strict_mode = false              # optional: if true, disables temporary overrides
+
+[[blocks]]
+name = "algorithmic_feeds"
+whitelist = []
+blacklist = [
+  "facebook.com",
+  "instagram.com",
+  "reddit.com",
+  "tiktok.com",
+  "twitter.com/home",
+  "youtube.com"
+]
+
+[[blocks]]
+name = "stock_sites"
+blacklist = [
+  "robinhood.com",
+  "tradingview.com",
+  "finance.yahoo.com"
+]
+whitelist = []
+
+[[schedule]]
+block = "algorithmic_feeds"
+days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+start = "08:00"
+end = "18:00"
+
+[[schedule]]
+block = "stock_sites"
+days = ["Mon", "Fri"]
+start = "09:30"
+end = "16:00"
