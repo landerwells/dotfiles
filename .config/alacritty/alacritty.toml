@@ -2,16 +2,16 @@
 size = 15
 
 [font.offset]
-# x = 3
-# y = 8
+# x = 1
+# y = 5
 
 [font.normal]
 
 # family = "Inconsolata Nerd Font Mono"
-# family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 # family = "AnonymicePro Nerd Font"
 # family = "BigBlueTerm437 Nerd Font"
-family = "GohuFont 11 Nerd Font"
+# family = "GohuFont 11 Nerd Font"
 # style = "Regular"
 
 [window]

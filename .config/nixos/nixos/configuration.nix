@@ -110,6 +110,7 @@
     nodejs_24
     ripgrep
     rofi-wayland
+    rustup
     starship
     stow
     swww
