@@ -96,6 +96,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
     alacritty
+    alejandra
     clang-tools
     cmake
     emacs
