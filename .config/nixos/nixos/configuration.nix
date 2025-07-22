@@ -94,7 +94,6 @@
     alacritty
     clang-tools
     cmake
-    kdePackages.dolphin
     emacs
     fail2ban
     ffmpeg_6
@@ -104,9 +103,11 @@
     git
     gnumake
     hyprcursor
+    kdePackages.dolphin
     kitty
     lua-language-server
     neovim
+    nixd
     nodejs_24
     ripgrep
     rofi-wayland
@@ -114,8 +115,8 @@
     starship
     stow
     swww
-    tmux
     tcpdump
+    tmux
     unzip
     vscode
     waybar
@@ -132,9 +133,7 @@
 
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
   };
-
 
   programs.hyprland = {
     enable = true;
