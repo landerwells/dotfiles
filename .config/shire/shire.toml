@@ -5,8 +5,31 @@ notify_on_block = true
 strict_mode = false              # optional: if true, disables temporary overrides
 
 [[blocks]]
-name = "algorithmic_feeds"
-whitelist = []
+name = "Algorithmic Feeds"
+active_by_default = true
+whitelist = [
+  "google.com/url?*",
+  "instagram.com/direct/inbox",
+  "instagram.com/p/*",
+  "linkedin.com/in/*",
+  "reddit.com/message/inbox",
+  "reddit.com/r/**",
+  "reddit.com/search*",
+  "reddit.com/user/*",
+  "skool.com/korekara/classroom",
+  "studio.youtube.com",
+  "twitter.com/i/timeline",
+  "youtube.com/@*",
+  "youtube.com/c/*",
+  "youtube.com/channel/*",
+  "youtube.com/feed/library/*",
+  "youtube.com/feed/subscriptions",
+  "youtube.com/playlist?list=*",
+  "youtube.com/results?search_query=*",
+  "youtube.com/shorts/*",
+  "youtube.com/user/*",
+  "youtube.com/watch?v=*"
+]
 blacklist = [
   "facebook.com",
   "instagram.com",
@@ -18,6 +41,7 @@ blacklist = [
 
 [[blocks]]
 name = "stock_sites"
+active_by_default = false
 blacklist = [
   "robinhood.com",
   "tradingview.com",

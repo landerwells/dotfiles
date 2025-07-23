@@ -2,10 +2,143 @@
   "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5",
   "schemes" : [
     {
+      "if" : {
+        "device" : {
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "productID" : "0x343",
+          "vendorID" : "0x5ac",
+          "category" : "trackpad"
+        }
+      },
       "pointer" : {
-        "speed" : 0.2579,
+        "disableAcceleration" : true,
         "acceleration" : 0.25,
+        "speed" : 0.2579
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "reverse" : {
+          "vertical" : false
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "productID" : "0xb034",
+          "productName" : "MX Master 3S",
+          "serialNumber" : "B0D4CB72",
+          "vendorID" : "0x46d",
+          "category" : "mouse"
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 1.5
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        },
+        "speed" : {
+          "vertical" : 0
+        },
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : 3
+        }
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "productID" : "0xc54d",
+          "productName" : "USB Receiver",
+          "serialNumber" : "3774385B3232",
+          "category" : "mouse"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 1,
         "disableAcceleration" : true
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        }
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc09b",
+          "serialNumber" : "6967266E",
+          "vendorID" : "0x46d",
+          "productName" : "PRO X 2"
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 1,
+        "speed" : 0.15
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "reverse" : {
+          "vertical" : true
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "productName" : "MX Master 3",
+          "serialNumber" : "2004A4BCCB3C6E12",
+          "productID" : "0xb023"
+        }
+      },
+      "pointer" : {
+        "speed" : 0.8,
+        "disableAcceleration" : false,
+        "acceleration" : 0
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        },
+        "acceleration" : {
+          "vertical" : 1
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "productID" : "0xc548",
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "productName" : "USB Receiver"
+        }
+      },
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 1.3
       },
       "scrolling" : {
         "reverse" : {
@@ -13,117 +146,12 @@
         },
         "acceleration" : {
           "vertical" : 1
-        }
-      },
-      "if" : {
-        "device" : {
-          "vendorID" : "0x5ac",
-          "productID" : "0x343",
-          "category" : "trackpad",
-          "productName" : "Apple Internal Keyboard \/ Trackpad"
-        }
-      }
-    },
-    {
-      "pointer" : {
-        "acceleration" : 1.5,
-        "disableAcceleration" : true
-      },
-      "scrolling" : {
-        "distance" : {
-          "vertical" : 3
-        },
-        "acceleration" : {
-          "vertical" : 1
         },
         "speed" : {
           "vertical" : 0
         },
-        "reverse" : {
-          "vertical" : true
-        }
-      },
-      "if" : {
-        "device" : {
-          "productID" : "0xb034",
-          "serialNumber" : "B0D4CB72",
-          "productName" : "MX Master 3S",
-          "vendorID" : "0x46d",
-          "category" : "mouse"
-        }
-      },
-      "buttons" : {
-        "universalBackForward" : true
-      }
-    },
-    {
-      "pointer" : {
-        "disableAcceleration" : true,
-        "acceleration" : 1
-      },
-      "scrolling" : {
-        "reverse" : {
-          "vertical" : true
-        }
-      },
-      "if" : {
-        "device" : {
-          "serialNumber" : "3774385B3232",
-          "category" : "mouse",
-          "vendorID" : "0x46d",
-          "productName" : "USB Receiver",
-          "productID" : "0xc54d"
-        }
-      },
-      "buttons" : {
-        "universalBackForward" : true
-      }
-    },
-    {
-      "pointer" : {
-        "speed" : 0.15,
-        "disableAcceleration" : true,
-        "acceleration" : 1
-      },
-      "scrolling" : {
-        "reverse" : {
-          "vertical" : true
-        },
-        "acceleration" : {
-          "vertical" : 1
-        }
-      },
-      "if" : {
-        "device" : {
-          "serialNumber" : "6967266E",
-          "productID" : "0xc09b",
-          "productName" : "PRO X 2",
-          "category" : "mouse",
-          "vendorID" : "0x46d"
-        }
-      }
-    },
-    {
-      "pointer" : {
-        "acceleration" : 0,
-        "disableAcceleration" : false,
-        "speed" : 0.8
-      },
-      "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
-        },
-        "reverse" : {
-          "vertical" : true
-        }
-      },
-      "if" : {
-        "device" : {
-          "productID" : "0xb023",
-          "serialNumber" : "2004A4BCCB3C6E12",
-          "category" : "mouse",
-          "productName" : "MX Master 3",
-          "vendorID" : "0x46d"
+        "distance" : {
+          "vertical" : "auto"
         }
       }
     }

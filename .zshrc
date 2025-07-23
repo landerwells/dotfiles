@@ -107,11 +107,11 @@ PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f$ '
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-if [ -d "/opt/homebrew" ]; then
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source /opt/homebrew/share/zsh-autopair/autopair.zsh
-fi
+# if [ -d "/opt/homebrew" ]; then
+#   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#   source /opt/homebrew/share/zsh-autopair/autopair.zsh
+# fi
 
 # Git Commands
 alias gs='git status'
