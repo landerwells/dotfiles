@@ -5,6 +5,6 @@ Feel free to take anything you would like from this scrap pile as I have taken f
 I use stow to manage them and once cloned can simply run `stow .`
 
 TO-DO:
+- Add zsh plugins as submodules
+- Add nixos-config as submodule
 
-- Refactor a lot of nvim config
--

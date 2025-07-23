@@ -42,14 +42,21 @@
   # You can disable this if you're only using the Wayland session.
   # services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
+  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
+
+  # Set NVIDIA proprietary driver
+  services.xserver.videoDrivers = ["nvidia"];
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -64,9 +71,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.landerwells = {
@@ -92,10 +96,10 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
     alacritty
+    alejandra
     clang-tools
     cmake
     emacs
-    fail2ban
     ffmpeg_6
     fzf
     gccgo15
@@ -112,7 +116,6 @@
     ripgrep
     rofi-wayland
     rustup
-    starship
     stow
     swww
     tcpdump
@@ -120,11 +123,7 @@
     unzip
     vscode
     waybar
-    wget
     wl-clipboard
-    zsh-autopair
-    zsh-autosuggestions
-    zsh-syntax-highlighting
   ];
 
   # Install firefox.
@@ -182,8 +181,6 @@
   };
 
 
-  # Set NVIDIA proprietary driver
-  services.xserver.videoDrivers = ["nvidia"];
 
   # Enable OpenGL
   hardware.graphics = {
