@@ -1,6 +1,3 @@
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-export MANPAGER='nvim +Man!'
 
 if [ -n "$TMUX" ]; then
   HISTFILE=~/.cache/zsh_history
@@ -97,21 +94,10 @@ function swap()
   mv $TMPFILE "$2"
 }
 
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
-
 PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f$ '
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-
-# if [ -d "/opt/homebrew" ]; then
-#   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#   source /opt/homebrew/share/zsh-autopair/autopair.zsh
-# fi
 
 # Git Commands
 alias gs='git status'
@@ -152,23 +138,22 @@ alias emacs='emacs --no-window-system'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 alias miex='iex -S mix'
-alias config='sudo -E nvim ~/dotfiles/.config/nixos/nixos/configuration.nix'
-alias rebuild='sudo nixos-rebuild switch --flake ~/dotfiles/.config/nixos/'
+# alias config='sudo -E nvim ~/dotfiles/.config/nixos/nixos/configuration.nix'
+# alias rebuild='sudo nixos-rebuild switch --flake ~/dotfiles/.config/nixos/'
 
 # Directory Commands
-alias cf='cd ~/dotfiles'
+alias df='cd ~/dotfiles'
 alias dv='cd ~/Developer'
-alias nv='cd ~/.config/nvim'
-alias home='cd /mnt/c/Users/lande/'
+alias nv='cd ~/dotfiles/.config/nvim'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-alias advent='cd ~/Developer/advent_of_rust'
+# alias advent='cd ~/Developer/advent_of_rust'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias notes='cd ~/org/roam'
 
 alias c='clear'
 alias q='exit'
-alias ds='doom sync'
-alias dsr='doom sync --rebuild'
+# alias ds='doom sync'
+# alias dsr='doom sync --rebuild'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias head='ghead'
@@ -180,11 +165,6 @@ fi
 
 alias g++="g++ -std=c++23 -pedantic -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion"
 
-fzf_open_in_nvim() {
-  local file
-  file=$(fzf --height=40% --preview 'bat --style=numbers --color=always {}' --preview-window=right:60%) || return
-  [[ -n "$file" ]] && nvim "$file"
-  zle reset-prompt
-}
-zle -N fzf_open_in_nvim
-bindkey '^P' fzf_open_in_nvim
+source ~/dotfiles/plugins/zsh-autopair/autopair.zsh
+source ~/dotfiles/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

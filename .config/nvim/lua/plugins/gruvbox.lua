@@ -32,9 +32,8 @@ return {
         texMathDelimZoneLD = {link = "GruvboxOrange"},
         luaParenError = {link = "luaParen"},
         luaError = {link = "NONE"},
-        -- fold
         -- Folded = {fg = "#fe8019", bg = "#0E1018", italic = true},
-        SignColumn = {bg = "#282828"}
+        -- SignColumn = {bg = "#282828"}
 
       }
     })

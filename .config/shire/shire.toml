@@ -8,6 +8,9 @@ strict_mode = false              # optional: if true, disables temporary overrid
 name = "Algorithmic Feeds"
 active_by_default = true
 whitelist = [
+  "accounts.google.com/*",
+  "file://*",
+  "file://*.*",
   "google.com/url?*",
   "instagram.com/direct/inbox",
   "instagram.com/p/*",
@@ -28,15 +31,16 @@ whitelist = [
   "youtube.com/results?search_query=*",
   "youtube.com/shorts/*",
   "youtube.com/user/*",
-  "youtube.com/watch?v=*"
+  "youtube.com/watch?v=*",
 ]
 blacklist = [
   "facebook.com",
   "instagram.com",
+  "linkedin.com",
   "reddit.com",
   "tiktok.com",
   "twitter.com/home",
-  "youtube.com"
+  "youtube.com",
 ]
 
 [[blocks]]
