@@ -1,5 +1,5 @@
 --ignore='\.stfolder'
 --ignore='\.stowrc'
---ignore='wallpapers'
 --ignore='cursors'
---ignore='nixos-config'
+--ignore='plugins'
+--ignore='wallpapers'
