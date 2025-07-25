@@ -10,9 +10,6 @@ vim.keymap.set("n", "N", "Nzz")
 -- the greatest remap ever (Primeagen)
 vim.keymap.set('v', '<leader>p', '"_dP')
 
--- creates a new line below the cursor and goes back into normal mode
-vim.keymap.set('n', '<CR>', 'o<Esc>')
-
 -- Keymap for ctrl-backspace support to work like windows.
 vim.keymap.set("i", "<C-BS>", "<C-w>")
 
