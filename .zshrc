@@ -155,13 +155,13 @@ alias q='exit'
 # alias ds='doom sync'
 # alias dsr='doom sync --rebuild'
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias head='ghead'
-  alias paste='gpaste'
-  alias grep='ggrep'
-  alias awk='gawk'
-  alias sed='gsed'
-fi
+# if [[ "$OSTYPE" == "darwin"* ]]; then
+#   alias head='ghead'
+#   alias paste='gpaste'
+#   alias grep='ggrep'
+#   alias awk='gawk'
+#   alias sed='gsed'
+# fi
 
 alias g++="g++ -std=c++23 -pedantic -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion"
 
