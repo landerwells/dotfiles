@@ -39,3 +39,16 @@ return {
     })
   end
 }
+
+
+-- return {
+--   'morhetz/gruvbox',
+--   priority = 1000,
+--   config = function()
+--     -- vim.cmd('colorscheme gruvbox')
+--     -- vim.o.background = 'dark' -- or 'light'
+--     vim.g.gruvbox_contrast_dark = 'hard' -- or 'soft'
+--     vim.g.gruvbox_invert_selection = '0' -- disable invert selection
+--     vim.g.gruvbox_italic = 1 -- enable italic comments
+--   end
+-- }
