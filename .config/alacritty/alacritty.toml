@@ -7,8 +7,8 @@ size = 15
 
 [font.normal]
 
-# family = "JetBrainsMono Nerd Font"
-family = "FantasqueSansM Nerd Font"
+family = "JetBrainsMono Nerd Font"
+# family = "FantasqueSansM Nerd Font"
 style = "Regular"
 
 [window]
