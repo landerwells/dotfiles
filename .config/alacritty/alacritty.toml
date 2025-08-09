@@ -7,12 +7,9 @@ size = 15
 
 [font.normal]
 
-# family = "Inconsolata Nerd Font Mono"
-family = "JetBrainsMono Nerd Font"
-# family = "AnonymicePro Nerd Font"
-# family = "BigBlueTerm437 Nerd Font"
-# family = "GohuFont 11 Nerd Font"
-# style = "Regular"
+# family = "JetBrainsMono Nerd Font"
+family = "FantasqueSansM Nerd Font"
+style = "Regular"
 
 [window]
 decorations = "Buttonless"

@@ -9,3 +9,8 @@ end, opts)
 vim.keymap.set("n", "<leader>k", function()
   vim.cmd.RustLsp({ 'renderDiagnostic', 'current' })
 end, opts)
+
+-- Show code actions on gra
+vim.keymap.set("n", "gra", function()
+  vim.cmd.RustLsp('codeAction')
+end, opts)
