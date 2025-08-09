@@ -8,10 +8,6 @@ strict_mode = false              # optional: if true, disables temporary overrid
 name = "Algorithmic Feeds"
 active_by_default = true
 whitelist = [
-  "accounts.google.com/*",
-  # "file://*",
-  # "file://*.*",
-  "google.com/url?*",
   "instagram.com/direct/inbox",
   "instagram.com/p/*",
   "linkedin.com/in/*",
@@ -19,8 +15,6 @@ whitelist = [
   "reddit.com/r/*",
   "reddit.com/search*",
   "reddit.com/user/*",
-  "skool.com/korekara/classroom",
-  "studio.youtube.com",
   "twitter.com/i/timeline",
   "youtube.com/@*",
   "youtube.com/c/*",
@@ -29,9 +23,8 @@ whitelist = [
   "youtube.com/feed/subscriptions",
   "youtube.com/playlist?list=*",
   "youtube.com/results?search_query=*",
-  "youtube.com/shorts/*",
   "youtube.com/user/*",
-  "youtube.com/watch?v=*",
+  "youtube.com/watch?v=*"
 ]
 blacklist = [
   "facebook.com",
@@ -44,14 +37,21 @@ blacklist = [
 ]
 
 [[blocks]]
-name = "stock_sites"
+name = "Stocks"
 active_by_default = false
 blacklist = [
   "robinhood.com",
   "tradingview.com",
   "finance.yahoo.com"
 ]
-whitelist = []
+
+[[blocks]]
+name = "Internet"
+active_by_default = true
+blacklist = [
+  "amazon.com",
+  "google.com",
+]
 
 [[schedule]]
 block = "algorithmic_feeds"

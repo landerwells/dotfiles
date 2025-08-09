@@ -27,7 +27,7 @@ y = 2
 TERM = "xterm-256color"
 
 [colors]
-draw_bold_text_with_bright_colors = true
+# draw_bold_text_with_bright_colors = true
 
 # [colors.primary]
 # background = "#24273a"
@@ -150,6 +150,9 @@ white = "#ebdab1"
 # magenta = "#5ea2ff"
 # cyan = "#5ac8ff"
 # white = "#ffffff"
+
+# Colors section of "Alacritty - TOML configuration file format"
+# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#colors
 
 [mouse]
 bindings = [
