@@ -24,7 +24,7 @@ whitelist = [
   "youtube.com/playlist?list=*",
   "youtube.com/results?search_query=*",
   "youtube.com/user/*",
-  "youtube.com/watch?v=*"
+  "youtube.com/watch?*"
 ]
 blacklist = [
   "facebook.com",
