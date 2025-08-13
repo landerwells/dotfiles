@@ -10,7 +10,6 @@ active_by_default = true
 whitelist = [
   "instagram.com/direct/inbox",
   "instagram.com/p/*",
-  "linkedin.com/in/*",
   "reddit.com/message/inbox",
   "reddit.com/r/*",
   "reddit.com/search*",
@@ -29,7 +28,6 @@ whitelist = [
 blacklist = [
   "facebook.com",
   "instagram.com",
-  "linkedin.com",
   "reddit.com",
   "tiktok.com",
   "twitter.com/home",
@@ -38,7 +36,7 @@ blacklist = [
 
 [[blocks]]
 name = "Stocks"
-active_by_default = false
+active_by_default = true
 blacklist = [
   "robinhood.com",
   "tradingview.com",
@@ -47,9 +45,8 @@ blacklist = [
 
 [[blocks]]
 name = "Internet"
-active_by_default = true
+active_by_default = false
 blacklist = [
-  "amazon.com",
   "google.com",
 ]
 
