@@ -85,7 +85,6 @@ bindkey -M visual S add-surround
 [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
 
 # . "$HOME/.cargo/env"
-#
 function swap()         
 {
   local TMPFILE=tmp.$$
