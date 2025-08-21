@@ -30,13 +30,8 @@ return {
     dependencies = {
       "rafamadriz/friendly-snippets",
     },
-    -- event = "InsertEnter",
     version = "*",
     config = function()
-      -- vim.cmd('highlight Pmenu guibg=none')
-      -- vim.cmd('highlight PmenuExtra guibg=none')
-      -- vim.cmd('highlight FloatBorder guibg=none')
-      -- vim.cmd('highlight NormalFloat guibg=none')
 
       require("blink.cmp").setup({
         snippets = { preset = "luasnip" },
@@ -46,9 +41,6 @@ return {
           nerd_font_variant = "normal",
         },
         sources = {
-          per_filetype = {
-            codecompanion = { "codecompanion" },
-          },
           default = { "snippets", "lsp", "path", "buffer" },
           providers = {
             cmdline = {

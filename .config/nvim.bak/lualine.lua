@@ -14,15 +14,10 @@ return {
 
     local gruvbox_theme = {
       normal = {
-        -- a = { fg = colors.black, bg = colors.violet },
-        -- b = { fg = colors.white, bg = colors.grey },
         c = { bg = colors.bg },
       },
     }
 
-    -- insert = { a = { fg = colors.black, bg = colors.blue } },
-    -- visual = { a = { fg = colors.black, bg = colors.cyan } },
-    -- replace = { a = { fg = colors.black, bg = colors.red } },
 
     -- inactive = {
     --   a = { fg = colors.white, bg = colors.black },

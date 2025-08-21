@@ -3,3 +3,4 @@
 --ignore='cursors'
 --ignore='plugins'
 --ignore='wallpapers'
+--ingore='scripts'

@@ -1,14 +1,8 @@
 [font]
 size = 12
 
-[font.offset]
-# x = 1
-# y = 5
-
 [font.normal]
-
 family = "JetBrainsMono Nerd Font"
-# family = "FantasqueSansM Nerd Font"
 style = "Regular"
 
 [window]
@@ -24,132 +18,8 @@ y = 2
 TERM = "xterm-256color"
 
 [colors]
-# draw_bold_text_with_bright_colors = true
+draw_bold_text_with_bright_colors = true
 
-# [colors.primary]
-# background = "#24273a"
-# foreground = "#cad3f5"
-# dim_foreground = "#8087a2"
-# bright_foreground = "#cad3f5"
-#
-# [colors.cursor]
-# text = "#24273a"
-# cursor = "#f4dbd6"
-#
-# [colors.vi_mode_cursor]
-# text = "#24273a"
-# cursor = "#b7bdf8"
-#
-# [colors.search.matches]
-# foreground = "#24273a"
-# background = "#a5adcb"
-#
-# [colors.search.focused_match]
-# foreground = "#24273a"
-# background = "#a6da95"
-#
-# [colors.footer_bar]
-# foreground = "#24273a"
-# background = "#a5adcb"
-#
-# [colors.hints.start]
-# foreground = "#24273a"
-# background = "#eed49f"
-#
-# [colors.hints.end]
-# foreground = "#24273a"
-# background = "#a5adcb"
-#
-# [colors.selection]
-# text = "#24273a"
-# background = "#f4dbd6"
-#
-# [colors.normal]
-# black = "#494d64"
-# red = "#ed8796"
-# green = "#a6da95"
-# yellow = "#eed49f"
-# blue = "#8aadf4"
-# magenta = "#f5bde6"
-# cyan = "#8bd5ca"
-# white = "#b8c0e0"
-#
-# [colors.bright]
-# black = "#5b6078"
-# red = "#ed8796"
-# green = "#a6da95"
-# yellow = "#eed49f"
-# blue = "#8aadf4"
-# magenta = "#f5bde6"
-# cyan = "#8bd5ca"
-# white = "#a5adcb"
-#
-# [[colors.indexed_colors]]
-# index = 16
-# color = "#f5a97f"
-#
-# [[colors.indexed_colors]]
-# index = 17
-# color = "#f4dbd6"
-
-[colors.primary]
-background = "#282828"
-foreground = "#ebdab1"
-
-[colors.normal]
-black = "#282727"
-red = "#cb231d"
-green = "#98961a"
-yellow = "#d69821"
-blue = "#458487"
-magenta = "#b06185"
-cyan = "#689c69"
-white = "#a89883"
-
-[colors.bright]
-black = "#928273"
-red = "#fa4834"
-green = "#b8ba26"
-yellow = "#f9bc2f"
-blue = "#83a497"
-magenta = "#d2859a"
-cyan = "#8ebf7b"
-white = "#ebdab1"
-
-# Purple
-# [colors.primary]
-# background = "#1d1d1d"
-# foreground = "#cccccc"
-#
-# [colors.cursor]
-# text = "#ffffff"
-#
-# [colors.selection]
-# text = "#cccccc"
-# background = "#ffffff"
-#
-# [colors.normal]
-# black = "#000000"
-# red = "#a52aff"
-# green = "#7129ff"
-# yellow = "#3d2aff"
-# blue = "#2b4fff"
-# magenta = "#2883ff"
-# cyan = "#28b9ff"
-# white = "#cfcfcf"
-#
-# [colors.bright]
-# black = "#2f2f2f"
-# red = "#ba5aff"
-# green = "#905aff"
-# yellow = "#685aff"
-# blue = "#5c78ff"
-# magenta = "#5ea2ff"
-# cyan = "#5ac8ff"
-# white = "#ffffff"
-
-# Colors section of "Alacritty - TOML configuration file format"
-# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#colors
 
 [mouse]
 bindings = [
@@ -165,3 +35,33 @@ mods = "Alt"
 chars = "\u0017"
 key = "Back"
 mods = "Control"
+
+# Colors (Blood Moon)
+
+# Default colors
+[colors.primary]
+background = '#10100E'
+foreground = '#C6C6C4'
+
+# Normal colors
+[colors.normal]
+black   = '#10100E'
+red     = '#C40233'
+green   = '#009F6B'
+yellow  = '#FFD700'
+blue    = '#0087BD'
+magenta = '#9A4EAE'
+cyan    = '#20B2AA'
+white   = '#C6C6C4'
+
+# Bright colors
+[colors.bright]
+black   = '#696969'
+red     = '#FF2400'
+green   = '#03C03C'
+yellow  = '#FDFF00'
+blue    = '#007FFF'
+magenta = '#FF1493'
+cyan    = '#00CCCC'
+white   = '#FFFAFA'
+

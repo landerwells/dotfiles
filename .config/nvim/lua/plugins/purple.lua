@@ -1,3 +1,0 @@
-return {
-  "landerwells/purple.nvim"
-}

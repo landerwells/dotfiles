@@ -1,5 +1,217 @@
-require("landerwells.set")
-require("landerwells.lsp")
-require("landerwells.remap")
-require("landerwells.lazy")
-require("landerwells.colorscheme")
+-- Indentation
+vim.opt.autoindent = true           -- Enable auto-indentation
+vim.opt.expandtab = true            -- Converts tabs to spaces
+vim.opt.smartindent = true          -- Makes indenting smart
+vim.opt.smarttab = true             -- Makes tabbing smarter will realize you have 2 vs 4
+vim.opt.shiftround = true           -- Round indent
+vim.opt.shiftwidth = 2              -- Size of an indent
+vim.opt.softtabstop = 2             -- Number of spaces tabs count for  
+vim.opt.tabstop = 2                 -- Number of spaces tabs count for
+
+-- Display
+vim.opt.nu = true                  -- Show line numbers
+vim.opt.relativenumber = true      -- Show relative line numbers
+vim.opt.wrap = false               -- Disable line wrapping
+vim.opt.colorcolumn = "81"
+vim.opt.signcolumn = "yes"
+
+-- Search
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.opt.smartcase = true
+
+-- Undo
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.cache/vim/undodir"
+vim.opt.undofile = true
+
+-- Misc
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.isfname:append("@-@")
+vim.opt.termguicolors = true
+vim.opt.updatetime = 50
+vim.opt.backspace = "indent,eol,start"
+vim.opt.cursorline = true
+vim.opt.winblend = 0
+vim.opt.pumheight = 12
+vim.opt.pumblend = 10
+vim.opt.showmode = false
+vim.opt.numberwidth = 4
+vim.opt.conceallevel = 1
+vim.opt.spell = true
+
+local map = vim.keymap.set
+vim.g.mapleader = " "
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+vim.keymap.set('v', '<leader>p', '"_dP')
+vim.keymap.set("i", "<C-BS>", "<C-w>")
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
+vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end, opts)
+
+vim.pack.add({
+  { src = "https://github.com/vague2k/vague.nvim" },
+  { src = "https://github.com/shortcuts/no-neck-pain.nvim.git" },
+  { src = "https://github.com/stevearc/oil.nvim" },
+  { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
+  { src = "https://github.com/mrcjkb/rustaceanvim.git" },
+  { src = "https://github.com/lukas-reineke/indent-blankline.nvim.git" },
+  { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
+  { src = "https://github.com/mbbill/undotree.git" },
+  { src = "https://github.com/windwp/nvim-autopairs.git" },
+  { src = "https://github.com/windwp/nvim-ts-autotag.git" },
+  { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" },
+  { src = "https://github.com/L3MON4D3/LuaSnip" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+  { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
+  { src = "https://github.com/nvim-lua/plenary.nvim.git" },
+  -- We'll see if I want to keep this one
+  { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
+})
+
+-- require "telescope".setup({
+--   defaults = {
+--     layout_strategy = 'bottom_pane',
+--     layout_config = {
+--       height = 0.4, -- Adjust the height as needed (40% of the screen)
+--       prompt_position = 'top',
+--     },
+--     sorting_strategy = 'ascending', -- Show results from top to bottom
+--   }
+-- })
+
+require "nvim-autopairs".setup()
+require "nvim-ts-autotag".setup()
+require "ibl".setup()
+require "oil".setup({
+  view_options = {
+    show_hidden = true,
+  },
+  keymaps = {
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
+  },
+})
+require "no-neck-pain".setup({
+  width = 120,
+})
+vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
+
+map("n", "<leader>z", vim.cmd.NoNeckPain)
+
+require "vague".setup({ transparent = true })
+vim.cmd("colorscheme vague")
+vim.cmd(":hi statusline guibg=NONE")
+
+map("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+vim.keymap.set("n", "<C-b>", function()
+  local oil = require("oil")
+  if vim.bo.filetype == "oil" then
+    oil.close()
+  else
+    oil.open()
+  end
+end)
+
+-- snippets
+require("luasnip").setup({ enable_autosnippets = true })
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+local ls = require("luasnip")
+map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
+map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
+map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
+
+-- vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
+-- vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+-- vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+-- vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+-- vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+-- vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+
+if is_wayland then
+  vim.g.clipboard = {
+    name = "wl-clipboard",
+    copy = {
+      ["+"] = "wl-copy",
+      ["*"] = "wl-copy"
+    },
+    paste = {
+      ["+"] = "wl-paste --no-newline",
+      ["*"] = "wl-paste --no-newline"
+    },
+    cache_enabled = 0,
+  }
+end
+
+vim.on_key(function(char)
+  if vim.fn.mode() == "n" then
+    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/", "z", "v" }, vim.fn.keytrans(char))
+  end
+end, vim.api.nvim_create_namespace "auto_hlsearch")
+
+vim.keymap.set('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })
+
+function JumpPair()
+  local ext = vim.fn.expand("%:e")
+  local source_exts = { "cpp", "c", "frag", "server.ts", "js", "ts", "jsx", "tsx", "py", "java", "rs", "go", "css",
+  "scss", "less" }
+  local header_exts = { "h", "hpp", "hh", "vert", "svelte", "html", "vue", "component.ts", "component.js", "types.ts",
+  "interface.ts", "d.ts", "test.py", "spec.ts", "spec.js", "test.js", "test.ts" }
+  local target_exts = nil
+  if vim.tbl_contains(header_exts, ext) then
+    target_exts = source_exts
+  elseif vim.tbl_contains(source_exts, ext) then
+    target_exts = header_exts
+  else
+    print("Not a recognized file pair.")
+    return
+  end
+
+  local base_name = vim.fn.expand("%:r")
+  for _, target_ext in ipairs(target_exts) do
+    local target_file = base_name .. "." .. target_ext
+    if vim.fn.filereadable(target_file) == 1 then
+      vim.cmd("edit " .. target_file)
+      return
+    end
+  end
+
+  print("Corresponding file not found.")
+end
+
+-- Key mapping to jump between header and source files
+vim.keymap.set("n", "<leader>o", ":lua JumpPair()<CR>", { silent = true })
+
+vim.diagnostic.config({
+  virtual_text = true,
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = true,
+    style = "minimal",
+    border = "rounded",
+    source = true,
+    header = "",
+    prefix = "",
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.HINT] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.ERROR] = " ",
+    },
+  },
+})
+
+vim.lsp.enable("clangd")
+vim.lsp.enable("rust-analyzer")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("nixd")
