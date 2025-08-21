@@ -51,13 +51,13 @@ blacklist = [
 ]
 
 [[schedule]]
-block = "algorithmic_feeds"
+block = "Algorithmic Feeds"
 days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
 start = "08:00"
 end = "18:00"
 
 [[schedule]]
-block = "stock_sites"
+block = "Stocks"
 days = ["Mon", "Fri"]
 start = "09:30"
 end = "16:00"
