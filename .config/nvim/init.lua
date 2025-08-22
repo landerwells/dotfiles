@@ -70,21 +70,29 @@ vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
   { src = "https://github.com/nvim-lua/plenary.nvim.git" },
-  -- We'll see if I want to keep this one
   { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
+  { src = "https://github.com/letieu/harpoon-lualine.git" },
+  { src = "https://github.com/nvim-lualine/lualine.nvim.git" },
+  { src = "https://github.com/Saghen/blink.cmp.git" },
+  -- { src = "https://github.com/onsails/lspkind.nvim.git" },
 })
 
--- require "telescope".setup({
---   defaults = {
---     layout_strategy = 'bottom_pane',
---     layout_config = {
---       height = 0.4, -- Adjust the height as needed (40% of the screen)
---       prompt_position = 'top',
---     },
---     sorting_strategy = 'ascending', -- Show results from top to bottom
---   }
--- })
+require "telescope".setup({
+  defaults = {
+    layout_strategy = 'bottom_pane',
+    layout_config = {
+      height = 0.4, -- Adjust the height as needed (40% of the screen)
+      prompt_position = 'top',
+    },
+    sorting_strategy = 'ascending', -- Show results from top to bottom
+  },
+})
 
+local builtin = require('telescope.builtin')
+map('n', '<C-p>', builtin.find_files)
+map('n', '<C-f>', builtin.live_grep)
+
+require "harpoon-lualine".setup()
 require "nvim-autopairs".setup()
 require "nvim-ts-autotag".setup()
 require "ibl".setup()
@@ -127,12 +135,14 @@ map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 
--- vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
--- vim.keymap.set("n", "<leader>he", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
--- vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
--- vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
--- vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
--- vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+local harpoon = require("harpoon")
+map("n", "<leader>a", function() harpoon:list():add() end)
+map("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+map("n", "<leader>1", function() harpoon:list():select(1) end)
+map("n", "<leader>2", function() harpoon:list():select(2) end)
+map("n", "<leader>3", function() harpoon:list():select(3) end)
+map("n", "<leader>4", function() harpoon:list():select(4) end)
+
 
 if is_wayland then
   vim.g.clipboard = {
@@ -215,3 +225,83 @@ vim.lsp.enable("clangd")
 vim.lsp.enable("rust-analyzer")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nixd")
+
+require('lualine').setup({
+  options = {
+    theme = 'auto',
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' }
+  },
+  sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      { 'filesize' },
+      { 'filename' },
+      { 'location' },
+      { 'diagnostics' },
+      { 'selectioncount' },
+      '%=',
+      { 'harpoon2' },
+    },
+    lualine_x = {
+      'diff',
+      {
+        'branch',
+        icon = '',
+      }
+    },
+    lualine_y = {},
+    lualine_z = {}
+  }
+})
+
+require "blink.cmp".setup({
+  snippets = { preset = "luasnip" },
+  signature = { enabled = true },
+  appearance = {
+    use_nvim_cmp_as_default = false,
+    nerd_font_variant = "normal",
+  },
+  sources = {
+    default = { "snippets", "lsp", "path", "buffer" },
+    providers = {
+      cmdline = {
+        min_keyword_length = 2,
+      },
+    },
+  },
+  cmdline = {
+    enabled = false,
+    completion = { menu = { auto_show = true } },
+    keymap = {
+      ["<CR>"] = { "accept_and_enter", "fallback" },
+    },
+  },
+  completion = {
+    menu = {
+      border = nil,
+      scrolloff = 1,
+      scrollbar = false,
+      draw = {
+        columns = {
+          { "kind_icon" },
+          { "label",      "label_description", gap = 1 },
+          { "kind" },
+          { "source_name" },
+        },
+      },
+    },
+    documentation = {
+      window = {
+        border = nil,
+        scrollbar = false,
+        winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc',
+      },
+      auto_show = true,
+      auto_show_delay_ms = 500,
+    },
+  },
+  fuzzy = { implementation = "prefer_rust" }
+})
+
