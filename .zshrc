@@ -27,7 +27,6 @@ setopt share_history
 setopt autoparamslash
 unsetopt hist_beep             # Don't beep when attempting to access a missing history entry
 
-
 #-------------------------------------------------------------------------------
 #               VI-MODE
 #-------------------------------------------------------------------------------
@@ -81,17 +80,9 @@ bindkey -M vicmd ds delete-surround
 bindkey -M vicmd ys add-surround
 bindkey -M visual S add-surround
 
-[ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
-[ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
-
+# [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
+# [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
 # . "$HOME/.cargo/env"
-function swap()         
-{
-  local TMPFILE=tmp.$$
-  mv "$1" $TMPFILE
-  mv "$2" "$1"
-  mv $TMPFILE "$2"
-}
 
 PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f$ '
 
@@ -106,9 +97,6 @@ alias gd='git diff'
 alias gcm='git commit -m'
 alias gl='git log --oneline'
 
-alias ghcs='gh copilot suggest'
-alias ghce='gh copilot explain'
-
 alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
 
@@ -116,7 +104,7 @@ alias ll='ls -l --color=auto'
 # alias la='ls -a --color=always --group-directories-first'
 # alias ll='ls -la --color=always --group-directories-first'
 # alias ltr='ls -altr --color=always --group-directories-first'
-#
+
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
@@ -127,13 +115,11 @@ alias cr='cargo run'
 alias ct='cargo test'
 alias fz='vim $(fzf)'
 alias mkdir='mkdir -pv'
-alias path='echo ${PATH//:/\\n}'
 alias py='python3'
-alias st='networkquality'
 alias vi='nvim'
 alias vim='nvim'
 alias svim='sudo -E nvim'
-# alias emacs='emacs --no-window-system'
+alias emacs='emacs --no-window-system'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 alias miex='iex -S mix'
@@ -141,28 +127,17 @@ alias miex='iex -S mix'
 # alias rebuild='sudo nixos-rebuild switch --flake ~/dotfiles/.config/nixos/'
 
 # Directory Commands
-alias df='cd ~/dotfiles'
-alias dv='cd ~/Developer'
-alias nv='cd ~/dotfiles/.config/nvim'
-alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-# alias advent='cd ~/Developer/advent_of_rust'
-alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
+# alias df='cd ~/dotfiles'
+# alias dv='cd ~/Developer'
+# alias nv='cd ~/dotfiles/.config/nvim'
+# alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+# alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias notes='cd ~/org/roam'
 
 alias c='clear'
 alias q='exit'
 # alias ds='doom sync'
 # alias dsr='doom sync --rebuild'
-
-# if [[ "$OSTYPE" == "darwin"* ]]; then
-#   alias head='ghead'
-#   alias paste='gpaste'
-#   alias grep='ggrep'
-#   alias awk='gawk'
-#   alias sed='gsed'
-# fi
-
-alias g++="g++ -std=c++23 -pedantic -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion"
 
 source ~/dotfiles/plugins/zsh-autopair/autopair.zsh
 source ~/dotfiles/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

@@ -43,17 +43,6 @@ vim.opt.numberwidth = 4
 vim.opt.conceallevel = 1
 vim.opt.spell = true
 
-local map = vim.keymap.set
-vim.g.mapleader = " "
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
-vim.keymap.set('v', '<leader>p', '"_dP')
-vim.keymap.set("i", "<C-BS>", "<C-w>")
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
-vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end, opts)
-
 vim.pack.add({
   { src = "https://github.com/vague2k/vague.nvim" },
   { src = "https://github.com/shortcuts/no-neck-pain.nvim.git" },
@@ -77,6 +66,11 @@ vim.pack.add({
   -- { src = "https://github.com/onsails/lspkind.nvim.git" },
 })
 
+require "harpoon-lualine".setup()
+require "nvim-autopairs".setup()
+require "nvim-ts-autotag".setup()
+require "ibl".setup()
+
 require "telescope".setup({
   defaults = {
     layout_strategy = 'bottom_pane',
@@ -88,14 +82,6 @@ require "telescope".setup({
   },
 })
 
-local builtin = require('telescope.builtin')
-map('n', '<C-p>', builtin.find_files)
-map('n', '<C-f>', builtin.live_grep)
-
-require "harpoon-lualine".setup()
-require "nvim-autopairs".setup()
-require "nvim-ts-autotag".setup()
-require "ibl".setup()
 require "oil".setup({
   view_options = {
     show_hidden = true,
@@ -105,20 +91,43 @@ require "oil".setup({
     ["<C-l>"] = false,
   },
 })
+
 require "no-neck-pain".setup({
   width = 120,
 })
-vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
-
-map("n", "<leader>z", vim.cmd.NoNeckPain)
 
 require "vague".setup({ transparent = true })
-vim.cmd("colorscheme vague")
-vim.cmd(":hi statusline guibg=NONE")
+vim.cmd "colorscheme vague"
+vim.cmd ":hi statusline guibg=NONE"
+vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 
-map("n", "<leader>u", vim.cmd.UndotreeToggle)
+require "luasnip".setup({ enable_autosnippets = true })
+require "luasnip.loaders.from_lua".load({ paths = "~/.config/nvim/snippets/" })
 
-vim.keymap.set("n", "<C-b>", function()
+local map = vim.keymap.set
+vim.g.mapleader = " "
+
+-- Navigation
+map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "n", "nzz")
+map("n", "N", "Nzz")
+
+-- Editing
+map('v', '<leader>p', '"_dP')
+map("i", "<C-BS>", "<C-w>")
+
+-- LSP
+map('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
+map("n", "<leader>k", function() vim.diagnostic.open_float() end)
+
+-- Telescope
+local builtin = require('telescope.builtin')
+map('n', '<C-p>', builtin.find_files)
+map('n', '<C-f>', builtin.live_grep)
+
+-- Oil file explorer
+map("n", "<C-b>", function()
   local oil = require("oil")
   if vim.bo.filetype == "oil" then
     oil.close()
@@ -127,14 +136,17 @@ vim.keymap.set("n", "<C-b>", function()
   end
 end)
 
--- snippets
-require("luasnip").setup({ enable_autosnippets = true })
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+-- Plugin toggles
+map("n", "<leader>z", vim.cmd.NoNeckPain)
+map("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- LuaSnip
 local ls = require("luasnip")
 map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 
+-- Harpoon
 local harpoon = require("harpoon")
 map("n", "<leader>a", function() harpoon:list():add() end)
 map("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
@@ -144,29 +156,11 @@ map("n", "<leader>3", function() harpoon:list():select(3) end)
 map("n", "<leader>4", function() harpoon:list():select(4) end)
 
 
-if is_wayland then
-  vim.g.clipboard = {
-    name = "wl-clipboard",
-    copy = {
-      ["+"] = "wl-copy",
-      ["*"] = "wl-copy"
-    },
-    paste = {
-      ["+"] = "wl-paste --no-newline",
-      ["*"] = "wl-paste --no-newline"
-    },
-    cache_enabled = 0,
-  }
-end
-
-vim.on_key(function(char)
-  if vim.fn.mode() == "n" then
-    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/", "z", "v" }, vim.fn.keytrans(char))
-  end
-end, vim.api.nvim_create_namespace "auto_hlsearch")
-
+-- File operations
 vim.keymap.set('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })
+map("n", "<leader>o", ":lua JumpPair()<CR>", { silent = true })
 
+-- CUSTOM FUNCTIONS
 function JumpPair()
   local ext = vim.fn.expand("%:e")
   local source_exts = { "cpp", "c", "frag", "server.ts", "js", "ts", "jsx", "tsx", "py", "java", "rs", "go", "css",
@@ -195,9 +189,32 @@ function JumpPair()
   print("Corresponding file not found.")
 end
 
--- Key mapping to jump between header and source files
-vim.keymap.set("n", "<leader>o", ":lua JumpPair()<CR>", { silent = true })
+-- AUTOCOMMANDS AND UTILITIES
 
+-- Auto hlsearch toggle
+vim.on_key(function(char)
+  if vim.fn.mode() == "n" then
+    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/", "z", "v" }, vim.fn.keytrans(char))
+  end
+end, vim.api.nvim_create_namespace "auto_hlsearch")
+
+-- Wayland clipboard
+if is_wayland then
+  vim.g.clipboard = {
+    name = "wl-clipboard",
+    copy = {
+      ["+"] = "wl-copy",
+      ["*"] = "wl-copy"
+    },
+    paste = {
+      ["+"] = "wl-paste --no-newline",
+      ["*"] = "wl-paste --no-newline"
+    },
+    cache_enabled = 0,
+  }
+end
+
+-- Diagnostic configuration
 vim.diagnostic.config({
   virtual_text = true,
   update_in_insert = true,
@@ -221,6 +238,7 @@ vim.diagnostic.config({
   },
 })
 
+-- LSP servers
 vim.lsp.enable("clangd")
 vim.lsp.enable("rust-analyzer")
 vim.lsp.enable("lua_ls")
