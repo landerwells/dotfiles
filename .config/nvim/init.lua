@@ -199,6 +199,8 @@ vim.on_key(function(char)
 end, vim.api.nvim_create_namespace "auto_hlsearch")
 
 -- Wayland clipboard
+local is_wayland = os.getenv("WAYLAND_DISPLAY") ~= nil
+
 if is_wayland then
   vim.g.clipboard = {
     name = "wl-clipboard",
@@ -320,6 +322,7 @@ require "blink.cmp".setup({
       auto_show_delay_ms = 500,
     },
   },
-  fuzzy = { implementation = "prefer_rust" }
+  fuzzy = { implementation = "prefer_rust" },
+  build = 'cargo +nightly build --release'
 })
 
