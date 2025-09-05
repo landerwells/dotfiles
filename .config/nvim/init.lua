@@ -28,20 +28,22 @@ vim.opt.undodir = os.getenv("HOME") .. "/.cache/vim/undodir"
 vim.opt.undofile = true
 
 -- Misc
+-- vim.opt.isfname:append("@-@")
+vim.opt.backspace = "indent,eol,start"
+vim.opt.conceallevel = 1
+vim.opt.cursorline = true
+vim.opt.numberwidth = 4
+vim.opt.pumblend = 10
+vim.opt.pumheight = 12
 vim.opt.scrolloff = 8
+vim.opt.showmode = false
 vim.opt.sidescrolloff = 8
-vim.opt.isfname:append("@-@")
+vim.opt.spell = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
-vim.opt.backspace = "indent,eol,start"
-vim.opt.cursorline = true
 vim.opt.winblend = 0
-vim.opt.pumheight = 12
-vim.opt.pumblend = 10
-vim.opt.showmode = false
-vim.opt.numberwidth = 4
-vim.opt.conceallevel = 1
-vim.opt.spell = true
+
+vim.opt.listchars = "tab: ,multispace:|   ,eol:󰌑" -- Characters to show for tabs, spaces, and end of line
 
 vim.pack.add({
   { src = "https://github.com/vague2k/vague.nvim" },
@@ -62,7 +64,7 @@ vim.pack.add({
   { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
   { src = "https://github.com/letieu/harpoon-lualine.git" },
   { src = "https://github.com/nvim-lualine/lualine.nvim.git" },
-  { src = "https://github.com/Saghen/blink.cmp.git" },
+  { src = "https://github.com/Saghen/blink.cmp.git", version = '1.6.0' },
   -- { src = "https://github.com/onsails/lspkind.nvim.git" },
 })
 
@@ -159,6 +161,11 @@ map("n", "<leader>4", function() harpoon:list():select(4) end)
 -- File operations
 vim.keymap.set('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })
 map("n", "<leader>o", ":lua JumpPair()<CR>", { silent = true })
+-- Change directory to the current file's directory
+map("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
+
+-- ~/.config/nvim-new/plugin/keymaps.lua
+map("n", "<leader>ps", '<cmd>lua vim.pack.update()<CR>')
 
 -- CUSTOM FUNCTIONS
 function JumpPair()
@@ -325,4 +332,5 @@ require "blink.cmp".setup({
   fuzzy = { implementation = "prefer_rust" },
   build = 'cargo +nightly build --release'
 })
+
 

@@ -62,6 +62,7 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (setq org-roam-directory (file-truename "~/org/roam/"))
+(setq org-startup-with-inline-images t)
 
 (setq org-roam-capture-templates
       '(("m" "main" plain
@@ -270,5 +271,3 @@ Source: URL `https://www.thepunctuationguide.com/hyphen.html'"
   (interactive)
   (help/real-insert ?-))
 (global-set-key (kbd "-") #'help/insert-hyphen)
-(global-set-key (kbd "s-_") #'help/insert-em-dash)
-(global-set-key (kbd "s--") #'help/insert-en-dash)
