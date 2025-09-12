@@ -58,6 +58,7 @@ vim.pack.add({
   { src = "https://github.com/windwp/nvim-ts-autotag.git" },
   { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
+  { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
   { src = "https://github.com/nvim-lua/plenary.nvim.git" },
@@ -247,11 +248,14 @@ vim.diagnostic.config({
   },
 })
 
--- LSP servers
-vim.lsp.enable("clangd")
-vim.lsp.enable("rust-analyzer")
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("nixd")
+vim.lsp.enable(
+  {
+    "clangd",
+    "lua_ls",
+    "rust_analyzer",
+    "nixd",
+  }
+)
 
 require('lualine').setup({
   options = {
@@ -330,7 +334,5 @@ require "blink.cmp".setup({
     },
   },
   fuzzy = { implementation = "prefer_rust" },
-  build = 'cargo +nightly build --release'
+  build = 'cargo +nightly build --release',
 })
-
-

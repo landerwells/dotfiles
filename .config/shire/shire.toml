@@ -23,7 +23,8 @@ whitelist = [
   "youtube.com/playlist?list=*",
   "youtube.com/results?search_query=*",
   "youtube.com/user/*",
-  "youtube.com/watch?*"
+  "youtube.com/watch?*",
+  "linkedin.com/jobs*",
 ]
 blacklist = [
   "facebook.com",
@@ -32,6 +33,7 @@ blacklist = [
   "tiktok.com",
   "twitter.com/home",
   "youtube.com",
+  "linkedin.com",
 ]
 
 [[blocks]]
@@ -40,7 +42,7 @@ active_by_default = true
 blacklist = [
   "robinhood.com",
   "tradingview.com",
-  "finance.yahoo.com"
+  "finance.yahoo.com",
 ]
 
 [[blocks]]
