@@ -101,6 +101,15 @@
 ;;         org-roam-ui-update-on-save t
 ;;         org-roam-ui-open-on-start nil))
 
+(use-package org-roam
+  :ensure t
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+
 (after! org
   (setq org-babel-load-languages
         '((scheme . t)
@@ -207,6 +216,13 @@
 ;; I wonder if it is possible to have a script run based off a hook into a function
 
 
+(after! org
+  (add-to-list 'org-modules 'org-habit t))
+
+
+(setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
+
+
 (defun help/real-insert (char)
   (cl-flet ((do-insert
              () (if (bound-and-true-p org-mode)
@@ -271,3 +287,8 @@ Source: URL `https://www.thepunctuationguide.com/hyphen.html'"
   (interactive)
   (help/real-insert ?-))
 (global-set-key (kbd "-") #'help/insert-hyphen)
+
+
+(map! :leader
+      :desc "Search org-roam notes"
+      "n r s" #'consult-ripgrep)

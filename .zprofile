@@ -4,6 +4,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 export PYTHONHISTORY="$HOME/.cache/python_history"
 export VISUAL=nvim
 export XDG_CACHE_HOME="$HOME/.cache"

@@ -18,8 +18,7 @@ vim.opt.signcolumn = "yes"
 -- Search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
-vim.opt.incsearch = true
-vim.opt.smartcase = true
+vim.opt.incsearch = true vim.opt.smartcase = true
 
 -- Undo
 vim.opt.swapfile = false
@@ -28,7 +27,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.cache/vim/undodir"
 vim.opt.undofile = true
 
 -- Misc
--- vim.opt.isfname:append("@-@")
+vim.opt.isfname:append("@-@")
 vim.opt.backspace = "indent,eol,start"
 vim.opt.conceallevel = 1
 vim.opt.cursorline = true
@@ -43,33 +42,28 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.winblend = 0
 
-vim.opt.listchars = "tab: ,multispace:|   ,eol:󰌑" -- Characters to show for tabs, spaces, and end of line
-
 vim.pack.add({
-  { src = "https://github.com/vague2k/vague.nvim" },
+  { src = "https://github.com/ellisonleao/gruvbox.nvim.git" },
   { src = "https://github.com/shortcuts/no-neck-pain.nvim.git" },
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
   { src = "https://github.com/mrcjkb/rustaceanvim.git" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim.git" },
+  { src = "https://github.com/chomosuke/typst-preview.nvim" },
   { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
   { src = "https://github.com/mbbill/undotree.git" },
   { src = "https://github.com/windwp/nvim-autopairs.git" },
   { src = "https://github.com/windwp/nvim-ts-autotag.git" },
-  { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
   { src = "https://github.com/nvim-lua/plenary.nvim.git" },
   { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
-  { src = "https://github.com/letieu/harpoon-lualine.git" },
-  { src = "https://github.com/nvim-lualine/lualine.nvim.git" },
-  { src = "https://github.com/Saghen/blink.cmp.git", version = '1.6.0' },
-  -- { src = "https://github.com/onsails/lspkind.nvim.git" },
+  { src = "https://github.com/tpope/vim-surround.git" },
+  { src = "https://github.com/mfussenegger/nvim-dap.git"},
 })
 
-require "harpoon-lualine".setup()
 require "nvim-autopairs".setup()
 require "nvim-ts-autotag".setup()
 require "ibl".setup()
@@ -92,6 +86,7 @@ require "oil".setup({
   keymaps = {
     ["<C-h>"] = false,
     ["<C-l>"] = false,
+    ["<C-p>"] = false,
   },
 })
 
@@ -99,8 +94,7 @@ require "no-neck-pain".setup({
   width = 120,
 })
 
-require "vague".setup({ transparent = true })
-vim.cmd "colorscheme vague"
+vim.cmd "colorscheme gruvbox"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 
@@ -121,7 +115,7 @@ map('v', '<leader>p', '"_dP')
 map("i", "<C-BS>", "<C-w>")
 
 -- LSP
-map('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
+-- map('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
 map("n", "<leader>k", function() vim.diagnostic.open_float() end)
 
 -- Telescope
@@ -148,15 +142,6 @@ local ls = require("luasnip")
 map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
-
--- Harpoon
-local harpoon = require("harpoon")
-map("n", "<leader>a", function() harpoon:list():add() end)
-map("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-map("n", "<leader>1", function() harpoon:list():select(1) end)
-map("n", "<leader>2", function() harpoon:list():select(2) end)
-map("n", "<leader>3", function() harpoon:list():select(3) end)
-map("n", "<leader>4", function() harpoon:list():select(4) end)
 
 
 -- File operations
@@ -206,10 +191,12 @@ vim.on_key(function(char)
   end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
 
--- Wayland clipboard
 local is_wayland = os.getenv("WAYLAND_DISPLAY") ~= nil
+local is_ssh = os.getenv("SSH_CLIENT") ~= nil or os.getenv("SSH_CONNECTION") ~= nil
 
-if is_wayland then
+if is_ssh then
+  vim.g.clipboard = 'osc52'
+elseif is_wayland then
   vim.g.clipboard = {
     name = "wl-clipboard",
     copy = {
@@ -257,82 +244,25 @@ vim.lsp.enable(
   }
 )
 
-require('lualine').setup({
-  options = {
-    theme = 'auto',
-    section_separators = { left = '', right = '' },
-    component_separators = { left = '', right = '' }
-  },
-  sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {
-      { 'filesize' },
-      { 'filename' },
-      { 'location' },
-      { 'diagnostics' },
-      { 'selectioncount' },
-      '%=',
-      { 'harpoon2' },
-    },
-    lualine_x = {
-      'diff',
-      {
-        'branch',
-        icon = '',
-      }
-    },
-    lualine_y = {},
-    lualine_z = {}
-  }
+map('i', '<c-e>', function() vim.lsp.completion.get() end)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    if client:supports_method('textDocument/completion') then
+      -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+      local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+      client.server_capabilities.completionProvider.triggerCharacters = chars
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    end
+  end,
 })
 
-require "blink.cmp".setup({
-  snippets = { preset = "luasnip" },
-  signature = { enabled = true },
-  appearance = {
-    use_nvim_cmp_as_default = false,
-    nerd_font_variant = "normal",
-  },
-  sources = {
-    default = { "snippets", "lsp", "path", "buffer" },
-    providers = {
-      cmdline = {
-        min_keyword_length = 2,
-      },
-    },
-  },
-  cmdline = {
-    enabled = false,
-    completion = { menu = { auto_show = true } },
-    keymap = {
-      ["<CR>"] = { "accept_and_enter", "fallback" },
-    },
-  },
-  completion = {
-    menu = {
-      border = nil,
-      scrolloff = 1,
-      scrollbar = false,
-      draw = {
-        columns = {
-          { "kind_icon" },
-          { "label",      "label_description", gap = 1 },
-          { "kind" },
-          { "source_name" },
-        },
-      },
-    },
-    documentation = {
-      window = {
-        border = nil,
-        scrollbar = false,
-        winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc',
-      },
-      auto_show = true,
-      auto_show_delay_ms = 500,
-    },
-  },
-  fuzzy = { implementation = "prefer_rust" },
-  build = 'cargo +nightly build --release',
-})
+-- map('n', '<leader>lf', vim.lsp.buf.format)
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
+
+-- map({ "n", "v", "x" }, ";", ":", { desc = "Self explanatory" })
+-- map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
+vim.keymap.set("n", "<leader>p", "<cmd>TypstPreviewToggle<CR>", { desc = "Toggle Typst Preview" })
+--
