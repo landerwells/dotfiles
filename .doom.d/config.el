@@ -35,7 +35,7 @@
 (setq doom-theme 'doom-gruvbox)
 (setq display-line-numbers-type `relative)
 (setq company-minimum-prefix-length 1)
-(setq scroll-margin 8) ;; or whatever number you want
+(setq scroll-margin 8)
 
 (map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
       :n "C-u" (cmd! (evil-scroll-up nil) (recenter)))
@@ -46,13 +46,14 @@
 (map! :leader
       :desc "Toggle Olivetti mode" "z" #'olivetti-mode)
 
-;; (defun tag-new-node-as-draft ()
-;;   (org-roam-tag-add '("draft")))
-;; (add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
+(map! :leader
+      (:prefix ("o" . "open")
+       :desc "Switch between header/source" "o" #'ff-find-other-file))
 
 (defun tag-new-node-as-draft ()
   (let ((file-name (buffer-file-name)))
-    (unless (string-match-p "/daily/" file-name) ; Skip files in the "daily" folder
+    (when (and file-name
+               (string-match-p "/main/" file-name)) ; Only act on files in "main" folder
       (org-roam-tag-add '("draft")))))
 
 (add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
@@ -164,38 +165,21 @@
 (setq org-export-with-date nil)
 (setq org-export-timestamp-file nil)
 
-; (defun my/org-roam-random-draft-note ()
-;   "Open a random Org-roam note tagged with :draft:."
-;   (interactive)
-;   (let* ((draft-nodes (org-roam-db-query
-;                        [:select [id file title]
-;                                 :from tags
-;                                 :inner :join nodes :on (= tags.node-id nodes.id)
-;                                 :where (= tag "draft")]))
-;          (count (length draft-nodes)))
-;     (if (> count 0)
-;         (let* ((selected (nth (random count) draft-nodes))
-;                (file (nth 1 selected))
-;                (title (nth 2 selected)))
-;           (message "Opening draft note: %s" title)
-;           (find-file file))
-;       (message "No draft notes found."))))
-
 (setq org-publish-project-alist
       '(("org"
          :base-directory "~/org/roam/blog/"
          :publishing-function org-html-publish-to-html
-         :publishing-directory "~/Developer/landerwells.github.io/blog/"
+         :publishing-directory "~/Developer/landerwells.github.io/"
 
          :section-numbers nil
          :with-toc nil
 
          :recursive t                ;; Publish files in subdirectories
          :headline-levels 4          ;; A reasonable default for post structure
-         :auto-sitemap t             ;; IMPORTANT: This generates a list of all posts
-         :sitemap-filename "index.html" ;; Name the sitemap file "index.html"
-         :sitemap-title "Blog"       ;; The title for the main blog page
-         :sitemap-sort-files anti-chronologically
+                                        ; :auto-sitemap t             ;; IMPORTANT: This generates a list of all posts
+                                        ; :sitemap-filename "index.html" ;; Name the sitemap file "index.html"
+                                        ; :sitemap-title "Blog"       ;; The title for the main blog page
+                                        ; :sitemap-sort-files anti-chronologically
 
          ;; This adds your stylesheet to every generated post.
          ;; :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"../style.css\" /> <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"../img/duck.png\"/>"
@@ -203,15 +187,15 @@
          ;; :html-postamble t ;; Adds a standard postamble
          )))
 
-(defun my-publish-git-push ()
-  "Commit and push website changes after publishing."
-  (let ((default-directory "~/Developer/landerwells.github.io/"))
-    (start-process-shell-command
-     "git-publish"
-     "*git-publish-output*"
-     "git add . && git commit -m 'Publish' && git push")))
-
-(add-hook 'org-publish-after-all-publishing-hook #'my-publish-git-push)
+                                        ; (defun my-publish-git-push ()
+                                        ;   "Commit and push website changes after publishing."
+                                        ;   (let ((default-directory "~/Developer/landerwells.github.io/"))
+                                        ;     (start-process-shell-command
+                                        ;      "git-publish"
+                                        ;      "*git-publish-output*"
+                                        ;      "git add . && git commit -m 'Publish' && git push")))
+                                        ;
+                                        ; (add-hook 'org-publish-after-all-publishing-hook #'my-publish-git-push)
 
 ;; I wonder if it is possible to have a script run based off a hook into a function
 
@@ -223,72 +207,41 @@
 (setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
 
 
-(defun help/real-insert (char)
-  (cl-flet ((do-insert
-             () (if (bound-and-true-p org-mode)
-                    (org-self-insert-command 1)
-                  (self-insert-command 1))))
-    (setq last-command-event char)
-    (do-insert)))
-(defun help/insert-em-dash ()
-  "Insert a EM-DASH.
-- \"best limited to two appearances per sentence\"
-- \"can be used in place of commas to enhance readability.
-   Note, however, that dashes are always more emphatic than
-   commas\"
-- \"can replace a pair of parentheses. Dashes are considered
-   less formal than parentheses; they are also more intrusive.
-   If you want to draw attention to the parenthetical content,
-   use dashes. If you want to include the parenthetical content
-   more subtly, use parentheses.\"
-  - \"Note that when dashes are used in place of parentheses,
-     surrounding punctuation should be omitted.\"
-- \"can be used in place of a colon when you want to emphasize
-   the conclusion of your sentence. The dash is less formal than
-   the colon.\"
-- \"Two em dashes can be used to indicate missing portions of a
-   word, whether unknown or intentionally omitted.\"
-  - \"When an entire word is missing, either two or three em
-     dashes can be used. Whichever length you choose, use it
-     consistently throughout your document. Surrounding punctuation
-     should be placed as usual.\"
-- \"The em dash is typically used without spaces on either side,
-   and that is the style used in this guide. Most newspapers,
-   however, set the em dash off with a single space on each side.\"
-Source: URL `https://www.thepunctuationguide.com/em-dash.html'"
-  (interactive)
-  (help/real-insert ?—))
-(defun help/insert-en-dash ()
-  "Insert a EN-DASH.
-- \"is used to represent a span or range of numbers, dates,
-   or time. There should be no space between the en dash and
-   the adjacent material. Depending on the context, the en
-   dash is read as “to” or “through.”\"
-  - \"If you introduce a span or range with words such as
-     'from' or 'between', do not use the en dash.\"
-- \"is used to report scores or results of contests.\"
-- \"an also be used between words to represent conflict,
-   connection, or direction.\"
-- \"When a compound adjective is formed with an element that
-   is itself an open compound or hyphenated compound, some
-   writers replace the customary hyphen with an en dash. This
-   is an aesthetic choice more than anything.
-Source: URL `https://www.thepunctuationguide.com/en-dash.html'"
-  (interactive)
-  (help/real-insert ?–))
-(defun help/insert-hyphen ()
-  "Insert a HYPHEN
-- \"For most writers, the hyphen’s primary function is the
-   formation of certain compound terms. The hyphen is also
-   used for word division [in typesetting].
-- \"Compound terms are those that consist of more than one
-   word but represent a single item or idea.\"
-Source: URL `https://www.thepunctuationguide.com/hyphen.html'"
-  (interactive)
-  (help/real-insert ?-))
-(global-set-key (kbd "-") #'help/insert-hyphen)
-
-
 (map! :leader
       :desc "Search org-roam notes"
       "n r s" #'consult-ripgrep)
+
+(setq elfeed-feeds (quote
+                    (("https://www.sandordargo.com/feed.xml" cpp))))
+
+
+(setq org-html-table-default-attributes
+      '(:border "0" :rules "none" :cellspacing "0" :cellpadding "0" :frame "void"))
+
+;; I want to move over any nvim binds to emacs, I would honestly prefer to start using this
+;; There are so many things that I like about doom emacs that I just want to keep using it
+;;
+;; Feature that I certainly need is to be able to emulate my current workflow with tmux n
+;; everything
+
+;; How do I make images always visible when I am looking into a org mode file
+
+(after! corfu
+  (setq corfu-auto t
+        corfu-auto-delay 0
+        corfu-auto-prefix 1)
+  (define-key corfu-map (kbd "C-y") #'corfu-complete))
+
+
+(use-package projectile
+  :ensure t
+  :init
+  (setq projectile-project-search-path '("~/Developer/" "~/"))
+  :config
+  ;; I typically use this keymap prefix on macOS
+  ; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  ;; On Linux, however, I usually go with another one
+  ; (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+  ; (global-set-key (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+

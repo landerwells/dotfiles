@@ -1,0 +1,25 @@
+{
+  "plugins": {
+    "LuaSnip": [],
+    "gitsigns.nvim": [],
+    "gruvbox.nvim": [],
+    "indent-blankline.nvim": [],
+    "no-neck-pain.nvim": [],
+    "nvim-autopairs": [],
+    "nvim-dap": [],
+    "nvim-lspconfig": [],
+    "nvim-treesitter": {
+      "version": "'main'"
+    },
+    "nvim-ts-autotag": [],
+    "oil.nvim": [],
+    "plenary.nvim": [],
+    "rainbow-delimiters.nvim": [],
+    "rustaceanvim": [],
+    "telescope.nvim": [],
+    "typst-preview.nvim": [],
+    "undotree": [],
+    "vim-surround": [],
+    "vim-tmux-navigator": []
+  }
+}

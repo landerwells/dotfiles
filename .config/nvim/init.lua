@@ -43,7 +43,7 @@ vim.opt.updatetime = 50
 vim.opt.winblend = 0
 
 vim.pack.add({
-  { src = "https://github.com/ellisonleao/gruvbox.nvim.git" },
+  { src = "https://github.com/vague-theme/vague.nvim.git" },
   { src = "https://github.com/shortcuts/no-neck-pain.nvim.git" },
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
@@ -94,7 +94,7 @@ require "no-neck-pain".setup({
   width = 120,
 })
 
-vim.cmd "colorscheme gruvbox"
+vim.cmd "colorscheme vague"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 
@@ -115,7 +115,7 @@ map('v', '<leader>p', '"_dP')
 map("i", "<C-BS>", "<C-w>")
 
 -- LSP
--- map('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
+map('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
 map("n", "<leader>k", function() vim.diagnostic.open_float() end)
 
 -- Telescope

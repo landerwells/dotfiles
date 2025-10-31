@@ -22,10 +22,19 @@ fi
 # Check if it's a GitHub repository
 if [[ $url == *"github.com"* ]]; then
   # Convert SSH URL to HTTPS if needed
-  url=${url/:///\/}      # e.g., git@github.com:user/repo.git -> git/github.com/user/repo.git
-  url=${url/git@/https://}
+  url=${url/:/\/}      # e.g., git@github.com:user/repo.git -> git@github.com/user/repo.git
+  url=${url/git@/https:\/\/}
   url=${url/.git/}
-  open "$url"
+
+  # Determine which open command to use
+  if command -v open >/dev/null 2>&1; then
+    open "$url"        # macOS
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$url"    # Linux
+  else
+    echo "Error: could not find a way to open the URL (no 'open' or 'xdg-open' found)"
+    exit 1
+  fi
 else
   echo "This repository is not hosted on GitHub"
 fi
