@@ -50,6 +50,10 @@
       (:prefix ("o" . "open")
        :desc "Switch between header/source" "o" #'ff-find-other-file))
 
+(map! :leader
+      :desc "Search org-roam notes"
+      "n r s" #'consult-ripgrep)
+
 (defun tag-new-node-as-draft ()
   (let ((file-name (buffer-file-name)))
     (when (and file-name
@@ -165,58 +169,113 @@
 (setq org-export-with-date nil)
 (setq org-export-timestamp-file nil)
 
-(setq org-publish-project-alist
-      '(("org"
-         :base-directory "~/org/roam/blog/"
-         :publishing-function org-html-publish-to-html
-         :publishing-directory "~/Developer/landerwells.github.io/"
 
+;; This works perfectly, now I need to make the index page work well, and get
+;; a few more things working correctly. I would love to have this out by tomorrow,
+;; but I might need a few more days to cook
+
+
+
+
+;; I could have the index page function on its own? or write somewhat of a script
+;; to handle everything? 
+
+;; Function to find all org files with :publish: filetag
+
+
+;; I'll come up with a script that will create the necessary portions I need and
+;; put them at the bottom of my index.html
+
+
+;; 
+
+
+(defun lw/org-publish-flat-base-name (project file)
+  "Publish every file directly into the project's publishing-directory."
+  (file-name-nondirectory file))   ;; strip directories entirely
+
+
+
+(defun lw/org-publish-files-in (directory)
+  "Find all org files in DIRECTORY with :publish: filetag."
+  (let ((files '()))
+    (dolist (file (directory-files-recursively directory "\\.org$"))
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        ;; Look for #+filetags: line containing :publish:
+        (when (re-search-forward "^#\\+filetags:.*:publish:" nil t)
+          (push (file-relative-name file directory) files))))
+    files))
+
+(defun lw/update-blog-publish-list (&optional project-plist)
+  "Update the :include list for the Blog project before publishing."
+  (let* ((project (assoc "Blog" org-publish-project-alist))
+         (base-dir (plist-get (cdr project) :base-directory))
+         (files (lw/org-publish-files-in (expand-file-name base-dir))))
+    ;; Update the :include property in the project plist
+    (setf (cdr project)
+          (plist-put (cdr project) :include files))))
+
+(defun lw/org-sitemap-format-entry (entry style project)
+  "Format sitemap ENTRY with date in 'Month Day, Year' format."
+  (let* ((file (org-publish--expand-file-name entry project))
+         (title (org-publish-find-title entry project))
+         (date (org-publish-find-date entry project)))
+    (if (= (length entry) 0)
+        ""
+      (format "%s - [[file:%s][%s]]"
+              (if date
+                  (format-time-string "%B %d, %Y" date)
+                "No date")
+              entry
+              title))))
+
+(setq org-publish-project-alist
+      `(("Blog"
+         :base-directory "~/org/roam/main/"
+         :publishing-directory "~/Developer/landerwells.github.io/blog"
+         :publishing-function org-html-publish-to-html
+         :recursive t
          :section-numbers nil
          :with-toc nil
+         :base-extension "org"
+         :exclude ".*"
+         :preparation-function lw/update-blog-publish-list
+         :include ,(lw/org-publish-files-in "~/org/roam/main")
+         :base-file-name-function lw/org-publish-flat-base-name
+         :auto-sitemap t
+         :sitemap-title "Blog Posts"
+         :sitemap-filename "index.org"
+         :sitemap-sort-files anti-chronologically
+         :sitemap-format-entry lw/org-sitemap-format-entry)
+        ("Website"
+         :base-directory "~/org/roam/"
+         :publishing-directory "~/Developer/landerwells.github.io/"
+         :publishing-function org-html-publish-to-html
+         :section-numbers nil
+         :with-toc nil
+         :base-extension "org"
+         :exclude ".*"
+         :include ("index.org"))))
 
-         :recursive t                ;; Publish files in subdirectories
-         :headline-levels 4          ;; A reasonable default for post structure
-                                        ; :auto-sitemap t             ;; IMPORTANT: This generates a list of all posts
-                                        ; :sitemap-filename "index.html" ;; Name the sitemap file "index.html"
-                                        ; :sitemap-title "Blog"       ;; The title for the main blog page
-                                        ; :sitemap-sort-files anti-chronologically
+;; get rid of title on sitemap, need html preamble instead, apply custom css as well please
+;;
+;;I wish that the date and the post were on different lines, perhaps default css for posts?
 
-         ;; This adds your stylesheet to every generated post.
-         ;; :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"../style.css\" /> <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"../img/duck.png\"/>"
-         ;; :html-preamble t ;; Adds a standard preamble
-         ;; :html-postamble t ;; Adds a standard postamble
-         )))
-
-                                        ; (defun my-publish-git-push ()
-                                        ;   "Commit and push website changes after publishing."
-                                        ;   (let ((default-directory "~/Developer/landerwells.github.io/"))
-                                        ;     (start-process-shell-command
-                                        ;      "git-publish"
-                                        ;      "*git-publish-output*"
-                                        ;      "git add . && git commit -m 'Publish' && git push")))
-                                        ;
-                                        ; (add-hook 'org-publish-after-all-publishing-hook #'my-publish-git-push)
-
-;; I wonder if it is possible to have a script run based off a hook into a function
-
+;; Seems like I could use the index to make my braindump
 
 (after! org
   (add-to-list 'org-modules 'org-habit t))
 
-
 (setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
 
 
-(map! :leader
-      :desc "Search org-roam notes"
-      "n r s" #'consult-ripgrep)
-
-(setq elfeed-feeds (quote
-                    (("https://www.sandordargo.com/feed.xml" cpp))))
+(setq elfeed-feeds '(("https://www.sandordargo.com/feed.xml" cpp)))
 
 
-(setq org-html-table-default-attributes
-      '(:border "0" :rules "none" :cellspacing "0" :cellpadding "0" :frame "void"))
+                                        ; (setq org-html-table-default-attributes
+                                        ;       '(:border "0" :rules "none" :cellspacing "0" :cellpadding "0" :frame "void"))
 
 ;; I want to move over any nvim binds to emacs, I would honestly prefer to start using this
 ;; There are so many things that I like about doom emacs that I just want to keep using it
@@ -239,9 +298,9 @@
   (setq projectile-project-search-path '("~/Developer/" "~/"))
   :config
   ;; I typically use this keymap prefix on macOS
-  ; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+                                        ; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   ;; On Linux, however, I usually go with another one
-  ; (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
-  ; (global-set-key (kbd "C-c p") 'projectile-command-map)
+                                        ; (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+                                        ; (global-set-key (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
