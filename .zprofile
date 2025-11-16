@@ -1,13 +1,12 @@
-export EDITOR=nvim
 export LESSHISTFILE=""
+export MANPAGER='nvim +Man!'
+export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
 export PYTHONHISTORY="$HOME/.cache/python_history"
 export VISUAL=nvim
+export EDITOR=nvim
+export XCURSOR_PATH="$HOME/dotfiles/cursors"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
-export XCURSOR_PATH="$HOME/dotfiles/cursors"
-export MANPAGER='nvim +Man!'

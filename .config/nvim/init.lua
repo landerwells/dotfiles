@@ -120,7 +120,7 @@ map("n", "<leader>k", function() vim.diagnostic.open_float() end)
 
 -- Telescope
 local builtin = require('telescope.builtin')
-map('n', '<C-p>', builtin.find_files)
+map('n', '<leader>f', builtin.find_files)
 map('n', '<C-f>', builtin.live_grep)
 
 -- Oil file explorer
@@ -145,7 +145,7 @@ map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 
 
 -- File operations
-vim.keymap.set('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>fD', '<cmd>lua DeleteCurrentFile()<CR>', { noremap = true, silent = true })
 map("n", "<leader>o", ":lua JumpPair()<CR>", { silent = true })
 -- Change directory to the current file's directory
 map("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
@@ -247,16 +247,16 @@ vim.lsp.enable(
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('my.lsp', {}),
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    if client:supports_method('textDocument/completion') then
-      -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-      local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-      client.server_capabilities.completionProvider.triggerCharacters = chars
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-    end
-  end,
+	group = vim.api.nvim_create_augroup('my.lsp', {}),
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if client:supports_method('textDocument/completion') then
+			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
+			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+			client.server_capabilities.completionProvider.triggerCharacters = chars
+			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+		end
+	end,
 })
 
 -- map('n', '<leader>lf', vim.lsp.buf.format)

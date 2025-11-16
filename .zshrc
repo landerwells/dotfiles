@@ -80,10 +80,6 @@ bindkey -M vicmd ds delete-surround
 bindkey -M vicmd ys add-surround
 bindkey -M visual S add-surround
 
-# [ -f "/Users/landerwells/.ghcup/env" ] && source "/Users/landerwells/.ghcup/env" # ghcup-env
-# [ -f "/Users/landerwells/.cargo/env" ] && source "/Users/landerwells/.cargo/env" # ghcup-env
-# . "$HOME/.cargo/env"
-
 PROMPT='%F{red}[%F{yellow}%n%F{green}@%F{blue}%m %F{magenta} %~%F{red}]%f$ '
 
 # Set up fzf key bindings and fuzzy completion
@@ -111,8 +107,6 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias cr='cargo run'
-alias ct='cargo test'
 alias fz='vim $(fzf)'
 alias mkdir='mkdir -pv'
 alias py='python3'
@@ -127,17 +121,7 @@ alias miex='iex -S mix'
 # alias rebuild='sudo nixos-rebuild switch --flake ~/dotfiles/.config/nixos/'
 
 # Directory Commands
-# alias df='cd ~/dotfiles'
-# alias dv='cd ~/Developer'
-# alias nv='cd ~/dotfiles/.config/nvim'
-# alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 # alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-alias notes='cd ~/org/roam'
-
-alias c='clear'
-alias q='exit'
-# alias ds='doom sync'
-# alias dsr='doom sync --rebuild'
 
 source ~/dotfiles/plugins/zsh-autopair/autopair.zsh
 source ~/dotfiles/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

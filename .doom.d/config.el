@@ -34,7 +34,6 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-gruvbox)
 (setq display-line-numbers-type `relative)
-(setq company-minimum-prefix-length 1)
 (setq scroll-margin 8)
 
 (map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
@@ -54,14 +53,9 @@
       :desc "Search org-roam notes"
       "n r s" #'consult-ripgrep)
 
-(defun tag-new-node-as-draft ()
-  (let ((file-name (buffer-file-name)))
-    (when (and file-name
-               (string-match-p "/main/" file-name)) ; Only act on files in "main" folder
-      (org-roam-tag-add '("draft")))))
-
-(add-hook 'org-roam-capture-new-node-hook #'tag-new-node-as-draft)
-
+(defun jethro/tag-new-node-as-draft ()
+  (org-roam-tag-add '("draft")))
+(add-hook 'org-roam-capture-new-node-hook #'jethro/tag-new-node-as-draft)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -169,32 +163,9 @@
 (setq org-export-with-date nil)
 (setq org-export-timestamp-file nil)
 
-
-;; This works perfectly, now I need to make the index page work well, and get
-;; a few more things working correctly. I would love to have this out by tomorrow,
-;; but I might need a few more days to cook
-
-
-
-
-;; I could have the index page function on its own? or write somewhat of a script
-;; to handle everything? 
-
-;; Function to find all org files with :publish: filetag
-
-
-;; I'll come up with a script that will create the necessary portions I need and
-;; put them at the bottom of my index.html
-
-
-;; 
-
-
-(defun lw/org-publish-flat-base-name (project file)
-  "Publish every file directly into the project's publishing-directory."
-  (file-name-nondirectory file))   ;; strip directories entirely
-
-
+; (defun lw/org-publish-flat-base-name (project file)
+  ; "Publish every file directly into the project's publishing-directory."
+  ; (file-name-nondirectory file))   ;; strip directories entirely
 
 (defun lw/org-publish-files-in (directory)
   "Find all org files in DIRECTORY with :publish: filetag."
@@ -218,18 +189,18 @@
           (plist-put (cdr project) :include files))))
 
 (defun lw/org-sitemap-format-entry (entry style project)
-  "Format sitemap ENTRY with date in 'Month Day, Year' format."
-  (let* ((file (org-publish--expand-file-name entry project))
-         (title (org-publish-find-title entry project))
-         (date (org-publish-find-date entry project)))
-    (if (= (length entry) 0)
+  "Format sitemap ENTRY with title and date on separate lines."
+  (let* ((title (or (org-publish-find-title entry project)
+                    (file-name-base entry)))
+         (date  (org-publish-find-date entry project)))
+    (if (string-empty-p entry)
         ""
-      (format "%s - [[file:%s][%s]]"
+      (format "[[file:%s][%s]]\\\\\n%s"
+              entry
+              title
               (if date
                   (format-time-string "%B %d, %Y" date)
-                "No date")
-              entry
-              title))))
+                "No date")))))
 
 (setq org-publish-project-alist
       `(("Blog"
@@ -243,12 +214,22 @@
          :exclude ".*"
          :preparation-function lw/update-blog-publish-list
          :include ,(lw/org-publish-files-in "~/org/roam/main")
-         :base-file-name-function lw/org-publish-flat-base-name
+         ; :base-file-name-function lw/org-publish-flat-base-name
          :auto-sitemap t
-         :sitemap-title "Blog Posts"
+         :sitemap-title ""
          :sitemap-filename "index.org"
          :sitemap-sort-files anti-chronologically
-         :sitemap-format-entry lw/org-sitemap-format-entry)
+         :sitemap-format-entry lw/org-sitemap-format-entry
+         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"index.css\" />"
+         :html-preamble "<div class=\"content\">
+         <h1>
+         <a href=\"https://www.landerwells.com/\"><strong>LANDERWELLS@GMAIL.COM</strong></a> |
+         <a href=\"https://github.com/landerwells\">GITHUB</a> |
+         <a href=\"https://www.linkedin.com/in/landerwells/\">LINKEDIN</a> |
+         <a href=\"https://www.landerwells.com/blog\">BLOG</a> |
+         <a href=\"https://braindump.landerwells.com\">BRAINDUMP</a>
+         </h1>"
+         :html-postamble "</div>")
         ("Website"
          :base-directory "~/org/roam/"
          :publishing-directory "~/Developer/landerwells.github.io/"
@@ -259,8 +240,6 @@
          :exclude ".*"
          :include ("index.org"))))
 
-;; get rid of title on sitemap, need html preamble instead, apply custom css as well please
-;;
 ;;I wish that the date and the post were on different lines, perhaps default css for posts?
 
 ;; Seems like I could use the index to make my braindump
@@ -270,9 +249,19 @@
 
 (setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
 
+(defun lw/org-no-fill-in-src-block ()
+  "Prevent auto-fill inside Org src blocks."
+  (let ((element (org-element-at-point)))
+    (and
+     (eq (org-element-type element) 'src-block)
+     t)))
 
-(setq elfeed-feeds '(("https://www.sandordargo.com/feed.xml" cpp)))
-
+(add-hook 'org-mode-hook
+          (lambda ()
+            (visual-line-mode 1)
+            (setq fill-column 80)
+            (auto-fill-mode 1)
+            (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t)))
 
                                         ; (setq org-html-table-default-attributes
                                         ;       '(:border "0" :rules "none" :cellspacing "0" :cellpadding "0" :frame "void"))
