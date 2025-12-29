@@ -2,5 +2,6 @@
 --ignore='\.stowrc'
 --ignore='cursors'
 --ignore='plugins'
+--ignore='themes'
 --ignore='wallpapers'
 --ignore='scripts'

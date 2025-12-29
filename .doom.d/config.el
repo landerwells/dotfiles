@@ -44,6 +44,8 @@
 
 (map! :leader
       :desc "Toggle Olivetti mode" "z" #'olivetti-mode)
+;; I would also like to set some additional settings for olivetti, that essentially
+;; on going to a different buffer it will automatically make it work
 
 (map! :leader
       (:prefix ("o" . "open")
@@ -74,17 +76,6 @@
          :if-new
          (file+head "reference/${title}.org"
                     "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
-         :immediate-finish t
-         :unnarrowed t)
-        ("b" "blog" plain "%?"
-         :if-new
-         (file+head "blog/${title}.org"
-                    "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
-         :immediate-finish t
-         :unnarrowed t)
-        ("x" "index" plain "%?"
-         :if-new (file+head "index/${slug}.org"
-                            "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
          :immediate-finish t
          :unnarrowed t)))
 
@@ -163,10 +154,6 @@
 (setq org-export-with-date nil)
 (setq org-export-timestamp-file nil)
 
-; (defun lw/org-publish-flat-base-name (project file)
-  ; "Publish every file directly into the project's publishing-directory."
-  ; (file-name-nondirectory file))   ;; strip directories entirely
-
 (defun lw/org-publish-files-in (directory)
   "Find all org files in DIRECTORY with :publish: filetag."
   (let ((files '()))
@@ -214,7 +201,7 @@
          :exclude ".*"
          :preparation-function lw/update-blog-publish-list
          :include ,(lw/org-publish-files-in "~/org/roam/main")
-         ; :base-file-name-function lw/org-publish-flat-base-name
+                                        ; :base-file-name-function lw/org-publish-flat-base-name
          :auto-sitemap t
          :sitemap-title ""
          :sitemap-filename "index.org"
@@ -263,9 +250,6 @@
             (auto-fill-mode 1)
             (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t)))
 
-                                        ; (setq org-html-table-default-attributes
-                                        ;       '(:border "0" :rules "none" :cellspacing "0" :cellpadding "0" :frame "void"))
-
 ;; I want to move over any nvim binds to emacs, I would honestly prefer to start using this
 ;; There are so many things that I like about doom emacs that I just want to keep using it
 ;;
@@ -274,11 +258,11 @@
 
 ;; How do I make images always visible when I am looking into a org mode file
 
-(after! corfu
-  (setq corfu-auto t
-        corfu-auto-delay 0
-        corfu-auto-prefix 1)
-  (define-key corfu-map (kbd "C-y") #'corfu-complete))
+;; (after! corfu
+;;   (setq corfu-auto t
+;;         corfu-auto-delay 0
+;;         corfu-auto-prefix 1)
+;;   (define-key corfu-map (kbd "C-y") #'corfu-complete))
 
 
 (use-package projectile

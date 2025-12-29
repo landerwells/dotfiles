@@ -43,41 +43,53 @@ vim.opt.updatetime = 50
 vim.opt.winblend = 0
 
 vim.pack.add({
-  { src = "https://github.com/vague-theme/vague.nvim.git" },
+  { src = "https://github.com/mrcjkb/rustaceanvim.git" },
+  -- { src = "https://github.com/vague-theme/vague.nvim.git" },
+  { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
+  { src = "https://github.com/L3MON4D3/LuaSnip" },
+  { src = "https://github.com/chomosuke/typst-preview.nvim" },
+  { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
+  { src = "https://github.com/folke/which-key.nvim.git" },
+  { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
+  { src = "https://github.com/lukas-reineke/indent-blankline.nvim.git" },
+  { src = "https://github.com/mbbill/undotree.git" },
+  { src = "https://github.com/morhetz/gruvbox.git" },
+  { src = "https://github.com/nvim-lua/plenary.nvim.git" },
+  { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/shortcuts/no-neck-pain.nvim.git" },
   { src = "https://github.com/stevearc/oil.nvim" },
-  { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
-  { src = "https://github.com/mrcjkb/rustaceanvim.git" },
-  { src = "https://github.com/lukas-reineke/indent-blankline.nvim.git" },
-  { src = "https://github.com/chomosuke/typst-preview.nvim" },
-  { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
-  { src = "https://github.com/mbbill/undotree.git" },
+  { src = "https://github.com/tpope/vim-surround.git" },
   { src = "https://github.com/windwp/nvim-autopairs.git" },
   { src = "https://github.com/windwp/nvim-ts-autotag.git" },
-  { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-  { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
-  { src = "https://github.com/nvim-lua/plenary.nvim.git" },
-  { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
-  { src = "https://github.com/tpope/vim-surround.git" },
-  { src = "https://github.com/mfussenegger/nvim-dap.git"},
 })
 
-require "nvim-autopairs".setup()
+require("nvim-autopairs").setup({
+  map_cr = true,
+})
 require "nvim-ts-autotag".setup()
 require "ibl".setup()
 
 require "telescope".setup({
   defaults = {
-    layout_strategy = 'bottom_pane',
     layout_config = {
-      height = 0.4, -- Adjust the height as needed (40% of the screen)
       prompt_position = 'top',
     },
     sorting_strategy = 'ascending', -- Show results from top to bottom
   },
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = { 'markdown', 'lua', 'rust', 'c', 'cpp', 'wgsl', 'wgsl_bevy' },
+	callback = function() vim.treesitter.start() end,
+})
+
+vim.filetype.add({extension = {wgsl = "wgsl"}})
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldlevelstart = 99 -- do not close folds when a buffer is opened
 
 require "oil".setup({
   view_options = {
@@ -94,7 +106,7 @@ require "no-neck-pain".setup({
   width = 120,
 })
 
-vim.cmd "colorscheme vague"
+vim.cmd "colorscheme gruvbox"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 
@@ -235,14 +247,33 @@ vim.diagnostic.config({
   },
 })
 
+vim.filetype.add({
+  extension = {
+    wgsl = "wgsl",
+  },
+})
+
 vim.lsp.enable(
   {
     "clangd",
     "lua_ls",
-    "rust_analyzer",
+    -- "rust-analyzer",
+    "wgsl_analyzer",
     "nixd",
   }
 )
+
+vim.lsp.config("wgsl-analyzer", {
+  settings = {
+    wgsl = {
+      diagnostics = {
+        nagaParsing = true,
+        nagaValidation = false, -- REQUIRED for Bevy
+      },
+    },
+  },
+})
+
 
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 

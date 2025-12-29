@@ -1,0 +1,6 @@
+font-family = "FiraCode Nerd Font Mono"
+theme = Gruvbox Dark
+
+keybind = ctrl+[=text:\u0017
+keybind = alt+[=text:\u0017
+
