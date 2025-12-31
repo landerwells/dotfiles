@@ -80,10 +80,10 @@ require "telescope".setup({
   },
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'markdown', 'lua', 'rust', 'c', 'cpp', 'wgsl', 'wgsl_bevy' },
-	callback = function() vim.treesitter.start() end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+-- 	pattern = { 'markdown', 'lua', 'rust', 'c', 'cpp', 'wgsl', 'wgsl_bevy' },
+-- 	callback = function() vim.treesitter.start() end,
+-- })
 
 vim.filetype.add({extension = {wgsl = "wgsl"}})
 
@@ -247,33 +247,13 @@ vim.diagnostic.config({
   },
 })
 
-vim.filetype.add({
-  extension = {
-    wgsl = "wgsl",
-  },
-})
-
 vim.lsp.enable(
   {
     "clangd",
     "lua_ls",
-    -- "rust-analyzer",
-    "wgsl_analyzer",
     "nixd",
   }
 )
-
-vim.lsp.config("wgsl-analyzer", {
-  settings = {
-    wgsl = {
-      diagnostics = {
-        nagaParsing = true,
-        nagaValidation = false, -- REQUIRED for Bevy
-      },
-    },
-  },
-})
-
 
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
