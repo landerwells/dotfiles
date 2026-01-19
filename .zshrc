@@ -26,9 +26,6 @@ setopt share_history
 setopt autoparamslash
 unsetopt hist_beep             # Don't beep when attempting to access a missing history entry
 
-#-------------------------------------------------------------------------------
-#               VI-MODE
-#-------------------------------------------------------------------------------
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -89,16 +86,12 @@ alias la='ls -a --color=always --group-directories-first'
 alias ll='ls -la --color=always --group-directories-first'
 alias ltr='ls -altr --color=always --group-directories-first'
 
-alias d='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias mkdir='mkdir -pv'
-alias vi='nvim'
-alias vim='nvim'
 alias emacs='emacs --no-window-system'
+alias ec='emacsclient'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 

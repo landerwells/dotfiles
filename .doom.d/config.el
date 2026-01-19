@@ -181,3 +181,9 @@
 (after! which-key
   (setq which-key-idle-delay 0
         which-key-idle-secondary-delay 0))
+
+;; New bind for async-shell-command
+;; leader &
+
+
+;;
