@@ -1,0 +1,8 @@
+* Blogs                                                           :elfeed:
+** [[https://herman.bearblog.dev/feed/][Herman's Blog]]
+** [[https://writing.bobdoto.computer/feed/][Bob Doto]]
+** [[https://andreyor.st/feed.xml][Andrey Orst]]
+** [[https://without.boats/index.xml][Without Boats]]
+** [[https://hugocisneros.com/blog/index.xml][Hugo Cisneros]]
+** [[https://geo-ant.github.io/blog/feed.xml][Geo Ant]]
+** [[https://cbarrete.com/feed.xml][Clement Barrete]]

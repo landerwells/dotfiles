@@ -1,7 +1,6 @@
 export LESSHISTFILE=""
 export MANPAGER='nvim +Man!'
 export PATH="$HOME/.config/emacs/bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PYTHONHISTORY="$HOME/.cache/python_history"

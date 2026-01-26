@@ -39,17 +39,8 @@
 (map! :n "C-d" (cmd! (evil-scroll-down nil) (recenter))
       :n "C-u" (cmd! (evil-scroll-up nil) (recenter)))
 
-(map! :n "gj" 'evil-next-visual-line
-      :n "gk" 'evil-previous-visual-line)
-
 (map! :leader
       :desc "Toggle Olivetti mode" "z" #'olivetti-mode)
-;; I would also like to set some additional settings for olivetti, that essentially
-;; on going to a different buffer it will automatically make it work
-
-(map! :leader
-      (:prefix ("o" . "open")
-       :desc "Switch between header/source" "o" #'ff-find-other-file))
 
 (map! :leader
       :desc "Search org-roam notes"
@@ -63,7 +54,14 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (setq org-roam-directory (file-truename "~/org/roam/"))
+(setq org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
+(setq org-cite-global-bibliography '("~/org/roam/reference/reference.bib"))
 (setq org-startup-with-inline-images t)
+
+(setq org-capture-templates
+       `(("i" "Inbox" entry  (file "roam/agenda/todo.org")
+        ,(concat "* TODO %?\n"
+                 "/Entered on/ %U"))))
 
 (setq org-roam-capture-templates
       '(("m" "main" plain
@@ -77,34 +75,7 @@
          (file+head "reference/${title}.org"
                     "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
          :immediate-finish t
-         :unnarrowed t)))
-
-;; (use-package! org-roam-ui
-;;   :after org-roam ;; or :after org
-;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;   ;;         a hookable mode anymore, you're advised to pick something yourself
-;;   ;;         if you don't care about startup time, use
-;;   :hook (after-init . org-roam-ui-mode)
-;;   :config
-;;   (setq org-roam-ui-sync-theme t
-;;         org-roam-ui-follow t
-;;         org-roam-ui-update-on-save t
-;;         org-roam-ui-open-on-start nil))
-
-(use-package org-roam
-  :ensure t
-  :config
-  ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (org-roam-db-autosync-mode)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
-
-(after! org
-  (setq org-babel-load-languages
-        '((scheme . t)
-          (emacs-lisp . t)   ;; Enable Emacs Lisp execution
-          (python . t))))    ;; Enable Python
+         :unnarrored t)))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -147,95 +118,12 @@
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
 
-;; https://orgmode.org/manual/Table-of-Contents.html
-(setq org-export-with-toc nil)
-(setq org-export-with-section-numbers nil)
-(setq org-export-with-author nil)
-(setq org-export-with-date nil)
-(setq org-export-timestamp-file nil)
-
-(defun lw/org-publish-files-in (directory)
-  "Find all org files in DIRECTORY with :publish: filetag."
-  (let ((files '()))
-    (dolist (file (directory-files-recursively directory "\\.org$"))
-      (with-temp-buffer
-        (insert-file-contents file)
-        (goto-char (point-min))
-        ;; Look for #+filetags: line containing :publish:
-        (when (re-search-forward "^#\\+filetags:.*:publish:" nil t)
-          (push (file-relative-name file directory) files))))
-    files))
-
-(defun lw/update-blog-publish-list (&optional project-plist)
-  "Update the :include list for the Blog project before publishing."
-  (let* ((project (assoc "Blog" org-publish-project-alist))
-         (base-dir (plist-get (cdr project) :base-directory))
-         (files (lw/org-publish-files-in (expand-file-name base-dir))))
-    ;; Update the :include property in the project plist
-    (setf (cdr project)
-          (plist-put (cdr project) :include files))))
-
-(defun lw/org-sitemap-format-entry (entry style project)
-  "Format sitemap ENTRY with title and date on separate lines."
-  (let* ((title (or (org-publish-find-title entry project)
-                    (file-name-base entry)))
-         (date  (org-publish-find-date entry project)))
-    (if (string-empty-p entry)
-        ""
-      (format "[[file:%s][%s]]\\\\\n%s"
-              entry
-              title
-              (if date
-                  (format-time-string "%B %d, %Y" date)
-                "No date")))))
-
-(setq org-publish-project-alist
-      `(("Blog"
-         :base-directory "~/org/roam/main/"
-         :publishing-directory "~/Developer/landerwells.github.io/blog"
-         :publishing-function org-html-publish-to-html
-         :recursive t
-         :section-numbers nil
-         :with-toc nil
-         :base-extension "org"
-         :exclude ".*"
-         :preparation-function lw/update-blog-publish-list
-         :include ,(lw/org-publish-files-in "~/org/roam/main")
-                                        ; :base-file-name-function lw/org-publish-flat-base-name
-         :auto-sitemap t
-         :sitemap-title ""
-         :sitemap-filename "index.org"
-         :sitemap-sort-files anti-chronologically
-         :sitemap-format-entry lw/org-sitemap-format-entry
-         :html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"index.css\" />"
-         :html-preamble "<div class=\"content\">
-         <h1>
-         <a href=\"https://www.landerwells.com/\"><strong>LANDERWELLS@GMAIL.COM</strong></a> |
-         <a href=\"https://github.com/landerwells\">GITHUB</a> |
-         <a href=\"https://www.linkedin.com/in/landerwells/\">LINKEDIN</a> |
-         <a href=\"https://www.landerwells.com/blog\">BLOG</a> |
-         <a href=\"https://braindump.landerwells.com\">BRAINDUMP</a>
-         </h1>"
-         :html-postamble "</div>")
-        ("Website"
-         :base-directory "~/org/roam/"
-         :publishing-directory "~/Developer/landerwells.github.io/"
-         :publishing-function org-html-publish-to-html
-         :section-numbers nil
-         :with-toc nil
-         :base-extension "org"
-         :exclude ".*"
-         :include ("index.org"))))
-
-;;I wish that the date and the post were on different lines, perhaps default css for posts?
-
-;; Seems like I could use the index to make my braindump
-
 (after! org
   (add-to-list 'org-modules 'org-habit t))
 
 (setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
 
+;; Not even sure if this function is useful or needed
 (defun lw/org-no-fill-in-src-block ()
   "Prevent auto-fill inside Org src blocks."
   (let ((element (org-element-at-point)))
@@ -250,30 +138,42 @@
             (auto-fill-mode 1)
             (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t)))
 
-;; I want to move over any nvim binds to emacs, I would honestly prefer to start using this
-;; There are so many things that I like about doom emacs that I just want to keep using it
-;;
-;; Feature that I certainly need is to be able to emulate my current workflow with tmux n
-;; everything
+(setq org-hugo-base-dir "~/Developer/landerwells.github.io")
+(setq org-hugo-section "notes")
 
-;; How do I make images always visible when I am looking into a org mode file
+(after! org-roam
+  (org-roam-db-autosync-mode 1))
 
-;; (after! corfu
-;;   (setq corfu-auto t
-;;         corfu-auto-delay 0
-;;         corfu-auto-prefix 1)
-;;   (define-key corfu-map (kbd "C-y") #'corfu-complete))
+(require 'find-lisp)
+(defun lw/publish (file section)
+  (with-current-buffer (find-file-noselect file)
+    (setq org-hugo-section section)
+    (let ((org-id-extra-files (find-lisp-find-files org-roam-directory "\.org$")))
+      (org-hugo-export-wim-to-md))))
 
+(use-package! websocket
+  :after org-roam)
 
-(use-package projectile
-  :ensure t
-  :init
-  (setq projectile-project-search-path '("~/Developer/" "~/"))
+(use-package! org-roam-ui
+  :after org-roam
   :config
-  ;; I typically use this keymap prefix on macOS
-                                        ; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  ;; On Linux, however, I usually go with another one
-                                        ; (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
-                                        ; (global-set-key (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
+;; Here I want to start documenting issues that I am having with trying to use emacs full time in the terminal
+
+(after! which-key
+  (setq which-key-idle-delay 0
+        which-key-idle-secondary-delay 0))
+
+;; New bind for async-shell-command
+;; leader &
+
+(after! elfeed
+  (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org")))
+
+(setq-default tab-width 2)
+(setq-default evil-shift-width 2)
+(setq indent-tabs-mode nil) ;; Ensure spaces are used instead of tabs
