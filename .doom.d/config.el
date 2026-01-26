@@ -138,38 +138,20 @@
             (auto-fill-mode 1)
             (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t)))
 
-(setq org-hugo-base-dir "~/Developer/landerwells.github.io")
-(setq org-hugo-section "notes")
-
-(after! org-roam
-  (org-roam-db-autosync-mode 1))
-
-(require 'find-lisp)
-(defun lw/publish (file section)
-  (with-current-buffer (find-file-noselect file)
-    (setq org-hugo-section section)
-    (let ((org-id-extra-files (find-lisp-find-files org-roam-directory "\.org$")))
-      (org-hugo-export-wim-to-md))))
-
-(use-package! websocket
-  :after org-roam)
-
-(use-package! org-roam-ui
-  :after org-roam
+(use-package projectile
+  :ensure t
+  :init
+  (setq projectile-project-search-path '("~/Developer/" "~/"))
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
-;; Here I want to start documenting issues that I am having with trying to use emacs full time in the terminal
 
 (after! which-key
   (setq which-key-idle-delay 0
         which-key-idle-secondary-delay 0))
-
-;; New bind for async-shell-command
-;; leader &
 
 (after! elfeed
   (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org")))
