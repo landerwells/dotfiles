@@ -1,6 +1,14 @@
 I am doing a major refactor on this repo, and trying to get this to be my main
 source of dotfiles.
 
+
+I would like to create a script that I can run from anywhere that will rebuild
+my system if needed. First I need to transition away from ~apps/~ directory and
+put everything in bin, and then keep that more organized with scripts.
+
+
+
+
 Some goals I have for this rewrite:
 - Fully declarative Syncthing with secrets managed in repo
 - Password management in repo
@@ -25,3 +33,9 @@ common across any machine. I would like it to have my minimal
 Needs to be able to support firefox on mac, and safari on ios. I would love if
 it could download stuff, and perhaps if I could self host it as well that would
 be cool
+
+
+
+
+
+

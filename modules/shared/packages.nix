@@ -25,6 +25,7 @@ with pkgs;
     ispell
     killall
     # needed for vterm
+    libtool
     glibtool
     lldb
     lua
