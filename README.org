@@ -1,0 +1,27 @@
+I am doing a major refactor on this repo, and trying to get this to be my main
+source of dotfiles.
+
+Some goals I have for this rewrite:
+- Fully declarative Syncthing with secrets managed in repo
+- Password management in repo
+- Home-manager configuration that will allow my dotfiles to be set up on any
+  machine
+  
+  
+
+One configuration to be installed on any system that isn't regular nix,
+supporting x86 linux, and aarch macs, in addition to the configuration that will
+get installed NixOS machines
+
+
+
+* Personal Configuration
+I would like to use home-manager for all of the configuration that will be
+common across any machine. I would like it to have my minimal   
+
+
+
+* Read-later and RSS feed
+Needs to be able to support firefox on mac, and safari on ios. I would love if
+it could download stuff, and perhaps if I could self host it as well that would
+be cool

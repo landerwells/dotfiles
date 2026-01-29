@@ -1,0 +1,16 @@
+_: [
+  "aerospace"
+  "anki"
+  "bitwarden"
+  "cold-turkey-blocker"
+  "discord"
+  "emacs-mac"
+  "firefox"
+  "karabiner-elements"
+  "linearmouse"
+  "maccy"
+  "raycast"
+  "steam"
+  "syncthing-app"
+  "tailscale"
+]

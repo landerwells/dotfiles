@@ -1,6 +1,0 @@
-[user]
-	name = landerwells
-	email = landerwells@gmail.com
-[core]
-	editor = nvim
-	excludesfile = ~/.config/git/ignore

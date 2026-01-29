@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# What are the main things that I want from my rebuild file?
+# - Formatting of all files
+# - Better and more detailed error messages with diffs?
+# - Git commits and backup type things
+
+set -e
+pushd ~/dotfiles/nixos-config/
+nvim oatman-pc.nix
+alejandra . &>/dev/null
+git diff -U0 *.nix
+echo "NixOS Rebuilding..."
+
+# darwin-rebuild switch --flake .
+
+sudo nixos-rebuild switch --flake &>nixos-switch.log || 
+  (grep --color error nixos-switch.log && false)
+
+
+# I want to have a meaningful commit message about the current
+# generation and what machine it was last compiled for.
+gen=$(nixos-rebuild list-generations | grep current)
+git commit -am "$gen"
+popd

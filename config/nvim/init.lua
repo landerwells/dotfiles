@@ -273,7 +273,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- map('n', '<leader>lf', vim.lsp.buf.format)
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
--- map({ "n", "v", "x" }, ";", ":", { desc = "Self explanatory" })
--- map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
 vim.keymap.set("n", "<leader>p", "<cmd>TypstPreviewToggle<CR>", { desc = "Toggle Typst Preview" })
---
