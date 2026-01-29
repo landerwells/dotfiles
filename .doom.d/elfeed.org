@@ -6,3 +6,6 @@
 ** [[https://hugocisneros.com/blog/index.xml][Hugo Cisneros]]
 ** [[https://geo-ant.github.io/blog/feed.xml][Geo Ant]]
 ** [[https://cbarrete.com/feed.xml][Clement Barrete]]
+** [[https://hdyar.com/blog/index.xml][Hunter Dyar]]
+** [[https://michael.stapelberg.ch/feed.xml][Michael Stapelberg]]
+

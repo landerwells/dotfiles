@@ -58,10 +58,18 @@
 (setq org-cite-global-bibliography '("~/org/roam/reference/reference.bib"))
 (setq org-startup-with-inline-images t)
 
+(after! org
+  (add-to-list 'org-modules 'org-habit t))
+
+(setq org-agenda-files 
+      (directory-files (expand-file-name "agenda" org-roam-directory) t "\\.org$"))
+
+;; I might want to put 
+
 (setq org-capture-templates
-       `(("i" "Inbox" entry  (file "roam/agenda/todo.org")
-        ,(concat "* TODO %?\n"
-                 "/Entered on/ %U"))))
+      `(("i" "Inbox" entry  (file "roam/agenda/todo.org")
+         ,(concat "* TODO %?\n"
+                  "/Entered on/ %U"))))
 
 (setq org-roam-capture-templates
       '(("m" "main" plain
@@ -118,11 +126,6 @@
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
 
-(after! org
-  (add-to-list 'org-modules 'org-habit t))
-
-(setq org-agenda-files (directory-files-recursively org-roam-directory "\\.org$"))
-
 ;; Not even sure if this function is useful or needed
 (defun lw/org-no-fill-in-src-block ()
   "Prevent auto-fill inside Org src blocks."
@@ -138,17 +141,6 @@
             (auto-fill-mode 1)
             (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t)))
 
-(use-package projectile
-  :ensure t
-  :init
-  (setq projectile-project-search-path '("~/Developer/" "~/"))
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
-
-
 (after! which-key
   (setq which-key-idle-delay 0
         which-key-idle-secondary-delay 0))
@@ -159,3 +151,11 @@
 (setq-default tab-width 2)
 (setq-default evil-shift-width 2)
 (setq indent-tabs-mode nil) ;; Ensure spaces are used instead of tabs
+
+
+;; Issues with vterm,
+;; 1. The vterm toggle, and vterm/here are not the same terminal. I would like for them to be the same instance of the shell since they are both getting opened in the same project.
+;; 2. Getting keybindings from every other thing interfereing with it allk
+
+(after! projectile
+  (setq projectile-project-search-path '(("~") ("~/Developer"))))

@@ -86,6 +86,8 @@ alias la='ls -a --color=always --group-directories-first'
 alias ll='ls -la --color=always --group-directories-first'
 alias ltr='ls -altr --color=always --group-directories-first'
 
+alias vim='nvim'
+alias vi='nvim'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
