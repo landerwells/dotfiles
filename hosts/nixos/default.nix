@@ -177,11 +177,6 @@ in {
             devices = ["macos"];
             ignorePerms = false; # Enable file permission syncing
           };
-          "nix-config" = {
-            path = "/home/landerwells/nixos-config";
-            devices = ["macos"];
-            ignorePerms = false; # Enable file permission syncing
-          };
           "org" = {
             path = "/home/landerwells/org";
             devices = ["macos" "iphone"];
