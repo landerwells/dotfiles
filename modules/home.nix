@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  configDir = "${config.home.homeDirectory}/nixos-config/config";
+  configDir = "${config.home.homeDirectory}/dotfiles/config";
 
   configFiles = builtins.listToAttrs (
     map (name: {
