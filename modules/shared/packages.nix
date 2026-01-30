@@ -44,6 +44,7 @@ with pkgs;
       ]))
     ripgrep
     rustup
+    perf
     skim
     pass
     sqlite
