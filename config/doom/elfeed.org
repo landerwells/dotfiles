@@ -8,4 +8,5 @@
 ** [[https://cbarrete.com/feed.xml][Clement Barrete]]
 ** [[https://hdyar.com/blog/index.xml][Hunter Dyar]]
 ** [[https://michael.stapelberg.ch/feed.xml][Michael Stapelberg]]
+** [[https://blog.hexbee.net/rss.xml][Xavier Kjellberg]]
 

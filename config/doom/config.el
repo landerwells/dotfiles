@@ -146,7 +146,7 @@
         which-key-idle-secondary-delay 0))
 
 (after! elfeed
-  (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org")))
+  (setq rmh-elfeed-org-files (list "~/dotfiles/config/doom/elfeed.org")))
 
 (setq-default tab-width 2)
 (setq-default evil-shift-width 2)

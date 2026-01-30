@@ -32,6 +32,14 @@ in {
 
       initContent = builtins.readFile ../config/zsh/zshrc;
       # profileExtra = builtins.readFile ../config/zsh/zprofile;
+      # export LESSHISTFILE=""
+      # export MANPAGER='nvim +Man!'
+      # export PATH="$HOME/.config/emacs/bin:$PATH"
+      # export VISUAL=nvim
+      # export EDITOR=nvim
+      # export XCURSOR_PATH="$HOME/dotfiles/cursors"
+      # export XDG_CACHE_HOME="$HOME/.cache"
+      # export XDG_CONFIG_HOME="$HOME/.config"
     };
   };
 

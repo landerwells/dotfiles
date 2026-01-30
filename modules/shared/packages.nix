@@ -43,7 +43,6 @@ with pkgs;
         # add other packages you need
       ]))
     ripgrep
-    rustup
     perf
     skim
     pass
