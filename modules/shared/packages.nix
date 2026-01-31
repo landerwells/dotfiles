@@ -44,6 +44,7 @@ with pkgs;
       ]))
     ripgrep
     perf
+    mitscheme
     skim
     pass
     sqlite
