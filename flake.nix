@@ -101,7 +101,12 @@
           inherit system;
           specialArgs = {inherit inputs;};
           modules = [
-            home-manager.darwinModules.home-manager
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.landerwells = ./modules/home.nix;
+          }
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
