@@ -44,6 +44,8 @@ in {
   };
 
   home.packages = [];
-  home.sessionVariables = {};
+  home.sessionVariables = {
+    XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";
+  };
   programs.home-manager.enable = true;
 }

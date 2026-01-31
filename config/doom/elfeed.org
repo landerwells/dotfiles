@@ -9,4 +9,5 @@
 ** [[https://hdyar.com/blog/index.xml][Hunter Dyar]]
 ** [[https://michael.stapelberg.ch/feed.xml][Michael Stapelberg]]
 ** [[https://blog.hexbee.net/rss.xml][Xavier Kjellberg]]
-
+** [[https://akrzemi1.wordpress.com/feed/][Andrzej Krzemieński]]
+** [[https://austinmorlan.com/index.xml][Austin Morlan]]
