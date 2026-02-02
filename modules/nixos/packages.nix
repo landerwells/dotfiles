@@ -8,15 +8,13 @@ in
   shared-packages
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
-    alacritty
+    # alacritty
     anki
     blueberry
     discord
     emacs
     firefox
     kdePackages.dolphin
-    kitty
-    koreader
     spotify
     vlc
     zathura
@@ -32,12 +30,12 @@ in
     unixtools.netstat
     waybar
     wl-clipboard
-    wayvnc
-    wayland
-    wayland-protocols
-    libxkbcommon
-    mesa
-    vulkan-loader
+    # wayvnc
+    # wayland
+    # wayland-protocols
+    # libxkbcommon
+    # mesa
+    # vulkan-loader
 
     impala
     wiremix
@@ -46,7 +44,6 @@ in
 
     obsidian
     sqlitebrowser
-    qutebrowser
 
     direnv
     flatpak

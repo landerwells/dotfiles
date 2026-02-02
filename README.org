@@ -39,3 +39,4 @@ be cool
 
 
 
+* SSH configuration
