@@ -44,7 +44,7 @@ with pkgs;
       ]))
     ripgrep
     perf
-    mitscheme
+    racket-minimal
     skim
     pass
     sqlite
