@@ -11,3 +11,4 @@
 ** [[https://blog.hexbee.net/rss.xml][Xavier Kjellberg]]
 ** [[https://akrzemi1.wordpress.com/feed/][Andrzej Krzemieński]]
 ** [[https://austinmorlan.com/index.xml][Austin Morlan]]
+** [[https://blog.nelhage.com/atom.xml][Nelson Elhage]]
