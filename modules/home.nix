@@ -36,7 +36,7 @@ in {
   home.packages = [];
   home.sessionVariables = {
     XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";
-    PATH = "$HOME/.config/emacs/bin:$PATH";
+    PATH = "${config.home.homeDirectory}/.config/emacs/bin:$PATH";
     # export LESSHISTFILE=""
     # export MANPAGER='nvim +Man!'
     # export VISUAL=nvim
