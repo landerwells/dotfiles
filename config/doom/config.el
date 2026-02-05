@@ -160,8 +160,7 @@
 (after! projectile
   (setq projectile-project-search-path '(("~") ("~/Developer"))))
 
-
 ;; ~/.racket-geiser
 (setq geiser-racket-extra-keywords '("require" "sicp"))
 
-;; (setq geiser-repl-use-other-window nil)  ; Don't pop up in other window
+;; Looking for a better keybind to toggle the last open toggle menu
