@@ -17,7 +17,6 @@ with pkgs;
     ffmpeg_6
     fzf
     gcc
-    gdb
     gh
     git
     gnumake
@@ -43,7 +42,6 @@ with pkgs;
         # add other packages you need
       ]))
     ripgrep
-    perf
     racket-minimal
     skim
     pass
