@@ -5,6 +5,7 @@ _: [
   "cold-turkey-blocker"
   "discord"
   "emacs-mac"
+  "ghostty"
   "firefox"
   "karabiner-elements"
   "linearmouse"
