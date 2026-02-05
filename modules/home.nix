@@ -16,7 +16,7 @@
     (builtins.attrNames (builtins.readDir ../config)) # Change this to ../config if modules/ and config/ are siblings
   );
 in {
-  home.homeDirectory = "/home/landerwells";
+  # home.homeDirectory = "/home/landerwells";
   home.stateVersion = "25.11";
 
   home.file = configFiles;

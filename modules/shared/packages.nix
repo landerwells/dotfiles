@@ -42,7 +42,7 @@ with pkgs;
         # add other packages you need
       ]))
     ripgrep
-    racket-minimal
+    # racket-minimal
     skim
     pass
     sqlite
