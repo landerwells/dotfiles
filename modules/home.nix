@@ -13,10 +13,9 @@
         source = config.lib.file.mkOutOfStoreSymlink "${configDir}/${name}";
       };
     })
-    (builtins.attrNames (builtins.readDir ../config)) # Change this to ../config if modules/ and config/ are siblings
+    (builtins.attrNames (builtins.readDir ../config))
   );
 in {
-  # home.homeDirectory = "/home/landerwells";
   home.stateVersion = "25.11";
 
   home.file = configFiles;
@@ -38,12 +37,12 @@ in {
   home.sessionVariables = {
     XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";
     PATH = "${config.home.homeDirectory}/.config/emacs/bin:$PATH";
-    # export LESSHISTFILE=""
-    # export MANPAGER='nvim +Man!'
-    # export VISUAL=nvim
-    # export EDITOR=nvim
-    # export XDG_CACHE_HOME="$HOME/.cache"
-    # export XDG_CONFIG_HOME="$HOME/.config"
+    LESSHISTFILE = "";
+    MANPAGER = "nvim +Man!";
+    VISUAL = "nvim";
+    EDITOR = "nvim";
+    XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
+    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
   };
   programs.home-manager.enable = true;
 }

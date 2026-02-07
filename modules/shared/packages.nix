@@ -11,12 +11,12 @@ with pkgs;
     bc
     btop
     claude-code
-    cmake
+    # cmake
     coreutils
     fd
     ffmpeg_6
     fzf
-    gcc
+    # gcc
     gh
     git
     gnumake
