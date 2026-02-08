@@ -107,7 +107,7 @@ in {
   services = {
     emacs = {
       enable = true;
-      defaultEditor = true;
+      package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
     };
 
     flatpak.enable = true;
