@@ -12,7 +12,6 @@ in
     anki
     blueberry
     discord
-    emacs
     firefox
     kdePackages.dolphin
     spotify
