@@ -108,6 +108,7 @@ in {
     emacs = {
       enable = true;
       defaultEditor = true;
+      startWithGraphical = true;
     };
 
     flatpak.enable = true;

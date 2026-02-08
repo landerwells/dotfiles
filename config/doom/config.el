@@ -59,17 +59,20 @@
 (setq org-startup-with-inline-images t)
 
 (after! org
-  (add-to-list 'org-modules 'org-habit t))
+  (add-to-list 'org-modules 'org-habit t)
+  (add-to-list 'org-modules 'org-protocol t))
+
+(after! org-roam
+  (require 'org-roam-protocol))
 
 (setq org-agenda-files 
       (directory-files (expand-file-name "agenda" org-roam-directory) t "\\.org$"))
 
 ;; I might want to put 
-
-(setq org-capture-templates
-      `(("i" "Inbox" entry  (file "roam/agenda/todo.org")
-         ,(concat "* TODO %?\n"
-                  "/Entered on/ %U"))))
+(after! org
+  (add-to-list 'org-capture-templates
+               `("i" "Inbox" entry (file "roam/agenda/todo.org")
+                 ,(concat "* TODO %?\n/Entered on/ %U"))))
 
 (setq org-roam-capture-templates
       '(("m" "main" plain
