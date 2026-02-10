@@ -18,6 +18,7 @@ in
     vlc
     zathura
     valgrind
+    perf
     zotero
 
     font-manager
