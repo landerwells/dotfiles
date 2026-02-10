@@ -20,6 +20,7 @@ with pkgs;
     gh
     git
     gnumake
+    emacsPackages.pdf-tools
     hugo
     ispell
     killall

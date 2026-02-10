@@ -8,7 +8,5 @@ in
   shared-packages
   ++ [
     dockutil
-    darwin.apple_sdk.frameworks.Cocoa
-
     # put any other mac packages that I want
   ]

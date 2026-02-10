@@ -2,7 +2,6 @@ _: [
   "aerospace"
   "anki"
   "bitwarden"
-  "cold-turkey-blocker"
   "discord"
   "emacs-mac"
   "ghostty"
@@ -14,4 +13,5 @@ _: [
   "steam"
   "syncthing-app"
   "tailscale"
+  "zed"
 ]

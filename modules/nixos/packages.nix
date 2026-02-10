@@ -50,5 +50,5 @@ in
     hyprlock
     hyprshot
 
-    code-cursor
+    zed-editor
   ]
