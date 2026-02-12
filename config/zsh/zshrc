@@ -92,8 +92,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias mkdir='mkdir -pv'
-alias emacs='emacs --no-window-system'
-alias ec='emacsclient'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 

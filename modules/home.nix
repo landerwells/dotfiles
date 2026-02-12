@@ -42,6 +42,13 @@ in {
     mimeType = ["x-scheme-handler/org-protocol"];
   };
 
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "x-scheme-handler/org-protocol" = "org-protocol.desktop";
+  #   };
+  # };
+
   home.packages = [];
   home.sessionVariables = {
     XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";

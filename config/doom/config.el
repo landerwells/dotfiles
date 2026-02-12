@@ -68,11 +68,14 @@
 (setq org-agenda-files 
       (directory-files (expand-file-name "agenda" org-roam-directory) t "\\.org$"))
 
-;; I might want to put 
+(require 'org-protocol)
+
 (after! org
-  (add-to-list 'org-capture-templates
-               `("i" "Inbox" entry (file "roam/agenda/todo.org")
-                 ,(concat "* TODO %?\n/Entered on/ %U"))))
+  (setq org-capture-templates
+        '(("i" "Inbox" entry (file "roam/agenda/todo.org")
+           "* TODO %?\n/Entered on/ %U")
+          ("c" "org-protocol-capture" entry (file "roam/agenda/todo.org")
+           "* TODO [[%:link][%:description]]\n\n%i" :immediate-finish t))))
 
 (setq org-roam-capture-templates
       '(("m" "main" plain
