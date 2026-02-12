@@ -52,4 +52,6 @@ in
     hyprshot
 
     zed-editor
+
+    gcc
   ]
