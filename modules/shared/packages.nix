@@ -43,6 +43,7 @@ with pkgs;
       ]))
     ripgrep
     racket-minimal
+    emacsPackages.pdf-tools
     skim
     pass
     sqlite
