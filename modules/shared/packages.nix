@@ -20,7 +20,6 @@ with pkgs;
     gh
     git
     gnumake
-    emacsPackages.pdf-tools
     hugo
     ispell
     killall
@@ -43,7 +42,7 @@ with pkgs;
         # add other packages you need
       ]))
     ripgrep
-    # racket-minimal
+    racket-minimal
     skim
     pass
     sqlite
