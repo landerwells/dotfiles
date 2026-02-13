@@ -35,7 +35,7 @@ in {
 
   xdg.desktopEntries.org-protocol = {
     name = "org-protocol";
-    exec = "emacsclient -n %u";
+    exec = "emacsclient \"%u\"";
     terminal = false;
     type = "Application";
     categories = ["System"];
