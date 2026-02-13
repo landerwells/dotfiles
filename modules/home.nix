@@ -33,15 +33,6 @@ in {
     };
   };
 
-  xdg.desktopEntries.org-protocol = {
-    name = "org-protocol";
-    exec = "emacsclient \"%u\"";
-    terminal = false;
-    type = "Application";
-    categories = ["System"];
-    mimeType = ["x-scheme-handler/org-protocol"];
-  };
-
   home.packages = [];
   home.sessionVariables = {
     XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";
