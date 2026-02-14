@@ -50,6 +50,7 @@ in
 
     hyprlock
     hyprshot
+    hyprpicker
 
     zed-editor
 

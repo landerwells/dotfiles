@@ -38,3 +38,11 @@ be cool
 * SSH configuration
 Manage SSH keys and everything stays real nice
 
+
+
+- headscale with adblocking
+- declarative setup for syncthing with private keys
+- password management
+- e-book hosting with audiobookshelf
+- RSS hosting with everything configured to work with emacs n stuff
+- The ability to send ssh commands through headscale and bookmark pages for later?
