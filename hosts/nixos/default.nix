@@ -50,6 +50,12 @@ in {
   networking = {
     networkmanager.enable = true;
     hostName = "nixos";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [53 3003]; # DNS over TCP + AdGuard Home web interface
+      allowedUDPPorts = [53]; # DNS queries
+      trustedInterfaces = ["tailscale0"]; # Trust Tailscale interface
+    };
   };
 
   # Set your time zone.
@@ -107,11 +113,13 @@ in {
   services = {
     adguardhome = {
       enable = true;
-      # You can select any ip and port, just make sure to open firewalls where needed
-      host = "127.0.0.1";
+      # Bind to all interfaces to allow Tailscale access
+      host = "0.0.0.0";
       port = 3003;
       settings = {
         dns = {
+          bind_hosts = ["0.0.0.0"];
+          port = 53;
           upstream_dns = [
             # Example config with quad9
             "9.9.9.9#dns.quad9.net"
