@@ -8,6 +8,7 @@ in
   shared-packages
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
+    racket-minimal
     # alacritty
     anki
     blueberry

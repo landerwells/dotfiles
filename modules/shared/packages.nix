@@ -4,6 +4,11 @@
 }:
 with pkgs;
   [
+    pkgconf
+    poppler
+    autoconf
+    automake
+
     alejandra
     aspell
     aspellDicts.en
@@ -42,7 +47,6 @@ with pkgs;
         # add other packages you need
       ]))
     ripgrep
-    racket-minimal
     emacsPackages.pdf-tools
     skim
     pass

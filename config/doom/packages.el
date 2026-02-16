@@ -49,6 +49,8 @@
 ;; (unpin! t)
 
 (package! olivetti)
+(package! org-gcal)
+(package! nov)
 
 (unpin! org-roam)
 (package! org-roam-ui)

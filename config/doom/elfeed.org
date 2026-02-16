@@ -12,3 +12,5 @@
 ** [[https://akrzemi1.wordpress.com/feed/][Andrzej Krzemieński]]
 ** [[https://austinmorlan.com/index.xml][Austin Morlan]]
 ** [[https://blog.nelhage.com/atom.xml][Nelson Elhage]]
+** [[https://hamvocke.com/feed-tech.xml][Ham Vocke]]
+** [[https://マリウス.com/index.xml][Mr. Usme]]
