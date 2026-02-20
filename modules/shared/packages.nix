@@ -27,6 +27,7 @@ with pkgs;
     gnumake
     hugo
     ispell
+    dig
     killall
     # needed for vterm
     libtool
