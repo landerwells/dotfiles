@@ -49,9 +49,9 @@ in {
 
   networking = {
     networkmanager.enable = true;
-    networkmanager.dns = "none"; # Prevent NetworkManager from overriding DNS
+    # networkmanager.dns = "none"; # Prevent NetworkManager from overriding DNS
     hostName = "nixos";
-    nameservers = ["127.0.0.1"]; # Use AdGuard Home for DNS
+    # nameservers = ["127.0.0.1"]; # Use AdGuard Home for DNS
     firewall = {
       enable = true;
       allowedTCPPorts = [53 3003]; # DNS over TCP + AdGuard Home web interface
