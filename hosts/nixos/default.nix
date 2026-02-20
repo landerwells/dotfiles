@@ -201,7 +201,10 @@ in {
       allowSFTP = false;
     };
 
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+    };
 
     syncthing = {
       enable = true;
@@ -240,6 +243,24 @@ in {
 
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
+  };
+
+  # Configure Tailscale DNS settings
+  systemd.services.tailscale-dns-config = {
+    description = "Configure Tailscale to accept DNS from network";
+    after = ["tailscaled.service"];
+    wants = ["tailscaled.service"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      # Wait for tailscale to be ready
+      sleep 5
+      # Configure Tailscale to not override local DNS and accept DNS from the network
+      ${pkgs.tailscale}/bin/tailscale set --accept-dns=false
+    '';
   };
 
   # Video support

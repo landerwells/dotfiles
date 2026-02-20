@@ -26,10 +26,15 @@ setopt share_history
 setopt autoparamslash
 unsetopt hist_beep             # Don't beep when attempting to access a missing history entry
 
-bindkey -v
+if [[ "$INSIDE_EMACS" != '' ]]; then
+  bindkey -e  # use emacs mode inside Emacs
+else
+  bindkey -v  # vi mode everywhere else
+fi
+
 export KEYTIMEOUT=1
 
-bindkey '^?' backward-delete-char
+# bindkey '^?' backward-delete-char
 # Need to figure out why when searching can't backspace?
 
 # Change cursor shape for different vi modes.
@@ -88,9 +93,6 @@ alias ltr='ls -altr --color=always --group-directories-first'
 
 alias vim='nvim'
 alias vi='nvim'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias mkdir='mkdir -pv'
 alias xc='open -a Xcode'
 alias rm='rm -i'

@@ -75,7 +75,7 @@ in {
 
       NSGlobalDomain = {
         AppleICUForce24HourTime = false;
-        ApplePressAndHoldEnabled = true;
+        ApplePressAndHoldEnabled = false;
         AppleShowAllExtensions = true;
         NSWindowShouldDragOnGesture = true;
 

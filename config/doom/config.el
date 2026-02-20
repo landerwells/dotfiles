@@ -48,7 +48,9 @@
         '(("i" "Inbox" entry (file "roam/agenda/todo.org")
            "* TODO %?\n/Entered on/ %U")
           ("c" "org-protocol-capture" entry (file "roam/agenda/todo.org")
-           "* TODO [[%:link][%:description]]\n\n%i" :immediate-finish t)))
+           "* TODO [[%:link][%:description]]\n\n%i" :immediate-finish t)
+          ("w" "Weight" table-line (file+headline "roam/agenda/health.org" "Weight Log")
+           "| %<%Y-%m-%d> | %^{Weight (kgs)} |" :immediate-finish t)))
 
   ;; Org mode hooks for auto-fill
   (add-hook 'org-mode-hook
