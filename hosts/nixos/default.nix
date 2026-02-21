@@ -137,6 +137,16 @@ in {
             enabled = true;
             url = url;
           }) [
+            # Ads
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt" # AdGuard DNS filter
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_6.txt" # EasyList
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt" # EasyPrivacy
+
+            # Tracking & telemetry
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt" # Online Malicious URL Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_31.txt" # Steven Black's hosts
+
+            # Malware (your existing ones)
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"
           ];
