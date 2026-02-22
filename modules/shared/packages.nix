@@ -45,7 +45,7 @@ with pkgs;
         networkx
         numpy
         scipy
-        # add other packages you need
+        python-louvain
       ]))
     ripgrep
     emacsPackages.pdf-tools
