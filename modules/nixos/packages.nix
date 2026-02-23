@@ -40,6 +40,9 @@ in
 
     impala
     wiremix
+    pamixer
+    pavucontrol
+    wireplumber
     kitty
     ghostty
 

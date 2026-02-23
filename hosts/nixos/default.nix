@@ -288,7 +288,7 @@ in {
   users.users = {
     ${user} = {
       isNormalUser = true;
-      extraGroups = ["networkmanager" "wheel"];
+      extraGroups = ["networkmanager" "wheel" "audio"];
       home = "/home/landerwells";
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = sshKeys;

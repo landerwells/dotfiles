@@ -99,6 +99,8 @@
     "format": "{icon}",
     "on-click": "xdg-terminal-exec wiremix",
     "on-click-right": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-muted": "",
