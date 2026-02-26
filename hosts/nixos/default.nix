@@ -337,18 +337,5 @@ in {
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
-  # # org-protocol desktop entry for capturing links from browser
-  # environment.etc."xdg/applications/org-protocol.desktop".text = ''
-  #   [Desktop Entry]
-  #   Name=Org-Protocol
-  #   Exec=emacsclient -n %u
-  #   Icon=emacs
-  #   Type=Application
-  #   Terminal=false
-  #   MimeType=x-scheme-handler/org-protocol
-  # '';
-
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05";
 }

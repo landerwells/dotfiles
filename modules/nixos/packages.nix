@@ -21,6 +21,7 @@ in
     valgrind
     perf
     zotero
+    gnuplot
 
     font-manager
     fontconfig
