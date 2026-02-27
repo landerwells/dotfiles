@@ -48,9 +48,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
+(package! gnuplot)
+(package! nov)
 (package! olivetti)
 (package! org-gcal)
-(package! nov)
-
-(unpin! org-roam)
 (package! org-roam-ui)
+(unpin! org-roam)

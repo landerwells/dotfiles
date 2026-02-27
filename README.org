@@ -10,6 +10,7 @@ Some goals I have for this rewrite:
 - Password management in repo
 - Home-manager configuration that will allow my dotfiles to be set up on any
   machine
+
   
   
 

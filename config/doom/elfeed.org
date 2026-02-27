@@ -15,4 +15,5 @@
 ** [[https://hamvocke.com/feed-tech.xml][Ham Vocke]]
 ** [[https://マリウス.com/index.xml][Mr. Usme]]
 ** [[https://stephango.com/feed.xml][Steph Ango]]
+** [[https://atlee.ca/rss.xml][Chris' Random Ramblings]]
 

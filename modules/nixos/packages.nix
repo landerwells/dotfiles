@@ -32,12 +32,6 @@ in
     unixtools.netstat
     waybar
     wl-clipboard
-    # wayvnc
-    # wayland
-    # wayland-protocols
-    # libxkbcommon
-    # mesa
-    # vulkan-loader
 
     impala
     wiremix
@@ -46,6 +40,7 @@ in
     wireplumber
     kitty
     ghostty
+    obs-studio
 
     obsidian
     sqlitebrowser
