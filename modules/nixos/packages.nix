@@ -44,6 +44,7 @@ in
 
     obsidian
     sqlitebrowser
+    virtualbox
 
     direnv
     flatpak
