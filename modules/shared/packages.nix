@@ -51,6 +51,7 @@ with pkgs;
     emacsPackages.pdf-tools
     skim
     pass
+    nix-search-cli
     sqlite
     stow
     tokei
