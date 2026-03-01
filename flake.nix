@@ -57,7 +57,7 @@
     in {
       default = with pkgs;
         mkShell {
-          nativeBuildInputs = with pkgs; [bashInteractive git];
+          nativeBuildInputs = with pkgs; [bashInteractive git nixd alejandra];
           shellHook = with pkgs; ''
             export EDITOR=vim
           '';

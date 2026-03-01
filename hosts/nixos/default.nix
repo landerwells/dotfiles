@@ -12,6 +12,7 @@
 in {
   imports = [
     ../../modules/shared
+    ../../modules/nixos/services
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -50,12 +51,7 @@ in {
   networking = {
     networkmanager.enable = true;
     hostName = "nixos";
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [53 3003]; # DNS over TCP + AdGuard Home web interface
-      allowedUDPPorts = [53]; # DNS queries
-      trustedInterfaces = ["tailscale0"]; # Trust Tailscale interface
-    };
+    firewall.enable = true;
   };
 
   # Set your time zone.
@@ -110,160 +106,6 @@ in {
     NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
   };
 
-  services = {
-    adguardhome = {
-      enable = true;
-      host = "0.0.0.0";
-      port = 3003;
-      settings = {
-        dns = {
-          bind_hosts = ["0.0.0.0"];
-          port = 53;
-          upstream_dns = [
-            "9.9.9.9"
-            "149.112.112.112"
-          ];
-        };
-        filtering = {
-          protection_enabled = true;
-          filtering_enabled = true;
-          parental_enabled = false;
-          safe_search = {
-            enabled = false;
-          };
-        };
-        filters =
-          map (url: {
-            enabled = true;
-            url = url;
-          }) [
-            # Ads
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt" # AdGuard DNS filter
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_6.txt" # EasyList
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt" # EasyPrivacy
-
-            # Tracking & telemetry
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt" # Online Malicious URL Blocklist
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_31.txt" # Steven Black's hosts
-
-            # Malware (your existing ones)
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"
-          ];
-      };
-    };
-
-    emacs = {
-      enable = true;
-      package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-      install = true;
-      defaultEditor = true;
-    };
-
-    flatpak.enable = true;
-    # Fallback console on tty1: auto-login your user
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = user;
-
-    # Display manager & X server
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
-
-    xserver = {
-      enable = true;
-      videoDrivers = ["nvidia"];
-
-      # Uncomment for Nvidia GPU
-      # This helps fix tearing of windows for Nvidia cards
-      screenSection = ''
-        Option       "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
-        Option       "AllowIndirectGLXProtocol" "off"
-        Option       "TripleBuffer" "on"
-      '';
-
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-    };
-
-    # Better support for general peripherals
-    libinput.enable = true;
-
-    # Let's be able to SSH into this machine
-    # Enable the OpenSSH daemon.
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        PermitRootLogin = "no";
-        # AllowTcpForwarding = "yes";
-      };
-      allowSFTP = false;
-    };
-
-    tailscale = {
-      enable = true;
-      useRoutingFeatures = "server";
-    };
-
-    syncthing = {
-      enable = true;
-      user = "landerwells";
-      group = "users";
-      dataDir = "/home/landerwells/.local/share/syncthing"; # where database lives
-      configDir = "/home/landerwells/.config/syncthing"; # where config lives
-      openDefaultPorts = true;
-      settings = {
-        devices = {
-          "macos" = {id = "JFSZU24-XA7JTXO-ZMZXO4L-KBDSOMA-2M74Y4X-GSO3EMF-YSMFDRR-AJG4XAW";};
-          "hisense" = {id = "S4IKJUJ-NDJOT55-CHXXW4J-LKNWGSE-WATITGO-6YHWQZH-QI5TIXR-SBDFQQS";};
-          "iphone" = {id = "VE4ZWNA-YKO33JS-65EPIYY-6X6BXFO-LLBSKJW-WBG5DQ2-BB5HRNK-Q5VM7AJ";};
-        };
-        folders = {
-          "Books" = {
-            path = "/home/landerwells/Books";
-            devices = ["macos" "hisense"];
-          };
-          "dotfiles" = {
-            path = "/home/landerwells/dotfiles";
-            devices = ["macos"];
-            ignorePerms = false; # Enable file permission syncing
-          };
-          "org" = {
-            path = "/home/landerwells/org";
-            devices = ["macos" "iphone"];
-          };
-        };
-      };
-    };
-
-    # Enable CUPS to print documents
-    printing.enable = true;
-    printing.drivers = [pkgs.brlaser]; # Brother printer driver
-
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thumbnail support for images
-  };
-
-  # Configure Tailscale DNS settings
-  systemd.services.tailscale-dns-config = {
-    description = "Configure Tailscale to accept DNS from network";
-    after = ["tailscaled.service"];
-    wants = ["tailscaled.service"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      # Wait for tailscale to be ready
-      sleep 5
-      # Configure Tailscale to not override local DNS and accept DNS from the network
-      ${pkgs.tailscale}/bin/tailscale set --accept-dns=false
-    '';
-  };
-
   # Video support
   hardware = {
     bluetooth.enable = true;
@@ -299,17 +141,6 @@ in {
     };
   };
 
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
   # Don't require password for users in `wheel` group for these commands
   security.sudo = {
     enable = true;
@@ -333,9 +164,6 @@ in {
   # Packages and Fonts
   environment.systemPackages = import ../../modules/nixos/packages.nix {inherit pkgs inputs;};
   fonts.packages = import ../../modules/shared/fonts.nix {inherit pkgs inputs;};
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   system.stateVersion = "21.05";
 }
