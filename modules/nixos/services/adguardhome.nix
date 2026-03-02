@@ -42,6 +42,11 @@
           # Malware
           "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"
           "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"
+
+          "https://adguardteam.github.io/HostlistsRegistry/assets/filter_8.txt" # AdGuard Adult filter (official)
+          "https://raw.githubusercontent.com/nicehash/NiceHashQuickMiner/master/build/nhqm/filters/adult.txt" # supplemental
+          "https://blocklistproject.github.io/Lists/porn.txt" # The Block List Project - Porn
+          "https://blocklistproject.github.io/Lists/gambling.txt"
         ];
     };
   };
