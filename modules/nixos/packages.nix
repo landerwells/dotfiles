@@ -8,52 +8,39 @@ in
   shared-packages
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
-    racket-minimal
-    # alacritty
-    # anki
     blueberry
+    direnv
     discord
     firefox
-    kdePackages.dolphin
-    spotify
-    vlc
-    zathura
-    valgrind
-    perf
-    zotero
-    gnuplot
-
+    flatpak
     font-manager
     fontconfig
-    postgresql
+    foot
+    gcc
+    gnuplot
+    hyprlock
+    hyprpicker
+    hyprshot
+    kdePackages.dolphin
+    obs-studio
+    obsidian
+    pamixer
+    pavucontrol
+    perf
+    racket-minimal
     rofi
+    spotify
     swww
     unixtools.ifconfig
     unixtools.netstat
-    waybar
-    wl-clipboard
-
-    impala
-    wiremix
-    pamixer
-    pavucontrol
-    wireplumber
-    kitty
-    ghostty
-    obs-studio
-
-    obsidian
-    sqlitebrowser
+    valgrind
     virtualbox
-
-    direnv
-    flatpak
-
-    hyprlock
-    hyprshot
-    hyprpicker
-
+    vlc
+    waybar
+    wiremix
+    wireplumber
+    wl-clipboard
+    zathura
     zed-editor
-
-    gcc
+    zotero
   ]
