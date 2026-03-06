@@ -34,6 +34,10 @@ in {
   };
 
   home.packages = [];
+  home.sessionPath = [
+    "${config.home.homeDirectory}/dotfiles/bin"
+    "${config.home.homeDirectory}/dotfiles/bin/x86_64-linux"
+  ];
   home.sessionVariables = {
     XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";
     PATH = "${config.home.homeDirectory}/.config/emacs/bin:$PATH";
