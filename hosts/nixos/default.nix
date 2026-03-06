@@ -130,7 +130,7 @@ in {
   users.users = {
     ${user} = {
       isNormalUser = true;
-      extraGroups = ["networkmanager" "wheel" "audio"];
+      extraGroups = ["networkmanager" "wheel" "audio" "vboxusers"];
       home = "/home/landerwells";
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = sshKeys;
@@ -164,6 +164,8 @@ in {
   # Packages and Fonts
   environment.systemPackages = import ../../modules/nixos/packages.nix {inherit pkgs inputs;};
   fonts.packages = import ../../modules/shared/fonts.nix {inherit pkgs inputs;};
+
+  virtualisation.virtualbox.host.enable = true;
 
   system.stateVersion = "21.05";
 }

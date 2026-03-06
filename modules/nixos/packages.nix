@@ -35,7 +35,6 @@ in
     unixtools.ifconfig
     unixtools.netstat
     valgrind
-    virtualbox
     vlc
     waybar
     wiremix
