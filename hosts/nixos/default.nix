@@ -104,7 +104,7 @@ in {
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1"; # If your cursor becomes invisible
     NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-    PATH = ["~/dotfiles/bin"];
+    PATH = ["$HOME/dotfiles/bin"];
   };
 
   # Video support
