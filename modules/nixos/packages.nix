@@ -29,6 +29,7 @@ in
     perf
     racket-minimal
     rofi
+    sioyek
     spotify
     swww
     unixtools.ifconfig
