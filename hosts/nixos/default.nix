@@ -115,9 +115,6 @@ in {
     enableAllFirmware = true;
     graphics.enable = true;
 
-    # Enable Xbox support
-    # hardware.xone.enable = true;
-
     nvidia = {
       modesetting.enable = true; # Enable modesetting required by newer desktops
       powerManagement.enable = false;
