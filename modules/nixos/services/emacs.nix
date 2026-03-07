@@ -4,5 +4,6 @@
     package = pkgs.emacs;
     install = true;
     defaultEditor = true;
+    startWithGraphical = false;
   };
 }

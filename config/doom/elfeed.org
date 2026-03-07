@@ -16,4 +16,5 @@
 ** [[https://マリウス.com/index.xml][Mr. Usme]]
 ** [[https://stephango.com/feed.xml][Steph Ango]]
 ** [[https://atlee.ca/rss.xml][Chris' Random Ramblings]]
+** [[https://chuck.is/feed.xml][Chuck Carroll]]
 
