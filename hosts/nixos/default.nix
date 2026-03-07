@@ -105,6 +105,11 @@ in {
     WLR_NO_HARDWARE_CURSORS = "1"; # If your cursor becomes invisible
     NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
     PATH = ["$HOME/dotfiles/bin"];
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_RENDERER_ALLOW_SOFTWARE = "1";
   };
 
   # Video support
@@ -121,6 +126,7 @@ in {
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
