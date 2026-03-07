@@ -39,7 +39,7 @@ in {
     "${config.home.homeDirectory}/dotfiles/bin/x86_64-linux"
   ];
   home.sessionVariables = {
-    XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/cursors";
+    XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/assets/cursors";
     PATH = "${config.home.homeDirectory}/.config/emacs/bin:$PATH";
     LESSHISTFILE = "";
     MANPAGER = "nvim +Man!";
