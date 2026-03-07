@@ -1,14 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;;; General Settings
-
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (select-frame frame)
-                (adjust-frame-size-and-position frame)))
-  (adjust-frame-size-and-position))
-
 (setq doom-theme 'doom-gruvbox
       display-line-numbers-type 'relative
       scroll-margin 8)
