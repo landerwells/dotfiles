@@ -24,7 +24,7 @@
 
 ;; Leader keybindings
 (map! :leader
-      :desc "Toggle Olivetti mode" "z" #'olivetti-mode
+      ; :desc "Toggle Olivetti mode" "z" #'olivetti-mode
       :desc "Search org-roam notes" "n r s" #'consult-ripgrep)
 
 ;;; Org Mode & Org-Roam
