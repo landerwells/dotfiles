@@ -17,31 +17,15 @@ with pkgs;
     gemini-cli
     gh
     git
-    gnumake
-    hugo
     ispell
     dig
     killall
-    libtool
-    glibtool
-    # lua
-    # lua-language-server
-    # ninja
     nodejs_24
     tmux
     openssh
-    (python3.withPackages (ps:
-      with ps; [
-        networkx
-        numpy
-        scipy
-        python-louvain
-      ]))
     ripgrep
     skim
     pass
-    nix-search-cli
-    tokei
     typst
     unrar
     unzip
