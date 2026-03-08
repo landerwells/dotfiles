@@ -14,6 +14,7 @@ with pkgs;
     fd
     ffmpeg_6
     fzf
+    gemini-cli
     gh
     git
     gnumake
