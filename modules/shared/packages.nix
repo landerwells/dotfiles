@@ -11,26 +11,27 @@ with pkgs;
     btop
     claude-code
     coreutils
+    dig
     fd
     ffmpeg_6
     fzf
     gemini-cli
     gh
     git
+    helix
     ispell
-    dig
     killall
     nodejs_24
-    tmux
     openssh
+    pass
     ripgrep
     skim
-    pass
+    tmux
+    tree
     typst
     unrar
     unzip
     wget
-    tree
     zip
   ]
   ++ [
