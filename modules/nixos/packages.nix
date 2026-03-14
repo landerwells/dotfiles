@@ -9,7 +9,7 @@ in
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
     anki
-    blueberry
+    blueman
     direnv
     discord
     firefox
