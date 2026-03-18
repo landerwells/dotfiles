@@ -33,6 +33,10 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -45,6 +49,7 @@
     homebrew-cask,
     homebrew-emacsmacport,
     neovim-nightly-overlay,
+    rust-overlay,
     apple-fonts,
     nixpkgs,
   } @ inputs: let

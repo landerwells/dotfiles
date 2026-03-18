@@ -33,6 +33,9 @@ with pkgs;
     unzip
     wget
     zip
+    (rust-bin.stable.latest.default.override {
+      extensions = ["rust-src" "rust-analyzer"];
+    })
   ]
   ++ [
     # Add Neovim nightly from overlay

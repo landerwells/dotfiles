@@ -1,12 +1,11 @@
 _: [
   "aerospace"
+  "alacritty"
   "anki"
   "bitwarden"
   "discord"
   "emacs-mac"
   "firefox"
-  "foot"
-  "ghostty"
   "karabiner-elements"
   "linearmouse"
   "maccy"
