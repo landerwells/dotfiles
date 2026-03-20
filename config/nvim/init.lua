@@ -44,8 +44,6 @@ vim.opt.winblend = 0
 
 vim.pack.add({
   { src = "https://github.com/mrcjkb/rustaceanvim.git" },
-  -- { src = "https://github.com/vague-theme/vague.nvim.git" },
-  { src = "https://github.com/HiPhish/rainbow-delimiters.nvim.git" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = "https://github.com/chomosuke/typst-preview.nvim" },
   { src = "https://github.com/christoomey/vim-tmux-navigator.git" },

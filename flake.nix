@@ -37,6 +37,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -50,6 +54,7 @@
     homebrew-emacsmacport,
     neovim-nightly-overlay,
     rust-overlay,
+    emacs-overlay,
     apple-fonts,
     nixpkgs,
   } @ inputs: let

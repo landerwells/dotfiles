@@ -24,7 +24,7 @@
 
 ;; Leader keybindings
 (map! :leader
-      ; :desc "Toggle Olivetti mode" "z" #'olivetti-mode
+                                        ; :desc "Toggle Olivetti mode" "z" #'olivetti-mode
       :desc "Search org-roam notes" "n r s" #'consult-ripgrep)
 
 ;;; Org Mode & Org-Roam
@@ -111,15 +111,12 @@
 ;; Racket/Geiser configuration
 (setq geiser-racket-extra-keywords '("require" "sicp"))
 
-;; EPUB reader
-(use-package! nov
-  :mode ("\\.epub\\'" . nov-mode)
-  :config
-  (setq nov-text-width 80))
-
 ;;; Private Configuration
 
 ;; Load private org-gcal credentials if available
 (let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
   (when (file-exists-p private-config)
     (load private-config)))
+
+;; :key can be a function that returns the API key.
+(gptel-make-gemini "Gemini" :key "YOUR_GEMINI_API_KEY" :stream t)
