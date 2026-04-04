@@ -18,6 +18,7 @@
 ** [[https://atlee.ca/rss.xml][Chris' Random Ramblings]]
 ** [[https://chuck.is/feed.xml][Chuck Carroll]]
 ** [[https://www.sandordargo.com/feed.xml][Sandor Dargo]]
+** [[https://noghartt.dev/rss.xml][Noghartt's garden]]
 * Youtube                                                           :elfeed:
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCcaTUtGzOiS4cqrgtcsHYWg][jvscholz]]
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYCO3Kifwg56zhus3XXiAVg][james vinh scholz]]

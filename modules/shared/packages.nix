@@ -8,7 +8,6 @@ with pkgs; [
   bat
   bc
   btop
-  claude-code
   coreutils
   dig
   fd

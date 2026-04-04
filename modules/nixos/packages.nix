@@ -32,7 +32,7 @@ in
     rofi
     sioyek
     spotify
-    swww
+    hyprpaper
     unixtools.ifconfig
     unixtools.netstat
     valgrind
