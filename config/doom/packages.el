@@ -53,4 +53,5 @@
 (package! olivetti)
 (package! org-gcal)
 (package! org-roam-ui)
-(unpin! org-roam)
+(package! ox-hugo)
+

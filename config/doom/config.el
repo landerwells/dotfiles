@@ -32,10 +32,16 @@
 ;; Set directories before org loads
 (setq org-directory "~/org/"
       org-roam-directory (file-truename "~/org/roam/")
-      org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
       org-cite-global-bibliography '("~/org/roam/reference/reference.bib")
       org-startup-with-inline-images t
       org-agenda-files (directory-files (expand-file-name "agenda" org-roam-directory) t "\\.org$"))
+
+;; Set your bibliography file(s)
+(setq citar-bibliography '("~/org/roam/reference/reference.bib"))
+
+;; Set your PDF library and notes paths
+(setq citar-library-paths '("~/Books")
+      citar-notes-paths '("~/org/roam"))
 
 (after! org
   ;; Enable org modules

@@ -2,42 +2,38 @@
   pkgs,
   inputs,
 }:
-with pkgs;
-  [
-    aspell
-    aspellDicts.en
-    bat
-    bc
-    btop
-    claude-code
-    coreutils
-    dig
-    fd
-    ffmpeg_6
-    fzf
-    gemini-cli
-    gh
-    git
-    helix
-    ispell
-    killall
-    nodejs_24
-    openssh
-    pass
-    ripgrep
-    skim
-    tmux
-    tree
-    typst
-    unrar
-    unzip
-    wget
-    zip
-    (rust-bin.stable.latest.default.override {
-      extensions = ["rust-src" "rust-analyzer"];
-    })
-  ]
-  ++ [
-    # Add Neovim nightly from overlay
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-  ]
+with pkgs; [
+  aspell
+  aspellDicts.en
+  bat
+  bc
+  btop
+  claude-code
+  coreutils
+  dig
+  fd
+  ffmpeg_6
+  fzf
+  gemini-cli
+  gh
+  git
+  helix
+  ispell
+  killall
+  nodejs_24
+  openssh
+  pass
+  ripgrep
+  skim
+  tmux
+  tree
+  typst
+  unrar
+  unzip
+  wget
+  zip
+  (rust-bin.stable.latest.default.override {
+    extensions = ["rust-src" "rust-analyzer"];
+  })
+  neovim
+]

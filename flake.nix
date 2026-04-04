@@ -30,9 +30,6 @@
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +49,6 @@
     homebrew-core,
     homebrew-cask,
     homebrew-emacsmacport,
-    neovim-nightly-overlay,
     rust-overlay,
     emacs-overlay,
     apple-fonts,
