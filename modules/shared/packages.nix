@@ -35,4 +35,5 @@ with pkgs; [
     extensions = ["rust-src" "rust-analyzer"];
   })
   neovim
+  wgsl-analyzer
 ]
