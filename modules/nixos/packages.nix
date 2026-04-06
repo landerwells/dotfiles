@@ -44,4 +44,5 @@ in
     zathura
     zed-editor
     zotero
+    vscode
   ]
