@@ -50,7 +50,6 @@ vim.pack.add({
   { src = "https://github.com/folke/which-key.nvim.git" },
   { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim.git" },
-  { src = "https://github.com/mbbill/undotree.git" },
   { src = "https://github.com/morhetz/gruvbox.git" },
   { src = "https://github.com/nvim-lua/plenary.nvim.git" },
   { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
@@ -62,6 +61,10 @@ vim.pack.add({
   { src = "https://github.com/windwp/nvim-ts-autotag.git" },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
 })
+
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>u", require("undotree").open)
+
 
 require("nvim-autopairs").setup({
   map_cr = true,
