@@ -107,7 +107,22 @@
                 (elfeed-update)))))
 
 (after! projectile
-  (setq projectile-project-search-path '(("~") ("~/Developer"))))
+  (setq projectile-project-search-path '(("~" . 1) ("~/Developer" . 1)))
+
+  (add-hook 'projectile-after-switch-project-hook #'projectile-invalidate-cache)
+
+  (defun lw/projectile-root-search-path-child (dir)
+    "Return DIR as project root if it is a direct child of a search path."
+    (cl-some (lambda (search)
+               (let* ((base (if (consp search) (car search) search))
+                      (expanded (file-truename (expand-file-name base))))
+                 (when (equal (file-truename (expand-file-name ".." dir))
+                              expanded)
+                   dir)))
+             projectile-project-search-path))
+
+  (add-to-list 'projectile-project-root-functions
+               #'lw/projectile-root-search-path-child t))
 
 ;; Racket/Geiser configuration
 (setq geiser-racket-extra-keywords '("require" "sicp"))

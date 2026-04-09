@@ -27,6 +27,7 @@ with pkgs; [
   ripgrep
   skim
   tmux
+  tokei
   tree
   typst
   unrar
