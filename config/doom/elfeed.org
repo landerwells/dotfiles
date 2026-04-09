@@ -19,7 +19,8 @@
 ** [[https://chuck.is/feed.xml][Chuck Carroll]]
 ** [[https://www.sandordargo.com/feed.xml][Sandor Dargo]]
 ** [[https://noghartt.dev/rss.xml][Noghartt's garden]]
-* Youtube                                                           :elfeed:
+** [[https://floooh.github.io/][floooh]]
+* Youtube :elfeed:
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCcaTUtGzOiS4cqrgtcsHYWg][jvscholz]]
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYCO3Kifwg56zhus3XXiAVg][james vinh scholz]]
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCUzQJ3JBuQ9w-po4TXRJHiA][jdh]]

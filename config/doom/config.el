@@ -67,24 +67,19 @@
 
 (after! org-roam
   (require 'org-roam-protocol)
-
   ;; Capture templates
   (setq org-roam-capture-templates
         '(("m" "main" plain
            "%?"
            :if-new (file+head "main/${title}.org"
-                              "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
+                              "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :draft:\n")
            :immediate-finish t
            :unnarrowed t)
           ("r" "reference" plain "%?"
            :if-new (file+head "reference/${title}.org"
                               "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
            :immediate-finish t
-           :unnarrowed t)))
-
-  ;; Tag new nodes as draft
-  (add-hook 'org-roam-capture-new-node-hook
-            (lambda () (org-roam-tag-add '("draft")))))
+           :unnarrowed t))))
 
 ;; Org protocol needs to be loaded early
 (require 'org-protocol)
@@ -124,5 +119,19 @@
   (when (file-exists-p private-config)
     (load private-config)))
 
-;; :key can be a function that returns the API key.
-(gptel-make-gemini "Gemini" :key "YOUR_GEMINI_API_KEY" :stream t)
+(after! gptel
+  (setq gptel-backend
+        (gptel-make-anthropic "Claude"
+          :stream t
+          :key (lambda ()
+                 (string-trim
+                  (with-temp-buffer
+                    (insert-file-contents
+                     (expand-file-name "private/anthropic-api-key" doom-private-dir))
+                    (buffer-string))))))
+  (setq gptel-model 'claude-sonnet-4-6)
+  (setq gptel-default-mode 'org-mode))
+
+;;; GLSL configuration
+(after! glsl-mode
+  (add-hook 'glsl-mode-hook #'lsp-deferred))

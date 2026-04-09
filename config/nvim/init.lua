@@ -58,7 +58,6 @@ vim.pack.add({
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/tpope/vim-surround.git" },
   { src = "https://github.com/windwp/nvim-autopairs.git" },
-  { src = "https://github.com/windwp/nvim-ts-autotag.git" },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
 })
 
@@ -69,7 +68,6 @@ vim.keymap.set("n", "<leader>u", require("undotree").open)
 require("nvim-autopairs").setup({
   map_cr = true,
 })
-require "nvim-ts-autotag".setup()
 require "ibl".setup()
 
 require "telescope".setup({
@@ -258,18 +256,6 @@ vim.lsp.enable(
 
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if client:supports_method('textDocument/completion') then
-			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
-			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-		end
-	end,
-})
 
 -- map('n', '<leader>lf', vim.lsp.buf.format)
 vim.cmd [[set completeopt+=menuone,noselect,popup]]

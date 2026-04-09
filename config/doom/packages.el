@@ -49,6 +49,7 @@
 ;; (unpin! t)
 
 (package! gnuplot)
+(package! glsl-mode)
 (package! nov)
 (package! olivetti)
 (package! org-gcal)

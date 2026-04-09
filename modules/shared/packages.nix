@@ -4,11 +4,13 @@
 }:
 with pkgs; [
   aspell
+  direnv
   aspellDicts.en
   bat
   bc
   btop
   coreutils
+  claude-code
   dig
   fd
   ffmpeg_6
