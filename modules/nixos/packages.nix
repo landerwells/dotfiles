@@ -9,6 +9,7 @@ in
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
     anki
+    blender
     blueman
     direnv
     discord

@@ -45,7 +45,6 @@ vim.opt.winblend = 0
 vim.pack.add({
   { src = "https://github.com/mrcjkb/rustaceanvim.git" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
-  { src = "https://github.com/chomosuke/typst-preview.nvim" },
   { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
   { src = "https://github.com/folke/which-key.nvim.git" },
   { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
@@ -260,4 +259,3 @@ map('i', '<c-e>', function() vim.lsp.completion.get() end)
 -- map('n', '<leader>lf', vim.lsp.buf.format)
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
-vim.keymap.set("n", "<leader>p", "<cmd>TypstPreviewToggle<CR>", { desc = "Toggle Typst Preview" })
