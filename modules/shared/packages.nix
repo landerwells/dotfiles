@@ -40,4 +40,5 @@ with pkgs; [
   neovim
   wgsl-analyzer
   gdb
+  zig
 ]
