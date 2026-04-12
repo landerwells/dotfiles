@@ -147,6 +147,11 @@
   (setq gptel-model 'claude-sonnet-4-6)
   (setq gptel-default-mode 'org-mode))
 
-;;; GLSL configuration
-(after! glsl-mode
-  (add-hook 'glsl-mode-hook #'lsp-deferred))
+(use-package folgezett
+  :load-path "~/dotfiles/config/doom/folgezett.el"
+  :after org-roam
+  :config
+  (folgezett-setup)
+  ;; Optional:
+  (setq folgezett-include-id-in-title t)
+  (global-set-key (kbd "C-c z") folgezett-map))
