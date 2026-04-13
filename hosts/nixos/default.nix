@@ -171,5 +171,16 @@ in {
 
   virtualisation.virtualbox.host.enable = true;
 
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-vulkan; # ollama-cuda broken in current nixpkgs (cuda_compat-12.9 missing $src)
+    loadModels = ["gemma4:12b"];
+    environmentVariables = {
+      OLLAMA_FLASH_ATTENTION = "1"; # Better VRAM efficiency on 4070
+      OLLAMA_MAX_LOADED_MODELS = "1"; # Only keep one model loaded (12GB VRAM)
+      OLLAMA_NUM_PARALLEL = "2"; # Parallel request slots
+    };
+  };
+
   system.stateVersion = "21.05";
 }

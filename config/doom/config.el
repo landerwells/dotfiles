@@ -23,9 +23,9 @@
       :n "C-l" #'evil-window-right)
 
 ;; Leader keybindings
-(map! :leader
-                                        ; :desc "Toggle Olivetti mode" "z" #'olivetti-mode
-      :desc "Search org-roam notes" "n r s" #'consult-ripgrep)
+;; (map! :leader
+;;                                         ; :desc "Toggle Olivetti mode" "z" #'olivetti-mode
+;;       :desc "Search org-roam notes" "n r s" #'consult-ripgrep)
 
 ;;; Org Mode & Org-Roam
 
@@ -147,11 +147,11 @@
   (setq gptel-model 'claude-sonnet-4-6)
   (setq gptel-default-mode 'org-mode))
 
-(use-package folgezett
+(use-package folgezettel
   :load-path "~/dotfiles/config/doom/folgezett.el"
   :after org-roam
   :config
-  (folgezett-setup)
-  ;; Optional:
-  (setq folgezett-include-id-in-title t)
-  (global-set-key (kbd "C-c z") folgezett-map))
+  (folgezettel-setup)
+  ;; Only assign IDs to notes captured with the "m" (main) template:
+  (setq folgezettel-capture-template-keys '("m"))
+  (global-set-key (kbd "C-c z") folgezettel-map))

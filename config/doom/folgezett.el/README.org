@@ -1,0 +1,5 @@
+
+
+
+Some features that I would like to add:
+- [ ] The ability to link to other notes from simply the 
