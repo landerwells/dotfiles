@@ -174,7 +174,7 @@ in {
   services.ollama = {
     enable = true;
     package = pkgs.ollama-vulkan; # ollama-cuda broken in current nixpkgs (cuda_compat-12.9 missing $src)
-    loadModels = ["gemma4:12b"];
+    loadModels = ["gemma4"]; # gemma4 is MoE; "e4b" default fits well in 12GB VRAM
     environmentVariables = {
       OLLAMA_FLASH_ATTENTION = "1"; # Better VRAM efficiency on 4070
       OLLAMA_MAX_LOADED_MODELS = "1"; # Only keep one model loaded (12GB VRAM)
