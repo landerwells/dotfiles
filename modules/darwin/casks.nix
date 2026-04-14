@@ -14,4 +14,5 @@ _: [
   "syncthing-app"
   "tailscale-app"
   "zed"
+  "mole"
 ]
