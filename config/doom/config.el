@@ -147,11 +147,18 @@
   (setq gptel-model 'claude-sonnet-4-6)
   (setq gptel-default-mode 'org-mode))
 
-(use-package folgezettel
-  :load-path "~/dotfiles/config/doom/folgezett.el"
-  :after org-roam
-  :config
-  (folgezettel-setup)
-  ;; Only assign IDs to notes captured with the "m" (main) template:
-  (setq folgezettel-capture-template-keys '("m"))
-  (global-set-key (kbd "C-c z") folgezettel-map))
+; (use-package folgezett
+;   :load-path "~/Developer/folgezett.el"
+;   :after org-roam
+;   :config
+;   (setq folgezett-capture-keys '("m"))
+;   (folgezett-setup))
+;
+; (map! :leader
+;       (:prefix-map ("n z" . "folgezettel")
+;        :desc "Assign ID"        "a" #'folgezett-assign-id
+;        :desc "Goto parent"      "p" #'folgezett-goto-parent
+;        :desc "List children"    "c" #'folgezett-list-children
+;        :desc "Show tree"        "t" #'folgezett-show-tree
+;        :desc "Reparent"         "r" #'folgezett-reparent
+;        :desc "Reparent subtree" "R" #'folgezett-reparent-subtree))
