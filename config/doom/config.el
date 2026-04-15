@@ -79,6 +79,14 @@
            :if-new (file+head "reference/${title}.org"
                               "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
            :immediate-finish t
+           :unnarrowed t)))
+
+  ;; Web clipping via org-roam-protocol
+  (setq org-roam-capture-ref-templates
+        '(("w" "web clip" plain
+           "%?"
+           :if-new (file+head "reference/${slug}.org"
+                              "#+title: ${title}\n#+roam_key: ${ref}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :web:\n")
            :unnarrowed t))))
 
 ;; Org protocol needs to be loaded early
