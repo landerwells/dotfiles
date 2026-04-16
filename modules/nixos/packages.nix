@@ -46,4 +46,5 @@ in
     zed-editor
     zotero
     vscode
+    ghostty
   ]
