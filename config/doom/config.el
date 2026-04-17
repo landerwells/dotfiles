@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;;; General Settings
-(setq doom-theme 'doom-gruvbox
+(setq doom-theme 'doom-one
       display-line-numbers-type 'relative
       scroll-margin 8)
 
@@ -155,18 +155,18 @@
   (setq gptel-model 'claude-sonnet-4-6)
   (setq gptel-default-mode 'org-mode))
 
-; (use-package folgezett
-;   :load-path "~/Developer/folgezett.el"
-;   :after org-roam
-;   :config
-;   (setq folgezett-capture-keys '("m"))
-;   (folgezett-setup))
-;
-; (map! :leader
-;       (:prefix-map ("n z" . "folgezettel")
-;        :desc "Assign ID"        "a" #'folgezett-assign-id
-;        :desc "Goto parent"      "p" #'folgezett-goto-parent
-;        :desc "List children"    "c" #'folgezett-list-children
-;        :desc "Show tree"        "t" #'folgezett-show-tree
-;        :desc "Reparent"         "r" #'folgezett-reparent
-;        :desc "Reparent subtree" "R" #'folgezett-reparent-subtree))
+(use-package folgezett
+  :load-path "~/Developer/folgezett.el"
+  :after org-roam
+  :config
+  (setq folgezett-capture-keys '("m"))
+  (folgezett-setup))
+
+(map! :leader
+      (:prefix-map ("n z" . "folgezettel")
+       :desc "Assign ID"        "a" #'folgezett-assign-id
+       :desc "Goto parent"      "p" #'folgezett-goto-parent
+       :desc "List children"    "c" #'folgezett-list-children
+       :desc "Show tree"        "t" #'folgezett-show-tree
+       :desc "Reparent"         "r" #'folgezett-reparent
+       :desc "Reparent subtree" "R" #'folgezett-reparent-subtree))

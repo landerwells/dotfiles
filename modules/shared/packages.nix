@@ -41,4 +41,5 @@ with pkgs; [
   wgsl-analyzer
   gdb
   zig
+  sqlite
 ]
