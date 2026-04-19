@@ -101,6 +101,31 @@
 
 ;;; Package Configuration
 
+(after! doom-modeline
+  (defvar-local lw/buffer-word-count nil
+    "Cached word count for modeline display.")
+
+  (defun lw/update-word-count (&rest _)
+    "Update cached word count for the current buffer."
+    (setq lw/buffer-word-count (count-words (point-min) (point-max))))
+
+  (run-with-idle-timer 2 t #'lw/update-word-count)
+  (add-hook 'after-save-hook #'lw/update-word-count)
+  (add-hook 'find-file-hook #'lw/update-word-count)
+
+  (doom-modeline-def-segment buffer-word-count
+    "Display the word count of the current buffer."
+    (when (and (doom-modeline--active) lw/buffer-word-count)
+      (concat
+       (doom-modeline-spc)
+       (propertize (format "%dW" lw/buffer-word-count)
+                   'face 'doom-modeline-info)
+       (doom-modeline-spc))))
+
+  (doom-modeline-def-modeline 'main
+    '(eldoc bar workspace-name window-number modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+    '(compilation objed-state misc-info persp-name battery grip irc mu4e gnus github debug repl lsp minor-modes input-method indent-info buffer-encoding buffer-word-count major-mode process vcs check time)))
+
 (after! which-key
   (setq which-key-idle-delay 0
         which-key-idle-secondary-delay 0))
@@ -160,6 +185,7 @@
   :after org-roam
   :config
   (setq folgezett-capture-keys '("m"))
+  (setq folgezett-db-link-parent t)
   (folgezett-setup))
 
 (map! :leader

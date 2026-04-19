@@ -20,6 +20,7 @@
 ** [[https://www.sandordargo.com/feed.xml][Sandor Dargo]]
 ** [[https://noghartt.dev/rss.xml][Noghartt's garden]]
 ** [[https://floooh.github.io/][floooh]]
+** [[https://rajnandan.com/posts/feed.xml][Raj Nandan Sharma]]
 * Youtube :elfeed:
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCcaTUtGzOiS4cqrgtcsHYWg][jvscholz]]
 ** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYCO3Kifwg56zhus3XXiAVg][james vinh scholz]]
