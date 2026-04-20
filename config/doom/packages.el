@@ -48,7 +48,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! gnuplot)
 (package! glsl-mode)
 (package! nov)
 (package! olivetti)

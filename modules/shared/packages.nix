@@ -12,6 +12,7 @@ with pkgs; [
   coreutils
   claude-code
   dig
+  cmake
   fd
   ffmpeg_6
   fzf

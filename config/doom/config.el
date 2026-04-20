@@ -65,6 +65,8 @@
               (auto-fill-mode 1)
               (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t))))
 
+(set-file-template! "/org/roam/.+\\.org$" :ignore t)
+
 (after! org-roam
   (require 'org-roam-protocol)
   ;; Capture templates
