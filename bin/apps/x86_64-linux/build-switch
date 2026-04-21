@@ -24,11 +24,11 @@ case "$SYSTEM" in
     ;;
 esac
 
-alejandra . &>/dev/null
+alejandra . &>/dev/null || true
 echo -e "${YELLOW}Starting...${NC}"
-alias nixos-rebuild='/run/current-system/sw/bin/nixos-rebuild'
-sudo nixos-rebuild switch --flake .#$FLAKE_TARGET $@
-read -r GEN DATE TIME <<< $(nixos-rebuild list-generations | sed -n '2p' | awk '{print $1, $2, $3}')
+NIXOS_REBUILD='/run/current-system/sw/bin/nixos-rebuild'
+sudo $NIXOS_REBUILD switch --flake .#$FLAKE_TARGET "$@"
+read -r GEN DATE TIME <<< $($NIXOS_REBUILD list-generations | sed -n '2p' | awk '{print $1, $2, $3}')
 git add -A
 git commit -m "NixOS: Build generation $GEN on $DATE at $TIME"
 echo -e "${GREEN}Switch to new generation complete!${NC}"
