@@ -9,6 +9,14 @@
   sshKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqnqCb9HNWRQ2zZYaGFXJJ85W4IKKA9U0rci1A3dMNa"
   ];
+
+  ollamaPkgs = import inputs.nixpkgs-latest {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+  ollamaOverlay = final: prev: {
+    ollama-vulkan = ollamaPkgs.ollama-vulkan;
+  };
 in {
   imports = [
     ../../modules/shared
@@ -47,6 +55,7 @@ in {
 
   # Hardware platform
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.overlays = [ollamaOverlay];
 
   networking = {
     networkmanager.enable = true;

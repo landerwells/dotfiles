@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-latest.url = "github:nixos/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -53,6 +54,7 @@
     emacs-overlay,
     apple-fonts,
     nixpkgs,
+    nixpkgs-latest,
   } @ inputs: let
     user = "landerwells";
     linuxSystems = ["x86_64-linux" "aarch64-linux"];
