@@ -182,6 +182,32 @@
   (setq gptel-model 'claude-sonnet-4-6)
   (setq gptel-default-mode 'org-mode))
 
+(use-package! claude-code
+  :after vterm
+  :config
+  (setq claude-code-terminal-backend 'vterm)
+  (claude-code-mode))
+
+;; Claude-code keybindings live under `SPC o l c' so they don't shadow Doom's
+;; `:tools llm' gptel bindings under `SPC o l'.
+(map! :leader
+      (:prefix ("o l c" . "claude-code")
+       :desc "Transient menu"       "m" #'claude-code-transient
+       :desc "Start Claude"         "c" #'claude-code
+       :desc "Start in directory"   "d" #'claude-code-start-in-directory
+       :desc "Continue session"     "C" #'claude-code-continue
+       :desc "Resume session"       "R" #'claude-code-resume
+       :desc "Toggle window"        "t" #'claude-code-toggle
+       :desc "Switch to buffer"     "b" #'claude-code-switch-to-buffer
+       :desc "Kill Claude"          "k" #'claude-code-kill
+       :desc "Send command"         "s" #'claude-code-send-command
+       :desc "Send with context"    "x" #'claude-code-send-command-with-context
+       :desc "Send region/buffer"   "r" #'claude-code-send-region
+       :desc "Send buffer file"     "f" #'claude-code-send-buffer-file
+       :desc "Fix error at point"   "e" #'claude-code-fix-error-at-point
+       :desc "Toggle read-only"     "z" #'claude-code-toggle-read-only-mode
+       :desc "Cycle Claude modes"   "M" #'claude-code-cycle-mode))
+
 (use-package folgezett
   :load-path "~/Developer/folgezett.el"
   :after org-roam

@@ -12,6 +12,10 @@
       "rev": "ce8d176faa4643e026e597ae3c31db59b63cef09",
       "src": "https://github.com/catppuccin/nvim.git"
     },
+    "doom-one.nvim": {
+      "rev": "beae92173315c7282f6897e666cfd67fbf0f3ac9",
+      "src": "https://github.com/NTBBloodbath/doom-one.nvim.git"
+    },
     "gitsigns.nvim": {
       "rev": "6e3c66548035e50db7bd8e360a29aec6620c3641",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"

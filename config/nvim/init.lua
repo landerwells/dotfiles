@@ -43,6 +43,7 @@ vim.opt.updatetime = 50
 vim.opt.winblend = 0
 
 vim.pack.add({
+  { src = "https://github.com/NTBBloodbath/doom-one.nvim.git" },
   { src = "https://github.com/mrcjkb/rustaceanvim.git" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
@@ -104,7 +105,21 @@ require "no-neck-pain".setup({
   width = 120,
 })
 
-vim.cmd "colorscheme gruvbox"
+-- doom-one configuration (must be set before colorscheme)
+vim.g.doom_one_cursor_coloring = false
+vim.g.doom_one_terminal_colors = true
+vim.g.doom_one_italic_comments = true
+vim.g.doom_one_enable_treesitter = true
+vim.g.doom_one_pumblend_enable = false
+vim.g.doom_one_pumblend_transparency = 20
+vim.g.doom_one_plugin_telescope = true
+vim.g.doom_one_plugin_lspsaga = false
+vim.g.doom_one_plugin_nvim_tree = false
+vim.g.doom_one_plugin_which_key = true
+vim.g.doom_one_plugin_indent_blankline = true
+vim.g.doom_one_plugin_gitsigns = true
+
+vim.cmd "colorscheme doom-one"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 

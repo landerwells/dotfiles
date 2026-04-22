@@ -22,6 +22,8 @@ with pkgs; [
   helix
   ispell
   killall
+  libtool
+  libvterm
   nodejs_24
   openssh
   pass

@@ -1,6 +1,6 @@
 font-family = "SFMono Nerd Font"
 font-size = 16
-theme = doom-one
+theme = Doom One
 
 keybind = ctrl+[=text:\u0017
 keybind = alt+[=text:\u0017
