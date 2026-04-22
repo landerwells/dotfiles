@@ -1,6 +1,8 @@
 font-family = "SFMono Nerd Font"
-theme = Gruvbox Dark
+font-size = 16
+theme = doom-one
 
 keybind = ctrl+[=text:\u0017
 keybind = alt+[=text:\u0017
+keybind = ctrl+backspace=text:\u0017
 

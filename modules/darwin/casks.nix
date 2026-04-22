@@ -3,6 +3,7 @@ _: [
   "alacritty"
   "anki"
   "bitwarden"
+  "claude"
   "discord"
   "emacs-mac"
   "firefox"

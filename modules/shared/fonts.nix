@@ -11,5 +11,5 @@ with pkgs; [
   nerd-fonts.roboto-mono
 
   # SF Mono from Lyndeno/apple-fonts.nix
-  # inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd
+  inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd
 ]
