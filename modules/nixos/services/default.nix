@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./adguardhome.nix # DNS ad-blocking
     ./desktop.nix # Display manager, X server, XDG portal
     ./emacs.nix # Emacs daemon
     ./flatpak.nix # Flatpak

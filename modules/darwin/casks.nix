@@ -8,6 +8,7 @@ _: [
   "emacs-mac"
   "firefox"
   "karabiner-elements"
+  "ghostty"
   "linearmouse"
   "maccy"
   "raycast"
