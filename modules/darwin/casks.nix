@@ -1,6 +1,5 @@
 _: [
   "aerospace"
-  "alacritty"
   "anki"
   "bitwarden"
   "claude"
@@ -16,5 +15,5 @@ _: [
   "syncthing-app"
   "tailscale-app"
   "zed"
-  "mole"
+  "obsidian"
 ]

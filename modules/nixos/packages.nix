@@ -47,4 +47,5 @@ in
     zotero
     vscode
     ghostty
+    libvterm
   ]

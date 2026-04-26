@@ -33,16 +33,18 @@ in {
     };
   };
 
-  xdg.desktopEntries.org-protocol = {
-    name = "Org Protocol";
-    comment = "Handle org-protocol:// URLs";
-    exec = "emacsclient -- %u";
-    icon = "emacs";
-    type = "Application";
-    terminal = false;
-    categories = ["System"];
-    mimeType = ["x-scheme-handler/org-protocol"];
-    noDisplay = true;
+  xdg.desktopEntries = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+    org-protocol = {
+      name = "Org Protocol";
+      comment = "Handle org-protocol:// URLs";
+      exec = "emacsclient -- %u";
+      icon = "emacs";
+      type = "Application";
+      terminal = false;
+      categories = ["System"];
+      mimeType = ["x-scheme-handler/org-protocol"];
+      noDisplay = true;
+    };
   };
 
   home.packages = [];

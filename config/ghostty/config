@@ -2,7 +2,6 @@ font-family = "SFMono Nerd Font"
 font-size = 16
 theme = Doom One
 
-keybind = ctrl+[=text:\u0017
-keybind = alt+[=text:\u0017
-keybind = ctrl+backspace=text:\u0017
+keybind = ctrl+backspace=text:\x17
+keybind = alt+backspace=text:\x17
 

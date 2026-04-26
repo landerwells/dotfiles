@@ -3,9 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "margin-top": 6,
-  "margin-left": 8,
-  "margin-right": 8,
+  "height": 26,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
@@ -43,12 +41,12 @@
   },
   "cpu": {
     "interval": 5,
-    "format": "󰍛 {usage}%",
+    "format": "󰍛",
     "on-click-right": "alacritty"
   },
   "clock": {
-    "format": "  {:L%A %I:%M %p}",
-    "format-alt": "  {:L%B %d, %Y}",
+    "format": "{:L%A %H:%M}",
+    "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false
   },
   "network": {
@@ -57,23 +55,24 @@
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
     "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n{bandwidthDownBytes} down  {bandwidthUpBytes} up",
-    "tooltip-format-ethernet": "{bandwidthDownBytes} down  {bandwidthUpBytes} up",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)",
+    "tooltip-format-ethernet": "Connected",
     "tooltip-format-disconnected": "Disconnected",
-    "interval": 3
+    "interval": 3,
+    "spacing": 1
   },
   "battery": {
-    "format": "{icon}  {capacity}%",
-    "format-discharging": "{icon}  {capacity}%",
-    "format-charging": "󰂄  {capacity}%",
-    "format-plugged": "  {capacity}%",
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
     "format-icons": {
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
-    "format-full": "󰂅  Full",
-    "tooltip-format-discharging": "{power:.1f}W  {timeTo}",
-    "tooltip-format-charging": "{power:.1f}W  {timeTo}",
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
     "states": {
       "warning": 20,
@@ -84,16 +83,16 @@
     "format": "",
     "format-off": "󰂲",
     "format-disabled": "󰂲",
-    "format-connected": "󰂱 {num_connections}",
+    "format-connected": "󰂱",
     "format-no-controller": "",
-    "tooltip-format": "{num_connections} connected"
+    "tooltip-format": "Devices connected: {num_connections}"
   },
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
+    "format": "{icon}",
     "on-click-right": "pamixer -t",
-    "tooltip-format": "{volume}%",
+    "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
-    "format-muted": "  Muted",
+    "format-muted": "",
     "format-icons": {
       "headphone": "",
       "headset": "",
@@ -103,7 +102,7 @@
   "group/tray-expander": {
     "orientation": "inherit",
     "drawer": {
-      "transition-duration": 400,
+      "transition-duration": 600,
       "children-class": "tray-group-item"
     },
     "modules": ["custom/expand-icon", "tray"]
@@ -117,7 +116,7 @@
     "on-scroll-right": ""
   },
   "tray": {
-    "icon-size": 14,
-    "spacing": 10
+    "icon-size": 12,
+    "spacing": 17
   }
 }

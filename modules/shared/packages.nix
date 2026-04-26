@@ -23,7 +23,8 @@ with pkgs; [
   ispell
   killall
   libtool
-  libvterm
+  yazi
+
   nodejs_24
   openssh
   pass

@@ -34,8 +34,11 @@ fi
 
 export KEYTIMEOUT=1
 
-# bindkey '^?' backward-delete-char
-# Need to figure out why when searching can't backspace?
+bindkey -M viins '^?' backward-delete-char
+bindkey -M vicmd '^?' backward-delete-char
+bindkey -M isearch '^?' backward-delete-char
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-forward
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -105,4 +108,5 @@ source ~/dotfiles/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(direnv hook zsh)"
+eval "$(gh completion -s zsh)"
 

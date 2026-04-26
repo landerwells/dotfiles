@@ -43,6 +43,30 @@
 (setq citar-library-paths '("~/Books")
       citar-notes-paths '("~/org/roam"))
 
+;; Org-cite: use CSL (citeproc) with IEEE style for all export backends,
+;; including ox-hugo. See https://ox-hugo.scripter.co/doc/org-cite-citations/
+(after! oc
+  (setq org-cite-csl-styles-dir (expand-file-name "csl" doom-user-dir)
+        org-cite-export-processors '((t csl "ieee.csl"))))
+
+(defun lw/org-auto-print-bibliography (backend)
+  "Append `#+print_bibliography:' when exporting a buffer with citations.
+Runs on the transient export copy, so the source note is untouched.
+Only acts when BACKEND derives from hugo and the buffer has at least one
+citation but no existing print_bibliography keyword."
+  (when (org-export-derived-backend-p backend 'hugo)
+    (save-excursion
+      (goto-char (point-min))
+      (when (and (re-search-forward org-element-citation-prefix-re nil t)
+                 (not (save-excursion
+                        (goto-char (point-min))
+                        (re-search-forward "^[ \t]*#\\+print_bibliography:" nil t))))
+        (goto-char (point-max))
+        (unless (bolp) (insert "\n"))
+        (insert "\n#+print_bibliography:\n")))))
+
+(add-hook 'org-export-before-processing-functions #'lw/org-auto-print-bibliography)
+
 (after! org
   ;; Enable org modules
   (add-to-list 'org-modules 'org-habit t)
