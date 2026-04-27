@@ -17,6 +17,7 @@ with pkgs; [
   ffmpeg_6
   fzf
   gemini-cli
+  pi-agent
   gh
   git
   helix

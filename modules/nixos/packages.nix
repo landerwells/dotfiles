@@ -48,4 +48,5 @@ in
     vscode
     ghostty
     libvterm
+    mangohud
   ]
