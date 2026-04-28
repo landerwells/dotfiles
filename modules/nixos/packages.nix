@@ -17,7 +17,6 @@ in
     flatpak
     font-manager
     fontconfig
-    foot
     gcc
     gnuplot
     hyprlock
