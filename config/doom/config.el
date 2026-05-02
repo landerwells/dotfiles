@@ -22,11 +22,6 @@
       :n "C-k" #'evil-window-up
       :n "C-l" #'evil-window-right)
 
-;; Leader keybindings
-;; (map! :leader
-;;                                         ; :desc "Toggle Olivetti mode" "z" #'olivetti-mode
-;;       :desc "Search org-roam notes" "n r s" #'consult-ripgrep)
-
 ;;; Org Mode & Org-Roam
 
 ;; Set directories before org loads
@@ -95,8 +90,12 @@ citation but no existing print_bibliography keyword."
   (require 'org-roam-protocol)
   ;; Capture templates
   (setq org-roam-capture-templates
-        '(("m" "main" plain
-           "%?"
+        '(("f" "fleeting" plain "%?"
+           :if-new (file+head "fleeting/${title}.org"
+                              "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
+           :immediate-finish t
+           :unnarrowed t)
+          ("m" "main" plain "%?"
            :if-new (file+head "main/${title}.org"
                               "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :draft:\n")
            :immediate-finish t
@@ -212,6 +211,7 @@ citation but no existing print_bibliography keyword."
   :config
   (setq folgezett-capture-keys '("m"))
   (setq folgezett-db-link-parent t)
+  (setq folgezett-include-id-in-filename t)
   (folgezett-setup))
 
 (map! :leader

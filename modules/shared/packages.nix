@@ -34,6 +34,7 @@ with pkgs; [
   tmux
   tokei
   tree
+  lazygit
   typst
   unrar
   unzip

@@ -33,7 +33,7 @@ blacklist = [
   "tiktok.com",
   "twitter.com/home",
   "youtube.com",
-  "linkedin.com",
+  "linkedin.com/*",
 ]
 
 [[blocks]]
