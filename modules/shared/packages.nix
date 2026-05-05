@@ -46,6 +46,7 @@ with pkgs; [
   neovim
   wgsl-analyzer
   gdb
+  lldb
   zig
   sqlite
 ]

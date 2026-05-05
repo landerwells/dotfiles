@@ -3,7 +3,7 @@
 ;;; General Settings
 (setq doom-theme 'doom-one
       display-line-numbers-type 'relative
-      scroll-margin 8)
+      scroll-margin 0)
 
 ;; Indentation
 (setq-default tab-width 2

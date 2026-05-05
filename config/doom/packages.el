@@ -54,10 +54,5 @@
 (package! org-gcal)
 (package! org-roam-ui)
 (package! ox-hugo)
-
 (package! inheritenv)
-(package! claude-code
-  :recipe (:host github :repo "stevemolitor/claude-code.el"
-           :branch "main" :depth 1
-           :files ("*.el" (:exclude "images/*"))))
 
