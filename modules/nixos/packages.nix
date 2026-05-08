@@ -48,4 +48,5 @@ in
     ghostty
     libvterm
     mangohud
+    jetbrains.clion
   ]
