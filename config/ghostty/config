@@ -1,13 +1,6 @@
 font-family = "SFMono Nerd Font"
 font-size = 14
-font-thicken = true
 theme = Doom One
-
-window-padding-x = 12
-window-padding-y = 12
-window-padding-balance = true
-window-decoration = false
-background-opacity = 0.97
 
 cursor-style = block
 cursor-style-blink = false

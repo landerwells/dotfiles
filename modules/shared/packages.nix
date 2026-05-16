@@ -4,13 +4,14 @@
 }:
 with pkgs; [
   aspell
-  direnv
+  # direnv
   aspellDicts.en
   bat
   bc
   btop
   coreutils
   claude-code
+  codex
   dig
   cmake
   fd

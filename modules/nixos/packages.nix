@@ -11,7 +11,6 @@ in
     anki
     blender
     blueman
-    direnv
     discord
     firefox
     flatpak

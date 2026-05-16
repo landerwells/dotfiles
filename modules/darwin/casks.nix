@@ -4,6 +4,7 @@ _: [
   "bitwarden"
   "claude"
   "discord"
+  "clion"
   "emacs-mac"
   "firefox"
   "karabiner-elements"
