@@ -5,6 +5,7 @@
   ...
 }: let
   configDir = "${config.home.homeDirectory}/dotfiles/config";
+  piAgentDir = "${configDir}/pi/agent";
 
   configFiles = builtins.listToAttrs (
     map (name: {
@@ -15,10 +16,16 @@
     })
     (builtins.attrNames (builtins.readDir ../config))
   );
+
+  piAgentFiles = {
+    ".pi/agent/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${piAgentDir}/settings.json";
+    ".pi/agent/extensions".source = config.lib.file.mkOutOfStoreSymlink "${piAgentDir}/extensions";
+    ".pi/agent/themes".source = config.lib.file.mkOutOfStoreSymlink "${piAgentDir}/themes";
+  };
 in {
   home.stateVersion = "25.11";
 
-  home.file = configFiles;
+  home.file = configFiles // piAgentFiles;
 
   programs = {
     git = {
@@ -53,6 +60,7 @@ in {
     "${config.home.homeDirectory}/dotfiles/bin/x86_64-linux"
   ];
   home.sessionVariables = {
+    PI_SKIP_VERSION_CHECK = "1";
     XCURSOR_PATH = "${config.home.homeDirectory}/dotfiles/assets/cursors";
     PATH = "${config.home.homeDirectory}/.config/emacs/bin:${config.home.homeDirectory}/dotfiles/bin:$PATH";
     LESSHISTFILE = "";

@@ -3,6 +3,7 @@
   inputs,
 }:
 with pkgs; [
+  alejandra
   aspell
   direnv
   aspellDicts.en

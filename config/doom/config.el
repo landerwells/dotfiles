@@ -208,10 +208,13 @@ citation but no existing print_bibliography keyword."
 (use-package folgezett
   :load-path "~/Developer/folgezett.el"
   :after org-roam
+  :init
+  ;; Automatically prepend the folgezettel ID to captured note filenames.
+  ;; `folgezett-capture-keys' restricts this to the "main" org-roam template.
+  (setq folgezett-capture-keys '("m")
+        folgezett-db-link-parent t
+        folgezett-include-id-in-filename t)
   :config
-  (setq folgezett-capture-keys '("m"))
-  (setq folgezett-db-link-parent t)
-  (setq folgezett-include-id-in-filename t)
   (folgezett-setup))
 
 (map! :leader
