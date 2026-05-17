@@ -4,7 +4,7 @@
 }:
 with pkgs; [
   aspell
-  # direnv
+  direnv
   aspellDicts.en
   bat
   bc
