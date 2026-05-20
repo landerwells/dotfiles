@@ -39,6 +39,10 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pi = {
+      url = "github:lukasl-dev/pi.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -55,6 +59,7 @@
     apple-fonts,
     nixpkgs,
     nixpkgs-latest,
+    pi,
   } @ inputs: let
     user = "landerwells";
     linuxSystems = ["x86_64-linux" "aarch64-linux"];

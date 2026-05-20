@@ -8,7 +8,10 @@
     overlays = [
       inputs.rust-overlay.overlays.default
       inputs.emacs-overlay.overlays.default
-      (import ../../overlays/pi-agent.nix)
+      inputs.pi.overlays.default
+      (final: prev: {
+        pi-agent = prev.pi-coding-agent;
+      })
     ];
     config = {
       allowUnfree = true;
