@@ -67,6 +67,9 @@ citation but no existing print_bibliography keyword."
   (add-to-list 'org-modules 'org-habit t)
   (add-to-list 'org-modules 'org-protocol t)
 
+  ;; Org Babel support for SICP Scheme blocks.
+  (require 'ob-scheme)
+
   ;; Capture templates
   (setq org-capture-templates
         '(("i" "Inbox" entry (file "roam/agenda/todo.org")
@@ -182,8 +185,33 @@ citation but no existing print_bibliography keyword."
   (add-to-list 'projectile-project-root-functions
                #'lw/projectile-root-search-path-child t))
 
-;; Racket/Geiser configuration
-(setq geiser-racket-extra-keywords '("require" "sicp"))
+;; Racket/Geiser/SICP configuration
+(after! geiser
+  (setq geiser-default-implementation 'racket
+        geiser-active-implementations '(racket)
+        geiser-repl-startup-forms '("(require sicp)")))
+
+(after! geiser-racket
+  (setq geiser-racket-extra-keywords '("require" "sicp")))
+
+;; Register the SICP session with Doom's built-in `SPC o r' REPL popup.
+(set-popup-rule! "^sicp$" :side 'bottom :size 0.3 :select t :quit 'current :ttl nil)
+
+(defun lw/sicp-repl-buffer ()
+  "Return the Org Babel/Geiser Racket REPL buffer named `sicp'."
+  (interactive)
+  (require 'ob-scheme)
+  (require 'geiser-racket)
+  (or (get-buffer "sicp")
+      (cl-find-if (lambda (buf)
+                    (with-current-buffer buf
+                      (and (derived-mode-p 'geiser-repl-mode)
+                           (eq geiser-impl--implementation 'racket))))
+                  (buffer-list))
+      (org-babel-scheme-get-repl 'racket "sicp")))
+
+(set-repl-handler! 'org-mode #'lw/sicp-repl-buffer
+  :persist t)
 
 ;;; Private Configuration
 

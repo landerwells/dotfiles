@@ -1,7 +1,7 @@
 {
   "enableInstallTelemetry": false,
-  "lastChangelogVersion": "0.73.0",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.75.3",
+  "defaultThinkingLevel": "high",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex"
+  "defaultModel": "gpt-5.5"
 }
