@@ -9,14 +9,6 @@
   sshKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqnqCb9HNWRQ2zZYaGFXJJ85W4IKKA9U0rci1A3dMNa"
   ];
-
-  ollamaPkgs = import inputs.nixpkgs-latest {
-    system = pkgs.stdenv.hostPlatform.system;
-    config.allowUnfree = true;
-  };
-  ollamaOverlay = final: prev: {
-    ollama-vulkan = ollamaPkgs.ollama-vulkan;
-  };
 in {
   imports = [
     ../../modules/shared
@@ -55,7 +47,6 @@ in {
 
   # Hardware platform
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  nixpkgs.overlays = [ollamaOverlay];
 
   networking = {
     networkmanager.enable = true;
@@ -180,17 +171,6 @@ in {
   fonts.packages = import ../../modules/shared/fonts.nix {inherit pkgs inputs;};
 
   virtualisation.virtualbox.host.enable = true;
-
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-vulkan; # ollama-cuda broken in current nixpkgs (cuda_compat-12.9 missing $src)
-    loadModels = ["gemma4"]; # gemma4 is MoE; "e4b" default fits well in 12GB VRAM
-    environmentVariables = {
-      OLLAMA_FLASH_ATTENTION = "1"; # Better VRAM efficiency on 4070
-      OLLAMA_MAX_LOADED_MODELS = "1"; # Only keep one model loaded (12GB VRAM)
-      OLLAMA_NUM_PARALLEL = "2"; # Parallel request slots
-    };
-  };
 
   system.stateVersion = "21.05";
 }

@@ -41,6 +41,7 @@ with pkgs; [
   unrar
   unzip
   wget
+  yt-dlp
   zip
   (rust-bin.stable.latest.default.override {
     extensions = ["rust-src" "rust-analyzer"];
