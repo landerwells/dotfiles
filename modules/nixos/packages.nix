@@ -43,6 +43,9 @@ in
     wiremix
     wireplumber
     wl-clipboard
+    xwayland
+    xeyes
+    xprop
     zathura
     zed-editor
     zotero
