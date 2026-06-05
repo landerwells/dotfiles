@@ -11,14 +11,11 @@ with pkgs; [
   bc
   btop
   coreutils
-  claude-code
-  codex
   dig
   cmake
   fd
   ffmpeg_6
   fzf
-  gemini-cli
   pi-agent
   gh
   git

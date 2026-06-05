@@ -17,11 +17,14 @@ in
     font-manager
     fontconfig
     gcc
+    ghostty
     gnuplot
     hyprlock
+    hyprpaper
     hyprpicker
     hyprshot
-    kdePackages.dolphin
+    libvterm
+    mangohud
     obs-studio
     obsidian
     pamixer
@@ -31,11 +34,11 @@ in
     rofi
     sioyek
     spotify
-    hyprpaper
     unixtools.ifconfig
     unixtools.netstat
     valgrind
     vlc
+    vscode
     waybar
     wiremix
     wireplumber
@@ -43,9 +46,4 @@ in
     zathura
     zed-editor
     zotero
-    vscode
-    ghostty
-    libvterm
-    mangohud
-    jetbrains.clion
   ]

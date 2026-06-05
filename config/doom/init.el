@@ -86,6 +86,8 @@
        :checkers
        syntax             ; tasing you for every semicolon you forget
        ;;(spell +flyspell) ; tasing you for misspelling mispelling
+       (when (not (eq system-type 'darwin))
+         (spell +flyspell))
        grammar            ; tasing grammar mistake every you make
 
        :tools

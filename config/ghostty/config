@@ -1,6 +1,6 @@
 font-family = "SFMono Nerd Font"
 font-size = 14
-theme = Doom One
+theme = Gruvbox Dark
 
 cursor-style = block
 cursor-style-blink = false

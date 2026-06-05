@@ -106,20 +106,20 @@ require "no-neck-pain".setup({
 })
 
 -- doom-one configuration (must be set before colorscheme)
-vim.g.doom_one_cursor_coloring = false
-vim.g.doom_one_terminal_colors = true
-vim.g.doom_one_italic_comments = true
-vim.g.doom_one_enable_treesitter = true
-vim.g.doom_one_pumblend_enable = false
-vim.g.doom_one_pumblend_transparency = 20
-vim.g.doom_one_plugin_telescope = true
-vim.g.doom_one_plugin_lspsaga = false
-vim.g.doom_one_plugin_nvim_tree = false
-vim.g.doom_one_plugin_which_key = true
-vim.g.doom_one_plugin_indent_blankline = true
-vim.g.doom_one_plugin_gitsigns = true
+-- vim.g.doom_one_cursor_coloring = false
+-- vim.g.doom_one_terminal_colors = true
+-- vim.g.doom_one_italic_comments = true
+-- vim.g.doom_one_enable_treesitter = true
+-- vim.g.doom_one_pumblend_enable = false
+-- vim.g.doom_one_pumblend_transparency = 20
+-- vim.g.doom_one_plugin_telescope = true
+-- vim.g.doom_one_plugin_lspsaga = false
+-- vim.g.doom_one_plugin_nvim_tree = false
+-- vim.g.doom_one_plugin_which_key = true
+-- vim.g.doom_one_plugin_indent_blankline = true
+-- vim.g.doom_one_plugin_gitsigns = true
 
-vim.cmd "colorscheme doom-one"
+vim.cmd "colorscheme gruvbox"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 
@@ -260,11 +260,22 @@ vim.diagnostic.config({
   },
 })
 
+vim.lsp.config("zls", {
+  settings = {
+    zls = {
+      enable_inlay_hints = true,
+      enable_snippets = true,
+      warn_style = true,
+    },
+  },
+})
+
 vim.lsp.enable(
   {
     "clangd",
     "lua_ls",
     "nixd",
+    "zls",
   }
 )
 
