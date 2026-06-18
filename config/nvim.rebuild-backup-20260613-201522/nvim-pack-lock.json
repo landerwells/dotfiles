@@ -5,8 +5,8 @@
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "blink.cmp": {
-      "rev": "4e9edba1b1cef1585cc65e54287229e5d34e4df8",
-      "src": "https://github.com/Saghen/blink.cmp.git"
+      "rev": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8",
+      "src": "https://github.com/Saghen/blink.cmp"
     },
     "catppuccin": {
       "rev": "ce8d176faa4643e026e597ae3c31db59b63cef09",
@@ -29,7 +29,7 @@
       "src": "https://github.com/ellisonleao/gruvbox.nvim.git"
     },
     "harpoon": {
-      "rev": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3",
+      "rev": "ed1f853847ffd04b2b61c314865665e1dadf22c7",
       "src": "https://github.com/ThePrimeagen/harpoon.git"
     },
     "harpoon-lualine": {
@@ -134,8 +134,8 @@
       "src": "https://github.com/mbbill/undotree.git"
     },
     "vague.nvim": {
-      "rev": "dba28050887c2810b5ebf9e0143b4e919bd55757",
-      "src": "https://github.com/vague-theme/vague.nvim.git"
+      "rev": "6c44ca64a7efc89bb86f501602e6ddd51bc92b3a",
+      "src": "https://github.com/vague2k/vague.nvim"
     },
     "vim-sleuth": {
       "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",

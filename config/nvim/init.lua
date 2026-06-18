@@ -46,6 +46,7 @@ vim.pack.add({
   { src = "https://github.com/NTBBloodbath/doom-one.nvim.git" },
   { src = "https://github.com/mrcjkb/rustaceanvim.git" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
+  { src = "https://github.com/Saghen/blink.cmp.git" },
   { src = "https://github.com/christoomey/vim-tmux-navigator.git" },
   { src = "https://github.com/folke/which-key.nvim.git" },
   { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
@@ -79,15 +80,38 @@ require "telescope".setup({
   },
 })
 
--- vim.api.nvim_create_autocmd('FileType', {
--- 	pattern = { 'markdown', 'lua', 'rust', 'c', 'cpp', 'wgsl', 'wgsl_bevy' },
--- 	callback = function() vim.treesitter.start() end,
--- })
+local treesitter_parsers = {
+  "bash",
+  "c",
+  "cpp",
+  "json",
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "nix",
+  "rust",
+  "toml",
+  "vim",
+  "vimdoc",
+  "wgsl",
+  "yaml",
+  "zig",
+}
 
-vim.filetype.add({extension = {wgsl = "wgsl"}})
+require("nvim-treesitter").install(treesitter_parsers)
 
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = treesitter_parsers,
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo.foldlevel = 99
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
+vim.filetype.add({extension = {wgsl = "wgsl", zon = "zig"}})
 vim.o.foldlevelstart = 99 -- do not close folds when a buffer is opened
 
 require "oil".setup({
@@ -126,6 +150,47 @@ vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 require "luasnip".setup({ enable_autosnippets = true })
 require "luasnip.loaders.from_lua".load({ paths = "~/.config/nvim/snippets/" })
 
+require("blink.cmp").setup({
+  keymap = { preset = "default" },
+  snippets = { preset = "luasnip" },
+  completion = {
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 0,
+      window = {
+        border = "none",
+        winblend = 10,
+      },
+    },
+    ghost_text = { enabled = false },
+    menu = {
+      border = "none",
+      winblend = 10,
+      draw = {
+        columns = {
+          { "label", "label_description", gap = 1 },
+          { "kind" },
+        },
+      },
+    },
+  },
+  signature = {
+    enabled = true,
+    window = {
+      border = "none",
+      winblend = 10,
+      show_documentation = true,
+    },
+  },
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
+  appearance = {
+    nerd_font_variant = "normal",
+  },
+  fuzzy = { implementation = "lua" },
+})
+
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
@@ -139,9 +204,7 @@ map("n", "N", "Nzz")
 map('v', '<leader>p', '"_dP')
 map("i", "<C-BS>", "<C-w>")
 
--- LSP
-map('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })
-map("n", "<leader>k", function() vim.diagnostic.open_float() end)
+-- LSP mappings are buffer-local in the LspAttach autocmd below.
 
 -- Telescope
 local builtin = require('telescope.builtin')
@@ -162,9 +225,8 @@ end)
 map("n", "<leader>z", vim.cmd.NoNeckPain)
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
 
--- LuaSnip
+-- LuaSnip fallback jumps. Blink.cmp owns completion, docs, signatures, and <Tab>/<S-Tab> snippet navigation.
 local ls = require("luasnip")
-map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 
@@ -260,28 +322,131 @@ vim.diagnostic.config({
   },
 })
 
+local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
+
+vim.g.rustaceanvim = {
+  server = {
+    capabilities = lsp_capabilities,
+    default_settings = {
+      ["rust-analyzer"] = {
+        cargo = { allFeatures = true },
+        check = { command = "clippy" },
+      },
+    },
+  },
+}
+
+vim.lsp.config("*", {
+  capabilities = lsp_capabilities,
+})
+
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      diagnostics = { globals = { "vim" } },
+      workspace = {
+        checkThirdParty = false,
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = { enable = false },
+    },
+  },
+})
+
+vim.lsp.config("nixd", {
+  settings = {
+    nixd = {
+      formatting = { command = { "alejandra" } },
+    },
+  },
+})
+
+local function zig_env_value(name)
+  if vim.fn.executable("zig") ~= 1 then
+    return nil
+  end
+
+  local output = vim.fn.systemlist({ "zig", "env" })
+  if vim.v.shell_error ~= 0 then
+    return nil
+  end
+
+  local pattern = "%s*%." .. name .. "%s*=%s*\"([^\"]+)\""
+  for _, line in ipairs(output) do
+    local value = line:match(pattern)
+    if value then
+      return value
+    end
+  end
+end
+
 vim.lsp.config("zls", {
   settings = {
     zls = {
       enable_inlay_hints = true,
       enable_snippets = true,
+      semantic_tokens = "full",
       warn_style = true,
+      zig_exe_path = zig_env_value("zig_exe"),
+      zig_lib_path = zig_env_value("lib_dir"),
     },
   },
 })
 
-vim.lsp.enable(
-  {
-    "clangd",
-    "lua_ls",
-    "nixd",
-    "zls",
-  }
-)
+local lsp_servers = {
+  clangd = "clangd",
+  lua_ls = "lua-language-server",
+  nixd = "nixd",
+  wgsl_analyzer = "wgsl-analyzer",
+  zls = "zls",
+}
 
-map('i', '<c-e>', function() vim.lsp.completion.get() end)
+local enabled_lsp_servers = {}
+for server, executable in pairs(lsp_servers) do
+  if vim.fn.executable(executable) == 1 then
+    table.insert(enabled_lsp_servers, server)
+  end
+end
+vim.lsp.enable(enabled_lsp_servers)
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local function lsp_map(mode, lhs, rhs, desc)
+      map(mode, lhs, rhs, { buffer = args.buf, silent = true, desc = desc })
+    end
 
--- map('n', '<leader>lf', vim.lsp.buf.format)
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
+    lsp_map("n", "gd", vim.lsp.buf.definition, "LSP: go to definition")
+    lsp_map("n", "gD", vim.lsp.buf.declaration, "LSP: go to declaration")
+    lsp_map("n", "gr", vim.lsp.buf.references, "LSP: references")
+    lsp_map("n", "gI", vim.lsp.buf.implementation, "LSP: implementation")
+    lsp_map("n", "gy", vim.lsp.buf.type_definition, "LSP: type definition")
+    lsp_map("n", "K", vim.lsp.buf.hover, "LSP: hover documentation")
+    lsp_map({ "n", "i" }, "<M-k>", vim.lsp.buf.signature_help, "LSP: signature help")
+    lsp_map("n", "<leader>k", vim.diagnostic.open_float, "Diagnostics: current line")
+    lsp_map("n", "<leader>la", vim.lsp.buf.code_action, "LSP: code action")
+    lsp_map("n", "<leader>lr", vim.lsp.buf.rename, "LSP: rename")
+    lsp_map("n", "<leader>ls", builtin.lsp_document_symbols, "LSP: document symbols")
+    lsp_map("n", "<leader>lS", builtin.lsp_dynamic_workspace_symbols, "LSP: workspace symbols")
+    lsp_map("n", "<leader>lf", function()
+      vim.lsp.buf.format({ bufnr = args.buf, async = true })
+    end, "LSP: format buffer")
+    lsp_map("n", "<leader>li", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }), { bufnr = args.buf })
+    end, "LSP: toggle inlay hints")
+    lsp_map("n", "[d", function()
+      vim.diagnostic.jump({ count = -1, float = true })
+    end, "Diagnostics: previous")
+    lsp_map("n", "]d", function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end, "Diagnostics: next")
+
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+      vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+    end
+  end,
+})
+
+vim.cmd [[set completeopt=menu,menuone,noinsert,noselect,popup]]
 

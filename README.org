@@ -3,8 +3,6 @@ my system if needed. First I need to transition away from ~apps/~ directory and
 put everything in bin, and then keep that more organized with scripts.
 
 
-
-
 Some goals I have for this rewrite:
 - Fully declarative Syncthing with secrets managed in repo
 - Password management in repo

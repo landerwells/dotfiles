@@ -16,7 +16,6 @@ with pkgs; [
   fd
   ffmpeg_6
   fzf
-  pi-agent
   gh
   git
   helix
@@ -25,6 +24,9 @@ with pkgs; [
   libtool
   yazi
 
+  clang-tools
+  lua-language-server
+  nixd
   nodejs_24
   openssh
   pass
@@ -48,5 +50,6 @@ with pkgs; [
   gdb
   lldb
   zig
+  zls
   sqlite
 ]
