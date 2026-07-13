@@ -158,15 +158,6 @@ citation but no existing print_bibliography keyword."
   (setq which-key-idle-delay 0
         which-key-idle-secondary-delay 0))
 
-(after! elfeed
-  (setq rmh-elfeed-org-files (list "~/dotfiles/config/doom/elfeed.org"))
-
-  ;; Auto-update when opening elfeed
-  (add-hook 'elfeed-search-mode-hook
-            (lambda ()
-              (unless (get-buffer "*elfeed-log*")
-                (elfeed-update)))))
-
 (after! projectile
   (setq projectile-project-search-path '(("~" . 1) ("~/Developer" . 1)))
 
@@ -184,54 +175,6 @@ citation but no existing print_bibliography keyword."
 
   (add-to-list 'projectile-project-root-functions
                #'lw/projectile-root-search-path-child t))
-
-;; Racket/Geiser/SICP configuration
-(after! geiser
-  (setq geiser-default-implementation 'racket
-        geiser-active-implementations '(racket)
-        geiser-repl-startup-forms '("(require sicp)")))
-
-(after! geiser-racket
-  (setq geiser-racket-extra-keywords '("require" "sicp")))
-
-;; Register the SICP session with Doom's built-in `SPC o r' REPL popup.
-(set-popup-rule! "^sicp$" :side 'bottom :size 0.3 :select t :quit 'current :ttl nil)
-
-(defun lw/sicp-repl-buffer ()
-  "Return the Org Babel/Geiser Racket REPL buffer named `sicp'."
-  (interactive)
-  (require 'ob-scheme)
-  (require 'geiser-racket)
-  (or (get-buffer "sicp")
-      (cl-find-if (lambda (buf)
-                    (with-current-buffer buf
-                      (and (derived-mode-p 'geiser-repl-mode)
-                           (eq geiser-impl--implementation 'racket))))
-                  (buffer-list))
-      (org-babel-scheme-get-repl 'racket "sicp")))
-
-(set-repl-handler! 'org-mode #'lw/sicp-repl-buffer
-  :persist t)
-
-;;; Private Configuration
-
-;; Load private org-gcal credentials if available
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
-
-(after! gptel
-  (setq gptel-backend
-        (gptel-make-anthropic "Claude"
-          :stream t
-          :key (lambda ()
-                 (string-trim
-                  (with-temp-buffer
-                    (insert-file-contents
-                     (expand-file-name "private/anthropic-api-key" doom-private-dir))
-                    (buffer-string))))))
-  (setq gptel-model 'claude-sonnet-4-6)
-  (setq gptel-default-mode 'org-mode))
 
 (use-package folgezett
   :load-path "~/Developer/folgezett.el"
@@ -253,3 +196,87 @@ citation but no existing print_bibliography keyword."
        :desc "Show tree"        "t" #'folgezett-show-tree
        :desc "Reparent"         "r" #'folgezett-reparent
        :desc "Reparent subtree" "R" #'folgezett-reparent-subtree))
+
+;; I think this is truly the route I want to go down. Push straight to
+;; the server. All revisions will happen
+;;
+;; -- site: Any of the structured files that I would typically have in my website
+;; -- cards: Anything that comes from my main zettelkasten notes
+;; -- images? I think that should definitely work out
+;;
+;; What kind of automation do I want with this?
+;;
+;; I think there should be some sort of staging area? That would make the most sense.
+;; I don't just want to accidentally push a bunch of stuff. All I need to do is update
+;; htdocs/ when we get some new information
+;;
+;;
+;; I need to figure out how I want to handle
+(setq org-publish-project-alist
+      `(("cards"
+         :base-directory "~/org/roam/main"
+         :base-extension "org"
+         ;; :publishing-directory "/ssh:lw@fugu:/var/www/htdocs/notes"
+         :publishing-directory "~/org/roam/website"
+         :publishing-function org-html-publish-to-html
+         :headline-levels 3
+         :section-numbers nil
+         :with-toc nil
+
+         :html-head-include-default-style nil
+         :html-head-include-scripts nil
+
+         ;; Your stylesheet
+         :html-head
+         "<link rel=\"stylesheet\" href=\"main.css\">"
+         :html-preamble t)
+
+        ("images"
+         :base-directory "~/images/"
+         :base-extension "jpg\\|gif\\|png"
+         :publishing-directory "/ssh:user@host:~/html/images/"
+         :publishing-function org-publish-attachment)
+
+        ("website"
+         :base-directory "~/org/roam/website"
+         :base-extension "org"
+         :publishing-directory "/ssh:lw@fugu:/var/www/htdocs"
+         :publishing-function org-html-publish-to-html
+         :headline-levels 3
+         :section-numbers nil
+         :with-toc nil
+
+         :with-title nil
+         :html-head-include-default-style nil
+         :html-head-include-scripts nil
+         :with-date nil
+         :with-author nil
+
+         :html-preamble lw/html-preamble
+         ;; Your stylesheet
+         :html-head
+         "<link rel=\"stylesheet\" href=\"main.css\">"
+         :recursive t)
+
+        ("landerwells.com" :components ("cards" "images" "website"))))
+
+
+(defun lw/html-preamble (_plist)
+  "
+<header>
+  <nav>
+    <a href=\"/\">home</a>
+    <span> | </span>
+    <a href=\"/about/\">about</a>
+    <span> | </span>
+    <a href=\"/now/\">now</a>
+    <span> | </span>
+    <a href=\"/blog/\">blog</a>
+    <span> | </span>
+    <a href=\"/notes/\">notes</a>
+    <span> | </span>
+    <a href=\"/contact/\">contact</a>
+    <span> | </span>
+    <a href=\"/blog/index.xml\">RSS</a>
+  </nav>
+</header>")

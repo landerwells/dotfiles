@@ -24,6 +24,7 @@ with pkgs; [
   libtool
   yazi
 
+  python3
   clang-tools
   lua-language-server
   nixd

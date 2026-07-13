@@ -50,7 +50,6 @@
 
 (package! glsl-mode)
 (package! nov)
-(package! olivetti)
 (package! org-gcal)
 (package! org-roam-ui)
 (package! ox-hugo)
