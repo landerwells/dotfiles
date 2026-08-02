@@ -49,9 +49,5 @@
 ;; (unpin! t)
 
 (package! glsl-mode)
-(package! nov)
-(package! org-gcal)
 (package! org-roam-ui)
-(package! ox-hugo)
-(package! inheritenv)
 

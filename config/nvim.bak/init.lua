@@ -51,10 +51,10 @@ vim.pack.add({
   { src = "https://github.com/folke/which-key.nvim.git" },
   { src = "https://github.com/lewis6991/gitsigns.nvim.git" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim.git" },
-  { src = "https://github.com/ellisonleao/gruvbox.nvim.git" },
   { src = "https://github.com/morhetz/gruvbox.git" },
   { src = "https://github.com/nvim-lua/plenary.nvim.git" },
   { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/shortcuts/no-neck-pain.nvim.git" },
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/tpope/vim-surround.git" },
@@ -78,6 +78,37 @@ require "telescope".setup({
     },
     sorting_strategy = 'ascending', -- Show results from top to bottom
   },
+})
+
+local treesitter_parsers = {
+  "bash",
+  "c",
+  "cpp",
+  "json",
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "nix",
+  "rust",
+  "toml",
+  "vim",
+  "vimdoc",
+  "wgsl",
+  "yaml",
+  "zig",
+}
+
+require("nvim-treesitter").install(treesitter_parsers)
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = treesitter_parsers,
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo.foldlevel = 99
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
 })
 
 vim.filetype.add({extension = {wgsl = "wgsl", zon = "zig"}})
@@ -192,6 +223,7 @@ end)
 
 -- Plugin toggles
 map("n", "<leader>z", vim.cmd.NoNeckPain)
+map("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- LuaSnip fallback jumps. Blink.cmp owns completion, docs, signatures, and <Tab>/<S-Tab> snippet navigation.
 local ls = require("luasnip")

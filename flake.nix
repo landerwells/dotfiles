@@ -24,8 +24,8 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    homebrew-emacsmacport = {
-      url = "github:railwaycat/homebrew-emacsmacport";
+    homebrew-nikitabobko-tap = {
+      url = "github:nikitabobko/homebrew-tap";
       flake = false;
     };
     apple-fonts = {
@@ -53,7 +53,7 @@
     homebrew-bundle,
     homebrew-core,
     homebrew-cask,
-    homebrew-emacsmacport,
+    homebrew-nikitabobko-tap,
     rust-overlay,
     emacs-overlay,
     apple-fonts,
@@ -130,10 +130,11 @@
                   "homebrew/homebrew-core" = homebrew-core;
                   "homebrew/homebrew-cask" = homebrew-cask;
                   "homebrew/homebrew-bundle" = homebrew-bundle;
-                  "railwaycat/homebrew-emacsmacport" = homebrew-emacsmacport;
+                  "nikitabobko/homebrew-tap" = homebrew-nikitabobko-tap;
                 };
                 mutableTaps = false;
                 autoMigrate = true;
+                trust.casks = ["nikitabobko/tap/aerospace"];
               };
             }
             ./hosts/darwin

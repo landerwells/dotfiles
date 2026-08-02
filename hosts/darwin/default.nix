@@ -46,7 +46,15 @@ in {
   homebrew = {
     enable = true;
     casks = pkgs.callPackage ../../modules/darwin/casks.nix {};
-    onActivation.cleanup = "uninstall";
+    # cleanup left unset (not "uninstall"): running `brew bundle`'s install and
+    # cleanup together in one invocation (which is what onActivation.cleanup
+    # triggers) hits a Homebrew bug where its cask-name cache gets stale and it
+    # wrongly thinks already-installed casks aren't declared, so it tries to
+    # uninstall them all. Run `brew bundle cleanup --force` by hand instead if
+    # you actually want to prune untracked casks.
+    onActivation.extraEnv = {
+      HOMEBREW_BUNDLE_ADOPT = "1";
+    };
 
     # These app IDs are from using the mas CLI app
     # mas = mac app store

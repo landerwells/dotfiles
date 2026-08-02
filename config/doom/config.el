@@ -210,26 +210,27 @@ citation but no existing print_bibliography keyword."
 ;; I don't just want to accidentally push a bunch of stuff. All I need to do is update
 ;; htdocs/ when we get some new information
 ;;
-;;
-;; I need to figure out how I want to handle
+;; Global HTML export options
+(setq org-export-with-section-numbers nil
+      org-export-with-toc nil
+      org-export-with-author nil
+      org-export-with-date nil
+      org-export-with-timestamps nil
+      org-html-postamble nil
+      org-export-with-title nil)
+
+(setq org-html-head-include-default-style nil
+      org-html-head-include-scripts nil
+      org-html-head "<link rel=\"stylesheet\" href=\"/main.css\">")
+
 (setq org-publish-project-alist
       `(("cards"
          :base-directory "~/org/roam/main"
          :base-extension "org"
-         ;; :publishing-directory "/ssh:lw@fugu:/var/www/htdocs/notes"
-         :publishing-directory "~/org/roam/website"
+         :publishing-directory ,(expand-file-name "output/cards" org-roam-directory)
          :publishing-function org-html-publish-to-html
          :headline-levels 3
-         :section-numbers nil
-         :with-toc nil
-
-         :html-head-include-default-style nil
-         :html-head-include-scripts nil
-
-         ;; Your stylesheet
-         :html-head
-         "<link rel=\"stylesheet\" href=\"main.css\">"
-         :html-preamble t)
+         :html-preamble lw/html-preamble)
 
         ("images"
          :base-directory "~/images/"
@@ -240,43 +241,17 @@ citation but no existing print_bibliography keyword."
         ("website"
          :base-directory "~/org/roam/website"
          :base-extension "org"
-         :publishing-directory "/ssh:lw@fugu:/var/www/htdocs"
+         :publishing-directory ,(expand-file-name "output" org-roam-directory)
          :publishing-function org-html-publish-to-html
          :headline-levels 3
-         :section-numbers nil
-         :with-toc nil
-
-         :with-title nil
-         :html-head-include-default-style nil
-         :html-head-include-scripts nil
-         :with-date nil
-         :with-author nil
-
          :html-preamble lw/html-preamble
-         ;; Your stylesheet
-         :html-head
-         "<link rel=\"stylesheet\" href=\"main.css\">"
          :recursive t)
 
-        ("landerwells.com" :components ("cards" "images" "website"))))
+        ("landerwells.com"
+         :components ("cards" "images" "website"))))
 
 
 (defun lw/html-preamble (_plist)
-  "
-<header>
-  <nav>
-    <a href=\"/\">home</a>
-    <span> | </span>
-    <a href=\"/about/\">about</a>
-    <span> | </span>
-    <a href=\"/now/\">now</a>
-    <span> | </span>
-    <a href=\"/blog/\">blog</a>
-    <span> | </span>
-    <a href=\"/notes/\">notes</a>
-    <span> | </span>
-    <a href=\"/contact/\">contact</a>
-    <span> | </span>
-    <a href=\"/blog/index.xml\">RSS</a>
-  </nav>
-</header>")
+  (with-temp-buffer
+    (insert-file-contents "~/dotfiles/config/doom/header.html")
+    (buffer-string)))
