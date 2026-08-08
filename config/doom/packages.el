@@ -50,4 +50,4 @@
 
 (package! glsl-mode)
 (package! org-roam-ui)
-
+(package! org-roam-export)

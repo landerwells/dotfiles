@@ -67,9 +67,6 @@ citation but no existing print_bibliography keyword."
   (add-to-list 'org-modules 'org-habit t)
   (add-to-list 'org-modules 'org-protocol t)
 
-  ;; Org Babel support for SICP Scheme blocks.
-  (require 'ob-scheme)
-
   ;; Capture templates
   (setq org-capture-templates
         '(("i" "Inbox" entry (file "roam/agenda/todo.org")
@@ -91,6 +88,7 @@ citation but no existing print_bibliography keyword."
 
 (after! org-roam
   (require 'org-roam-protocol)
+  ; (require 'org-roam-export)
   ;; Capture templates
   (setq org-roam-capture-templates
         '(("f" "fleeting" plain "%?"
@@ -116,9 +114,6 @@ citation but no existing print_bibliography keyword."
            :if-new (file+head "reference/${slug}.org"
                               "#+title: ${title}\n#+roam_key: ${ref}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :web:\n")
            :unnarrowed t))))
-
-;; Org protocol needs to be loaded early
-(require 'org-protocol)
 
 ;;; Helper Functions
 
@@ -221,7 +216,8 @@ citation but no existing print_bibliography keyword."
 
 (setq org-html-head-include-default-style nil
       org-html-head-include-scripts nil
-      org-html-head "<link rel=\"stylesheet\" href=\"/main.css\">")
+      org-html-head "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/icon.png\">
+                     <link rel=\"stylesheet\" href=\"/main.css\">")
 
 (setq org-publish-project-alist
       `(("cards"
