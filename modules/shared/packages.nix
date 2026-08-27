@@ -18,13 +18,11 @@ with pkgs; [
   fzf
   gh
   git
-  helix
   ispell
   killall
   libtool
   yazi
 
-  hugo
   python3
   claude-code
   clang-tools
@@ -38,21 +36,17 @@ with pkgs; [
   tmux
   tokei
   tree
-  lazygit
   typst
   unrar
   unzip
-  wget
-  yt-dlp
   zip
   (rust-bin.stable.latest.default.override {
     extensions = ["rust-src" "rust-analyzer"];
   })
   neovim
-  wgsl-analyzer
+  vim
   gdb
   lldb
   zig
   zls
-  sqlite
 ]

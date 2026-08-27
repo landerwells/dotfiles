@@ -25,18 +25,18 @@
 ;;; Org Mode & Org-Roam
 
 ;; Set directories before org loads
-(setq org-directory "~/org/"
-      org-roam-directory (file-truename "~/org/roam/")
-      org-cite-global-bibliography '("~/org/roam/reference/reference.bib")
+(setq org-directory "~/notes"
+      org-roam-directory (file-truename "~/notes")
+      org-cite-global-bibliography '("~/notes/reference/reference.bib")
       org-startup-with-inline-images t
       org-agenda-files (directory-files (expand-file-name "agenda" org-roam-directory) t "\\.org$"))
 
 ;; Set your bibliography file(s)
-(setq citar-bibliography '("~/org/roam/reference/reference.bib"))
+(setq citar-bibliography '("~/notes/reference/reference.bib"))
 
 ;; Set your PDF library and notes paths
 (setq citar-library-paths '("~/Books")
-      citar-notes-paths '("~/org/roam"))
+      citar-notes-paths '("~/notes"))
 
 ;; Org-cite: use CSL (citeproc) with IEEE style for all export backends,
 ;; including ox-hugo. See https://ox-hugo.scripter.co/doc/org-cite-citations/
@@ -44,23 +44,10 @@
   (setq org-cite-csl-styles-dir (expand-file-name "csl" doom-user-dir)
         org-cite-export-processors '((t csl "ieee.csl"))))
 
-(defun lw/org-auto-print-bibliography (backend)
-  "Append `#+print_bibliography:' when exporting a buffer with citations.
-Runs on the transient export copy, so the source note is untouched.
-Only acts when BACKEND derives from hugo and the buffer has at least one
-citation but no existing print_bibliography keyword."
-  (when (org-export-derived-backend-p backend 'hugo)
-    (save-excursion
-      (goto-char (point-min))
-      (when (and (re-search-forward org-element-citation-prefix-re nil t)
-                 (not (save-excursion
-                        (goto-char (point-min))
-                        (re-search-forward "^[ \t]*#\\+print_bibliography:" nil t))))
-        (goto-char (point-max))
-        (unless (bolp) (insert "\n"))
-        (insert "\n#+print_bibliography:\n")))))
-
-(add-hook 'org-export-before-processing-functions #'lw/org-auto-print-bibliography)
+(defun lw/org-no-fill-in-src-block ()
+  "Prevent auto-fill inside Org src blocks."
+  (let ((element (org-element-at-point)))
+    (and (eq (org-element-type element) 'src-block) t)))
 
 (after! org
   ;; Enable org modules
@@ -69,11 +56,11 @@ citation but no existing print_bibliography keyword."
 
   ;; Capture templates
   (setq org-capture-templates
-        '(("i" "Inbox" entry (file "roam/agenda/todo.org")
+        '(("i" "Inbox" entry (file "agenda/todo.org")
            "* TODO %?\n/Entered on/ %U")
-          ("c" "org-protocol-capture" entry (file "roam/agenda/todo.org")
+          ("c" "org-protocol-capture" entry (file "agenda/todo.org")
            "* TODO [[%:link][%:description]]\n\n%i" :immediate-finish t)
-          ("w" "Weight" table-line (file+headline "roam/agenda/health.org" "Weight Log")
+          ("w" "Weight" table-line (file+headline "agenda/health.org" "Weight Log")
            "| %<%Y-%m-%d> | %^{Weight (kgs)} |" :immediate-finish t)))
 
   ;; Org mode hooks for auto-fill
@@ -84,11 +71,11 @@ citation but no existing print_bibliography keyword."
               (auto-fill-mode 1)
               (add-hook 'fill-nobreak-predicate #'lw/org-no-fill-in-src-block nil t))))
 
-(set-file-template! "/org/roam/.+\\.org$" :ignore t)
+(set-file-template! "~/notes/.+\\.org$" :ignore t)
 
 (after! org-roam
   (require 'org-roam-protocol)
-  ; (require 'org-roam-export)
+  (require 'org-roam-export)
   ;; Capture templates
   (setq org-roam-capture-templates
         '(("f" "fleeting" plain "%?"
@@ -96,8 +83,8 @@ citation but no existing print_bibliography keyword."
                               "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
            :immediate-finish t
            :unnarrowed t)
-          ("m" "main" plain "%?"
-           :if-new (file+head "main/${title}.org"
+          ("m" "cards" plain "%?"
+           :if-new (file+head "cards/${title}.org"
                               "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :draft:\n")
            :immediate-finish t
            :unnarrowed t)
@@ -114,13 +101,6 @@ citation but no existing print_bibliography keyword."
            :if-new (file+head "reference/${slug}.org"
                               "#+title: ${title}\n#+roam_key: ${ref}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :web:\n")
            :unnarrowed t))))
-
-;;; Helper Functions
-
-(defun lw/org-no-fill-in-src-block ()
-  "Prevent auto-fill inside Org src blocks."
-  (let ((element (org-element-at-point)))
-    (and (eq (org-element-type element) 'src-block) t)))
 
 ;;; Package Configuration
 
@@ -219,35 +199,24 @@ citation but no existing print_bibliography keyword."
       org-html-head "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/icon.png\">
                      <link rel=\"stylesheet\" href=\"/main.css\">")
 
+;; There needs to be some gate of which files need to get exported.
+
 (setq org-publish-project-alist
-      `(("cards"
-         :base-directory "~/org/roam/main"
+      `(("website"
+         :base-directory "~/notes"
          :base-extension "org"
-         :publishing-directory ,(expand-file-name "output/cards" org-roam-directory)
-         :publishing-function org-html-publish-to-html
-         :headline-levels 3
-         :html-preamble lw/html-preamble)
-
-        ("images"
-         :base-directory "~/images/"
-         :base-extension "jpg\\|gif\\|png"
-         :publishing-directory "/ssh:user@host:~/html/images/"
-         :publishing-function org-publish-attachment)
-
-        ("website"
-         :base-directory "~/org/roam/website"
-         :base-extension "org"
-         :publishing-directory ,(expand-file-name "output" org-roam-directory)
+         :publishing-directory ,(expand-file-name "~/test")
          :publishing-function org-html-publish-to-html
          :headline-levels 3
          :html-preamble lw/html-preamble
-         :recursive t)
-
-        ("landerwells.com"
-         :components ("cards" "images" "website"))))
+         :recursive t)))
 
 
 (defun lw/html-preamble (_plist)
   (with-temp-buffer
     (insert-file-contents "~/dotfiles/config/doom/header.html")
     (buffer-string)))
+
+(setq org-export-with-broken-links t)
+
+;; https://org-roam.discourse.group/t/exports-and-org-roam-files-as-a-org-roam-beginner/3467/10
