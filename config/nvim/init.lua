@@ -1,4 +1,3 @@
--- Indentation
 vim.opt.autoindent = true           -- Enable auto-indentation
 vim.opt.expandtab = true            -- Converts tabs to spaces
 vim.opt.smartindent = true          -- Makes indenting smart
@@ -8,25 +7,21 @@ vim.opt.shiftwidth = 2              -- Size of an indent
 vim.opt.softtabstop = 2             -- Number of spaces tabs count for  
 vim.opt.tabstop = 2                 -- Number of spaces tabs count for
 
--- Display
 vim.opt.nu = true                  -- Show line numbers
 vim.opt.relativenumber = true      -- Show relative line numbers
 vim.opt.wrap = false               -- Disable line wrapping
 vim.opt.colorcolumn = "81"
 vim.opt.signcolumn = "yes"
 
--- Search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true vim.opt.smartcase = true
 
--- Undo
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.cache/vim/undodir"
 vim.opt.undofile = true
 
--- Misc
 vim.opt.isfname:append("@-@")
 vim.opt.backspace = "indent,eol,start"
 vim.opt.conceallevel = 1
@@ -38,7 +33,7 @@ vim.opt.scrolloff = 8
 vim.opt.showmode = false
 vim.opt.sidescrolloff = 8
 vim.opt.spell = true
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 vim.opt.updatetime = 50
 vim.opt.winblend = 0
 
@@ -97,20 +92,6 @@ require "oil".setup({
 require "no-neck-pain".setup({
   width = 120,
 })
-
--- doom-one configuration (must be set before colorscheme)
--- vim.g.doom_one_cursor_coloring = false
--- vim.g.doom_one_terminal_colors = true
--- vim.g.doom_one_italic_comments = true
--- vim.g.doom_one_enable_treesitter = true
--- vim.g.doom_one_pumblend_enable = false
--- vim.g.doom_one_pumblend_transparency = 20
--- vim.g.doom_one_plugin_telescope = true
--- vim.g.doom_one_plugin_lspsaga = false
--- vim.g.doom_one_plugin_nvim_tree = false
--- vim.g.doom_one_plugin_which_key = true
--- vim.g.doom_one_plugin_indent_blankline = true
--- vim.g.doom_one_plugin_gitsigns = true
 
 vim.cmd "colorscheme gruvbox"
 vim.cmd ":hi statusline guibg=NONE"

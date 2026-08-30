@@ -1,5 +1,0 @@
-{...}: {
-  services.wallabag = {
-    enable = true;
-  };
-}

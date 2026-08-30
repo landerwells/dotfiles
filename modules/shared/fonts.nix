@@ -10,6 +10,7 @@ with pkgs; [
   nerd-fonts.jetbrains-mono
   nerd-fonts.roboto-mono
   nerd-fonts.anonymice
+  nerd-fonts.bigblue-terminal
 
   # SF Mono from Lyndeno/apple-fonts.nix
   inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-mono-nerd
