@@ -13,9 +13,9 @@
         "fugu" = {id = "MXIZ437-CSW4RAW-FERBO63-OSRBEC6-2VDAFQK-GW22YGA-YWHLKB3-VOECXQV";};
       };
       folders = {
-        "Books" = {
-          path = "/home/landerwells/Books";
-          devices = ["macos" "hisense"];
+        "books" = {
+          path = "/home/landerwells/books";
+          devices = ["macos" "hisense" "fugu"];
         };
         "dotfiles" = {
           path = "/home/landerwells/dotfiles";
