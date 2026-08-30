@@ -93,7 +93,7 @@ require "no-neck-pain".setup({
   width = 120,
 })
 
-vim.cmd "colorscheme gruvbox"
+-- vim.cmd "colorscheme gruvbox"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 

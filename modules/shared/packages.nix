@@ -22,6 +22,7 @@ with pkgs; [
   killall
   libtool
   yazi
+  emscripten
 
   python3
   claude-code

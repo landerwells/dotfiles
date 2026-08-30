@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;;; General Settings
-(setq doom-theme 'doom-homage-black
+(setq doom-theme 'doom-gruvbox
       display-line-numbers-type 'relative
       scroll-margin 0)
 
