@@ -36,6 +36,7 @@ with pkgs; [
   tmux
   tokei
   tree
+  tcpdump
   typst
   unrar
   unzip
