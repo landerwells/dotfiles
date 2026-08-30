@@ -43,13 +43,15 @@ in
     zathura
     zotero
 
+    alsa-lib
     libGL
-    vulkan-loader
     libx11
     libxcursor
     libxi
-    libxrandr
     libxkbcommon
+    libxrandr
+    vulkan-loader
+    vulkan-tools
     wayland
-    alsa-lib
+    wayland-protocols
   ]
