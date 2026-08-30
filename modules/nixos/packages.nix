@@ -9,7 +9,6 @@ in
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
     anki
-    blender
     blueman
     discord
     firefox
@@ -19,34 +18,38 @@ in
     gcc
     ghostty
     gnuplot
-    hyprlock
     hyprpaper
     hyprpicker
     hyprshot
     libvterm
     mangohud
     obs-studio
-    obsidian
     pamixer
     pavucontrol
     perf
-    racket-minimal
     rofi
-    sioyek
     spotify
     unixtools.ifconfig
     unixtools.netstat
     valgrind
     vlc
-    vscode
     waybar
     wiremix
     wireplumber
     wl-clipboard
     xwayland
-    xeyes
+    # xeyes
     xprop
     zathura
-    zed-editor
     zotero
+
+    libGL
+    vulkan-loader
+    libx11
+    libxcursor
+    libxi
+    libxrandr
+    libxkbcommon
+    wayland
+    alsa-lib
   ]
