@@ -12,6 +12,7 @@ with pkgs; [
   btop
   coreutils
   dig
+  gnumake
   cmake
   fd
   ffmpeg_6
