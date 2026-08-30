@@ -52,4 +52,5 @@ with pkgs; [
   lldb
   zig
   zls
+  pi-coding-agent
 ]
