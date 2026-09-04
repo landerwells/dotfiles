@@ -33,6 +33,7 @@ with pkgs; [
   nodejs_24
   openssh
   pass
+  sqlite
   ripgrep
   skim
   tmux
