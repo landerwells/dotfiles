@@ -28,6 +28,11 @@ in {
     initrd.kernelModules = [];
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
+
+    # Gaming responsiveness: avoid expensive disk-swap clustering under memory pressure.
+    kernel.sysctl = {
+      "vm.page-cluster" = 0;
+    };
   };
 
   fileSystems."/" = {
@@ -44,6 +49,19 @@ in {
   swapDevices = [
     {device = "/dev/disk/by-uuid/e4c1e732-6560-4742-b6da-ec24fa26134f";}
   ];
+
+  # CS2 was forcing the machine into disk swap. Prefer fast compressed RAM swap
+  # and keep the existing disk swap only as a low-priority fallback.
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    priority = 100;
+  };
+
+  # intel_pstate only exposes "powersave" and "performance" on this CPU.
+  # CS2 was running with every core on powersave, unlike typical Windows gaming mode.
+  powerManagement.cpuFreqGovernor = "performance";
 
   # Hardware platform
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -99,7 +117,15 @@ in {
       enable = true;
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
-    gamemode.enable = true;
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+          softrealtime = "auto";
+        };
+      };
+    };
   };
 
   environment.sessionVariables = {
@@ -121,6 +147,10 @@ in {
     enableAllFirmware = true;
     graphics.enable = true;
 
+    # The system was staying on intel_pstate "powersave" while CS2 was running.
+    # Match Windows' high-performance behavior for smoother frame pacing/input.
+    cpu.intel.updateMicrocode = true;
+
     nvidia = {
       modesetting.enable = true; # Enable modesetting required by newer desktops
       powerManagement.enable = false;
@@ -135,7 +165,7 @@ in {
   users.users = {
     ${user} = {
       isNormalUser = true;
-      extraGroups = ["networkmanager" "wheel" "audio" "vboxusers"];
+      extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "gamemode"];
       home = "/home/landerwells";
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = sshKeys;
