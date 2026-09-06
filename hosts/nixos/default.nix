@@ -109,10 +109,18 @@ in {
     # Needed for anything GTK related
     dconf.enable = true;
     zsh.enable = true;
-    hyprland = {
+
+    # hyprland = {
+    #   enable = true;
+    #   xwayland.enable = true;
+    # };
+
+    # Enable Sway.
+    sway = {
       enable = true;
-      xwayland.enable = true;
+      wrapperFeatures.gtk = true;
     };
+
     steam = {
       enable = true;
       extraCompatPackages = [pkgs.proton-ge-bin];
