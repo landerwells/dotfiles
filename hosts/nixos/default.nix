@@ -110,16 +110,16 @@ in {
     dconf.enable = true;
     zsh.enable = true;
 
-    # hyprland = {
-    #   enable = true;
-    #   xwayland.enable = true;
-    # };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
 
     # Enable Sway.
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
+    # sway = {
+    #   enable = true;
+    #   wrapperFeatures.gtk = true;
+    # };
 
     steam = {
       enable = true;
