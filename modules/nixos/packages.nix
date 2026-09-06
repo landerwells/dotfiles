@@ -44,6 +44,9 @@ in
     zathura
     zotero
 
+    man-pages
+    man-pages-posix
+
     alsa-lib
     libGL
     libx11
