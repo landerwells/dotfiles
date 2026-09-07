@@ -40,6 +40,12 @@ in {
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk]; # for file dialogs, keep this
+    config.common.default = "*";
+  };
+
   xdg.desktopEntries = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     org-protocol = {
       name = "Org Protocol";
