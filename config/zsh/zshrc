@@ -37,8 +37,6 @@ export KEYTIMEOUT=1
 bindkey -M viins '^?' backward-delete-char
 bindkey -M vicmd '^?' backward-delete-char
 bindkey -M isearch '^?' backward-delete-char
-bindkey -M vicmd '/' history-incremental-search-backward
-bindkey -M vicmd '?' history-incremental-search-forward
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {

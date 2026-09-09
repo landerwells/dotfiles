@@ -54,4 +54,6 @@ with pkgs; [
   zig
   zls
   pi-coding-agent
+  pandoc
+  helix
 ]
