@@ -33,7 +33,7 @@ vim.opt.scrolloff = 8
 vim.opt.showmode = false
 vim.opt.sidescrolloff = 8
 vim.opt.spell = true
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 vim.opt.updatetime = 50
 vim.opt.winblend = 0
 
@@ -92,7 +92,7 @@ require "no-neck-pain".setup({
   width = 120,
 })
 
-vim.cmd "colorscheme gruvbox"
+-- vim.cmd "colorscheme gruvbox"
 vim.cmd ":hi statusline guibg=NONE"
 vim.cmd([[let g:tmux_navigator_no_wrap = 1]])
 
