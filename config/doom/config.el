@@ -223,29 +223,8 @@
 
 
 
-(require 'ox-html)
+(with-eval-after-load 'ox
+  (defun lw/strip-id (link-string backend info)
+    (replace-regexp-in-string "#ID-[-a-f0-9]+\"" "\"" link-string))
 
-(defun org-roam-export--org-html--reference (datum info &optional named-only)
-  "Org-roam's patch for `org-html--reference' to support ID link export.
-See `org-html--reference' for DATUM, INFO and NAMED-ONLY."
-  (let* ((type (org-element-type datum))
-         (user-label
-          (org-element-property
-           (pcase type
-             ((or `headline `inlinetask) :CUSTOM_ID)
-             ((or `radio-target `target) :value)
-             (_ :name))
-           datum)))
-    (cond
-     ((and user-label
-           (or (plist-get info :html-prefer-user-labels)
-               (memq type '(headline inlinetask))))
-      user-label)
-     ((and named-only
-           (not (memq type '(headline inlinetask radio-target target)))
-           (not user-label))
-      nil)
-     (t
-      (org-export-get-reference datum info)))))
-
-(advice-add 'org-html--reference :override #'org-roam-export--org-html--reference)
+  (add-to-list 'org-export-filter-link-functions #'lw/strip-id))
