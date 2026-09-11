@@ -66,6 +66,8 @@ in {
   # Hardware platform
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
+  documentation.man.cache.enable = true;
+
   networking = {
     networkmanager.enable = true;
     hostName = "nixos";

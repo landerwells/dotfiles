@@ -225,6 +225,6 @@
 
 (with-eval-after-load 'ox
   (defun lw/strip-id (link-string backend info)
-    (replace-regexp-in-string "#ID-[-a-f0-9]+\"" "\"" link-string))
+    (replace-regexp-in-string ".html#ID-[-a-f0-9]+\"" "\"" link-string))
 
   (add-to-list 'org-export-filter-link-functions #'lw/strip-id))
