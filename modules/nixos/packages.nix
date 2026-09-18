@@ -34,6 +34,7 @@ in
     unixtools.netstat
     valgrind
     vlc
+    ncdu
     waybar
     wiremix
     wireplumber
