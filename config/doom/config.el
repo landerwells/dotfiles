@@ -6,8 +6,8 @@
       scroll-margin 0)
 
 ;; Indentation
-(setq-default tab-width 2
-              evil-shift-width 2
+(setq-default tab-width 4
+              evil-shift-width 4
               indent-tabs-mode nil)
 
 ;;; Keybindings
@@ -150,27 +150,6 @@
   (add-to-list 'projectile-project-root-functions
                #'lw/projectile-root-search-path-child t))
 
-(use-package folgezett
-  :load-path "~/Developer/folgezett.el"
-  :after org-roam
-  :init
-  ;; Automatically prepend the folgezettel ID to captured note filenames.
-  ;; `folgezett-capture-keys' restricts this to the "main" org-roam template.
-  (setq folgezett-capture-keys '("m")
-        folgezett-db-link-parent t
-        folgezett-include-id-in-filename t)
-  :config
-  (folgezett-setup))
-
-(map! :leader
-      (:prefix-map ("n z" . "folgezettel")
-       :desc "Assign ID"        "a" #'folgezett-assign-id
-       :desc "Goto parent"      "p" #'folgezett-goto-parent
-       :desc "List children"    "c" #'folgezett-list-children
-       :desc "Show tree"        "t" #'folgezett-show-tree
-       :desc "Reparent"         "r" #'folgezett-reparent
-       :desc "Reparent subtree" "R" #'folgezett-reparent-subtree))
-
 ;; I think this is truly the route I want to go down. Push straight to
 ;; the server. All revisions will happen
 ;;
@@ -218,13 +197,13 @@
 
 (setq org-export-with-broken-links t)
 
-
-
-
-
-
 (with-eval-after-load 'ox
   (defun lw/strip-id (link-string backend info)
     (replace-regexp-in-string ".html#ID-[-a-f0-9]+\"" "\"" link-string))
 
   (add-to-list 'org-export-filter-link-functions #'lw/strip-id))
+
+;; There are a few more things I need to figure out with my website and
+;; config as a whole. Publish date on pages, and update date.
+;;
+;; I would also like to get some more styling done.

@@ -56,4 +56,6 @@ with pkgs; [
   pi-coding-agent
   pandoc
   helix
+
+  aerc
 ]
