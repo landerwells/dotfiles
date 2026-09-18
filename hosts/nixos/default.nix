@@ -104,6 +104,8 @@ in {
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    optimise.automatic = true;
   };
 
   programs = {
