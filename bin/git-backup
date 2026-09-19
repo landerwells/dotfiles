@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+host=_git@fugu
+
+cd ~/repos
+
+ssh -n "$host" 'ls -d *.git' | while read -r repo; do
+    if [ -d "$repo" ]; then
+        echo "updating $repo"
+        git -C "$repo" remote update --prune </dev/null
+    else
+        echo "cloning $repo"
+        git clone --mirror "$host:$repo" "$repo" </dev/null
+    fi
+done
+
+
+for repo in _git@fugu:*.git; do
+
+    echo $repo
+done

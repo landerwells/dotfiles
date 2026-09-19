@@ -208,6 +208,30 @@ in {
     ];
   };
 
+  systemd.timers.git-backup = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      # Alternatively, if you prefer to specify an exact timestamp
+      # like one does in cron, you can use the `OnCalendar` option
+      # to specify a calendar event expression.
+      # Run every Monday at 10:00 AM in the Asia/Kolkata timezone.
+      #OnCalendar = "Mon *-*-* 10:00:00 Asia/Kolkata";
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
+
+  systemd.services.git-backup = {
+    serviceConfig = {
+      Type = "oneshot";
+      User = "${user}";
+      RemainAfterExit = true; # Prevents the service from automatically starting on rebuild. See https://discourse.nixos.org/t/how-to-prevent-custom-systemd-service-from-restarting-on-nixos-rebuild-switch/43431
+    };
+    script = ''
+      ~/dotfiles/bin/git-backup
+    '';
+  };
+
   # Packages and Fonts
   environment.systemPackages = import ../../modules/nixos/packages.nix {inherit pkgs inputs;};
   fonts.packages = import ../../modules/shared/fonts.nix {inherit pkgs inputs;};
