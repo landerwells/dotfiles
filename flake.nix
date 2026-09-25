@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:nixos/nixpkgs/master";
-    home-manager.url = "github:nix-community/home-manager";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,35 +30,24 @@
     apple-fonts = {
       url = "github:Lyndeno/apple-fonts.nix";
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    pi = {
-      url = "github:lukasl-dev/pi.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # emacs-overlay = {
+    #   url = "github:nix-community/emacs-overlay";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
     self,
     darwin,
     nix-homebrew,
-    home-manager,
     homebrew-bundle,
     homebrew-core,
     homebrew-cask,
     homebrew-nikitabobko-tap,
-    rust-overlay,
-    emacs-overlay,
+    # emacs-overlay,
     apple-fonts,
     nixpkgs,
     nixpkgs-latest,
-    pi,
   } @ inputs: let
     user = "landerwells";
     linuxSystems = ["x86_64-linux" "aarch64-linux"];
@@ -114,12 +102,8 @@
           inherit system;
           specialArgs = {inherit inputs;};
           modules = [
-            home-manager.darwinModules.home-manager
             {
               users.users.landerwells.home = "/Users/landerwells";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.landerwells = ./modules/home.nix;
             }
             nix-homebrew.darwinModules.nix-homebrew
             {
@@ -147,20 +131,6 @@
         inherit system;
         specialArgs = {inherit inputs;};
         modules = [
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${user} = {
-                config,
-                pkgs,
-                lib,
-                ...
-              }:
-                import ./modules/home.nix {inherit config pkgs lib inputs;};
-            };
-          }
           ./hosts/nixos
         ];
       });
