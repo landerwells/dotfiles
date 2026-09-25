@@ -12,9 +12,3 @@ ssh -n "$host" 'ls -d *.git' | while read -r repo; do
         git clone --mirror "$host:$repo" "$repo" </dev/null
     fi
 done
-
-
-for repo in _git@fugu:*.git; do
-
-    echo $repo
-done

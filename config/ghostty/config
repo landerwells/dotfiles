@@ -1,7 +1,8 @@
 font-family = "AnonymicePro Nerd Font Mono"
 font-size = 22
-theme = iTerm2 Default
 
+theme = iTerm2 Default
+theme = Doom One
 cursor-style = block
 cursor-style-blink = false
 shell-integration-features = cursor,sudo,title

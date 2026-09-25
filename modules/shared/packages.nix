@@ -5,9 +5,8 @@
 with pkgs; [
   alejandra
   aspell
-  direnv
   aspellDicts.en
-  bat
+  direnv
   bc
   btop
   coreutils
@@ -26,11 +25,9 @@ with pkgs; [
   emscripten
 
   python3
-  claude-code
   clang-tools
   lua-language-server
   nixd
-  nodejs_24
   openssh
   pass
   sqlite
@@ -38,24 +35,16 @@ with pkgs; [
   skim
   tmux
   tokei
-  tree
   tcpdump
   typst
   unrar
   unzip
   zip
-  (rust-bin.stable.latest.default.override {
-    extensions = ["rust-src" "rust-analyzer"];
-  })
   neovim
-  vim
   gdb
   lldb
   zig
   zls
-  pi-coding-agent
-  pandoc
-  helix
-
   aerc
+  bear
 ]

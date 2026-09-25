@@ -207,3 +207,7 @@
 ;; config as a whole. Publish date on pages, and update date.
 ;;
 ;; I would also like to get some more styling done.
+
+
+
+(setq confirm-kill-emacs nil)

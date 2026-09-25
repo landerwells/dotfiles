@@ -17,7 +17,6 @@ in
     fontconfig
     gcc
     ghostty
-    gtypist
     gnuplot
     hyprpaper
     hyprpicker

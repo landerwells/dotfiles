@@ -225,7 +225,6 @@ in {
     serviceConfig = {
       Type = "oneshot";
       User = "${user}";
-      RemainAfterExit = true; # Prevents the service from automatically starting on rebuild. See https://discourse.nixos.org/t/how-to-prevent-custom-systemd-service-from-restarting-on-nixos-rebuild-switch/43431
     };
     script = ''
       ~/dotfiles/bin/git-backup
