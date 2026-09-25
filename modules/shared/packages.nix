@@ -47,4 +47,5 @@ with pkgs; [
   zls
   aerc
   bear
+  stow
 ]
