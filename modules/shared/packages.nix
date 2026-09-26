@@ -45,7 +45,6 @@ with pkgs; [
   lldb
   zig
   zls
-  aerc
   bear
   stow
 ]
