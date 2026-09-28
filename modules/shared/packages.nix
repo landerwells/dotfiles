@@ -26,7 +26,6 @@ with pkgs; [
 
   python3
   clang-tools
-  lua-language-server
   nixd
   openssh
   pass
@@ -40,7 +39,6 @@ with pkgs; [
   unrar
   unzip
   zip
-  neovim
   gdb
   lldb
   zig

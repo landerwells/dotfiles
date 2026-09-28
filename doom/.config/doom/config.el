@@ -183,7 +183,7 @@
       `(("website"
          :base-directory "~/notes"
          :base-extension "org"
-         :publishing-directory ,(expand-file-name "~/test")
+         :publishing-directory ,(expand-file-name "~/notes/html")
          :publishing-function org-html-publish-to-html
          :headline-levels 3
          :html-preamble lw/html-preamble
@@ -192,7 +192,7 @@
 
 (defun lw/html-preamble (_plist)
   (with-temp-buffer
-    (insert-file-contents "~/dotfiles/config/doom/header.html")
+    (insert-file-contents "~/.config/doom/header.html")
     (buffer-string)))
 
 (setq org-export-with-broken-links t)
@@ -207,7 +207,5 @@
 ;; config as a whole. Publish date on pages, and update date.
 ;;
 ;; I would also like to get some more styling done.
-
-
 
 (setq confirm-kill-emacs nil)
