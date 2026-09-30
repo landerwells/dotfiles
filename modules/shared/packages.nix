@@ -22,6 +22,7 @@ with pkgs; [
   killall
   libtool
   yazi
+  mosh
   emscripten
 
   python3

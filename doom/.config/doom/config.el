@@ -10,6 +10,8 @@
               evil-shift-width 4
               indent-tabs-mode nil)
 
+(after! evil
+  (map! :n "C-z" #'suspend-frame))
 ;;; Keybindings
 
 ;; Scrolling with recentering
