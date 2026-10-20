@@ -79,12 +79,7 @@
   (require 'org-roam-protocol)
   ;; Capture templates
   (setq org-roam-capture-templates
-        '(("f" "fleeting" plain "%?"
-           :if-new (file+head "fleeting/${title}.org"
-                              "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n")
-           :immediate-finish t
-           :unnarrowed t)
-          ("m" "cards" plain "%?"
+        '(("m" "cards" plain "%?"
            :if-new (file+head "cards/${title}.org"
                               "#+title: ${title}\n#+date: %<%B %d, %Y %I:%M %p>\n#+filetags: :draft:\n")
            :immediate-finish t
@@ -211,3 +206,22 @@
 ;; I would also like to get some more styling done.
 
 (setq confirm-kill-emacs nil)
+
+(defun my/org-roam-broken-links ()
+  "List id: links whose target node doesn't exist."
+  (interactive)
+  (let* ((links (org-roam-db-query
+                 [:select [source dest pos] :from links
+                  :where (= type "id")]))
+         (known (make-hash-table :test 'equal)))
+    (dolist (row (org-roam-db-query [:select id :from nodes]))
+      (puthash (car row) t known))
+    (let ((broken (seq-remove (lambda (l) (gethash (nth 1 l) known)) links)))
+      (with-current-buffer (get-buffer-create "*broken-roam-links*")
+        (erase-buffer)
+        (dolist (l broken)
+          (let* ((src (org-roam-node-from-id (nth 0 l))))
+            (insert (format "%s (pos %d) -> %s\n"
+                            (if src (org-roam-node-file src) (nth 0 l))
+                            (nth 2 l) (nth 1 l)))))
+        (pop-to-buffer (current-buffer))))))

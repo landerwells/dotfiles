@@ -107,3 +107,5 @@ source ~/dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(direnv hook zsh)"
 eval "$(gh completion -s zsh)"
 
+MANPAGER="vim -M +MANPAGER -c 'map q :q<CR>' -"
+export MANPAGER

@@ -41,9 +41,11 @@ with pkgs; [
   unzip
   zip
   gdb
+  neomutt
   lldb
   zig
   zls
   bear
   stow
+  vim
 ]

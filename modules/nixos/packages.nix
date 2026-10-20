@@ -42,7 +42,7 @@ in
     # xeyes
     xprop
     zathura
-    zotero
+    # zotero
 
     man-pages
     man-pages-posix
