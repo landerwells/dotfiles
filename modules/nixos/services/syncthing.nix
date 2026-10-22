@@ -8,6 +8,7 @@
     openDefaultPorts = true;
     settings = {
       devices = {
+        "seneca" = {id = "WPUHMTB-BQFLEL4-Q5IU2HN-DXQKESN-J342RSF-U7V6YMG-IWZLC2X-4QAESQM";};
         "macos" = {id = "JFSZU24-XA7JTXO-ZMZXO4L-KBDSOMA-2M74Y4X-GSO3EMF-YSMFDRR-AJG4XAW";};
         "hisense" = {id = "S4IKJUJ-NDJOT55-CHXXW4J-LKNWGSE-WATITGO-6YHWQZH-QI5TIXR-SBDFQQS";};
       };
