@@ -58,4 +58,5 @@ in
     vulkan-tools
     wayland
     wayland-protocols
+    pciutils
   ]
