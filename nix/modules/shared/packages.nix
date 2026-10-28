@@ -6,46 +6,45 @@ with pkgs; [
   alejandra
   aspell
   aspellDicts.en
-  direnv
   bc
+  bear
   btop
+  clang-tools
+  cmake
   coreutils
   dig
-  gnumake
-  cmake
+  direnv
+  emscripten
   fd
   ffmpeg_6
   fzf
+  gdb
   gh
   git
+  gnumake
   ispell
   killall
+  libgit2
   libtool
-  yazi
   mosh
-  emscripten
-
-  python3
-  clang-tools
+  neomutt
   nixd
   openssh
   pass
-  sqlite
+  python3
   ripgrep
   skim
+  sqlite
+  stow
+  tcpdump
   tmux
   tokei
-  tcpdump
   typst
   unrar
   unzip
-  zip
-  gdb
-  neomutt
-  lldb
-  zig
-  zls
-  bear
-  stow
   vim
+  yazi
+  zig
+  zip
+  zls
 ]

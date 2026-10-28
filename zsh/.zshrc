@@ -109,3 +109,5 @@ eval "$(gh completion -s zsh)"
 
 MANPAGER="vim -M +MANPAGER -c 'map q :q<CR>' -"
 export MANPAGER
+
+alias rex='/Applications/Rex\ Beta.app/Contents/Helpers/Rex\ Server.rex/Contents/MacOS/rex'

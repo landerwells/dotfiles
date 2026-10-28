@@ -7,7 +7,7 @@ _: [
   "karabiner-elements"
   "ghostty"
   "linearmouse"
-  "emacs"
+  "emacs-app"
   "maccy"
   "steam"
   "syncthing-app"
