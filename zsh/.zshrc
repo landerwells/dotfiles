@@ -99,10 +99,11 @@ alias mkdir='mkdir -pv'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 
-alias rex='/Applications/Rex\ Beta.app/Contents/Helpers/Rex\ Server.rex/Contents/MacOS/rex'
 
-# Directory Commands
-alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
+  alias rex='/Applications/Rex\ Beta.app/Contents/Helpers/Rex\ Server.rex/Contents/MacOS/rex'
+fi
 
 source ~/dotfiles/plugins/zsh-autopair/autopair.zsh
 source ~/dotfiles/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
