@@ -129,6 +129,14 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/nixos
+          rex.nixosModules.default
+          {
+            services.rex.enable = true;
+            users.users.landerwells = {
+              isNormalUser = true;
+              extraGroups = ["rex"];
+            };
+          }
         ];
       });
   };
