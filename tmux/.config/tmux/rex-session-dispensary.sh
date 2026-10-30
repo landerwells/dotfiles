@@ -13,10 +13,20 @@ fi
 
 [[ -z $selected ]] && exit 0
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename "$selected")
 
-if ! tmux has-session -t "$selected_name" 2>/dev/null; then
-  rex session new "selected_name" 
+# Look up an existing session by label (case-insensitive, same as rex's own matching)
+session_id=$(
+  rex ls --json |
+    jq -r --arg n "$selected_name" '
+      first(.sessions[] | select((.label // "" | ascii_downcase) == ($n | ascii_downcase)) | .session_id) // empty
+    '
+)
+
+# Create it if missing, rooted in the selected directory
+if [[ -z $session_id ]]; then
+  session_id=$(rex new "$selected_name" --cwd "$selected" --json | jq -r '.session_id')
 fi
 
-tmux switch-client -t "$selected_name"
+# Ask the app to show that session
+rex do session.select session_id="$session_id"

@@ -1,6 +1,8 @@
-if [ -n "$TMUX" ]; then
-  HISTFILE=~/.cache/zsh_history
-fi
+# Add your completions directory (create it first: mkdir -p ~/.zfunc)
+fpath=(~/.zfunc $fpath)
+
+# Load and initialize the completion system
+autoload -Uz compinit && compinit
 
 HISTSIZE=100000
 SAVEHIST=100000
@@ -97,6 +99,8 @@ alias mkdir='mkdir -pv'
 alias xc='open -a Xcode'
 alias rm='rm -i'
 
+alias rex='/Applications/Rex\ Beta.app/Contents/Helpers/Rex\ Server.rex/Contents/MacOS/rex'
+
 # Directory Commands
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
 
@@ -107,7 +111,5 @@ source ~/dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(direnv hook zsh)"
 eval "$(gh completion -s zsh)"
 
-MANPAGER="vim -M +MANPAGER -c 'map q :q<CR>' -"
-export MANPAGER
+export MANPAGER="vim -M +MANPAGER -c 'map q :q<CR>' -"
 
-alias rex='/Applications/Rex\ Beta.app/Contents/Helpers/Rex\ Server.rex/Contents/MacOS/rex'
