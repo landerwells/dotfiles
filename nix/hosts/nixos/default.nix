@@ -70,7 +70,7 @@ in {
 
   networking = {
     networkmanager.enable = true;
-    hostName = "nixos";
+    hostName = "epictetus";
     firewall.enable = true;
   };
 
