@@ -26,6 +26,7 @@ with pkgs; [
   killall
   libgit2
   libtool
+  neovim
   mosh
   neomutt
   nixd
@@ -47,4 +48,5 @@ with pkgs; [
   zig
   zip
   zls
+  ledger
 ]
