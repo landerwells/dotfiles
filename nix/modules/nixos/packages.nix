@@ -8,7 +8,7 @@ in
   shared-packages
   ++ [
     # Desktop applications (that can't be shared easily with MacOS)
-    anki
+    # anki
     blueman
     discord
     firefox
