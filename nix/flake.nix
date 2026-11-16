@@ -132,6 +132,7 @@
           rex.nixosModules.default
           {
             services.rex.enable = true;
+            services.rex.socketActivation = true;
             users.users.landerwells = {
               isNormalUser = true;
               extraGroups = ["rex"];
