@@ -131,12 +131,12 @@
           ./hosts/nixos
           rex.nixosModules.default
           {
-            services.rex.enable = true;
-            services.rex.tailscaleServe.enable = true;
-            # services.rex.tailscale.enable = true;
-            users.users.landerwells = {
-              isNormalUser = true;
-              extraGroups = ["rex"];
+            users.users.landerwells.linger = true;
+
+            services.rex.loginServer = {
+              enable = true;
+              accounts.landerwells.principals = ["tailscale:landerwells@gmail.com"];
+              tailscaleServe.enable = true;
             };
           }
         ];
