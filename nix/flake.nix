@@ -132,6 +132,7 @@
           rex.nixosModules.default
           {
             services.rex.enable = true;
+            services.rex.tailscale.enable = true;
             users.users.landerwells = {
               isNormalUser = true;
               extraGroups = ["rex"];
